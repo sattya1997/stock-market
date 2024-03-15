@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>WebSocket Example</title>
+<script>
+  // This script will be executed when the page is fully loaded
+  document.addEventListener('DOMContentLoaded', function() {
+    // Initialize the WebSocket variable
+    var socket;
+
+    // Function to connect to the WebSocket server
+    function connect() {
+      // Replace 'ws://example.com' with your WebSocket server URL
+      socket = new WebSocket('ws://example.com');
+
+      // Event listener for when the connection is established
+      socket.onopen = function(event) {
+        console.log('WebSocket connection established', event);
+      };
+
+      // Event listener for when a message is received from the server
+      socket.onmessage = function(event) {
+        console.log('Message from server', event.data);
+        // Display the message in a div with id 'message'
+        document.getElementById('message').textContent = event.data;
+      };
+
+      // Event listener for when the connection is closed
+      socket.onclose = function(event) {
+        console.log('WebSocket connection closed', event);
+      };
+
+      // Event listener for when an error occurs
+      socket.onerror = function(error) {
+        console.error('WebSocket error', error);
+      };
+    }
+
+    // Function to disconnect from the WebSocket server
+    function disconnect() {
+      if (socket) {
+        socket.close();
+      }
+    }
+
+    // Attach the connect function to the 'Connect' button
+    document.getElementById('connectBtn').addEventListener('click', connect);
+
+    // Attach the disconnect function to the 'Disconnect' button
+    document.getElementById('disconnectBtn').addEventListener('click', disconnect);
+  });
+</script>
+</head>
+<body>
+<button id="connectBtn">Connect</button>
+<button id="disconnectBtn">Disconnect</button>
+<div id="message">Messages will appear here</div>
+</body>
+</html>

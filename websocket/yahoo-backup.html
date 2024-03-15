@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yahoo Finance WebSocket Example</title>
+</head>
+
+<body>
+    <script src="https://bundle.run/buffer@6.0.3"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/protobufjs/7.2.6/protobuf.js"></script>
+    <script>
+        const PricingData = new protobuf.Type("PricingData")
+            .add(new protobuf.Field("id", 1, "string"))
+            .add(new protobuf.Field("price", 2, "float"))
+            .add(new protobuf.Field("time", 3, "int64"))
+            .add(new protobuf.Field("currency", 4, "string"))
+            .add(new protobuf.Field("exchange", 5, "string"))
+            .add(new protobuf.Field("quote_type", 6, "int32"))
+            .add(new protobuf.Field("market_hours", 7, "int32"))
+            .add(new protobuf.Field("change_percent", 8, "float"))
+            .add(new protobuf.Field("day_volume", 9, "int64"))
+            .add(new protobuf.Field("day_high", 10, "float"))
+            .add(new protobuf.Field("day_low", 11, "float"))
+            .add(new protobuf.Field("change", 12, "float"))
+            .add(new protobuf.Field("short_name", 13, "string"))
+            .add(new protobuf.Field("expire_date", 14, "int64"))
+            .add(new protobuf.Field("open_price", 15, "float"))
+            .add(new protobuf.Field("previous_close", 16, "float"))
+            .add(new protobuf.Field("strike_price", 17, "float"))
+            .add(new protobuf.Field("underlying_symbol", 18, "string"))
+            .add(new protobuf.Field("open_interest", 19, "int64"))
+            .add(new protobuf.Field("options_type", 20, "int32"))
+            .add(new protobuf.Field("mini_option", 21, "int32"))
+            .add(new protobuf.Field("last_size", 22, "int64"))
+            .add(new protobuf.Field("bid", 23, "float"))
+            .add(new protobuf.Field("bid_size", 24, "int64"))
+            .add(new protobuf.Field("ask", 25, "float"))
+            .add(new protobuf.Field("ask_size", 26, "int64"))
+            .add(new protobuf.Field("price_hint", 27, "int32"))
+            .add(new protobuf.Field("vol_24hr", 28, "int64"))
+            .add(new protobuf.Field("vol_all_currencies", 29, "int64"))
+            .add(new protobuf.Field("from_currency", 30, "string"))
+            .add(new protobuf.Field("last_market", 31, "string"))
+            .add(new protobuf.Field("circulating_supply", 32, "int64"))
+            .add(new protobuf.Field("market_cap", 33, "int64"));
+        // Create a WebSocket connection to Yahoo Finance
+        const socket = new WebSocket('wss://streamer.finance.yahoo.com');
+        const root = new protobuf.Root().add(PricingData);
+
+        // Handle WebSocket connection events
+        socket.onopen = () => {
+            console.log('WebSocket connection established.');
+            // Subscribe to real-time data for AAPL (Apple Inc.)
+            socket.send('{"subscribe": ["TATAMOTORS.NS","NCC.NS","ICICIB22.NS"]}');
+        };
+
+        // Handle incoming messages from the WebSocket
+        socket.onmessage = (event) => {
+            const msg = event.data;
+            const msgList = convert(msg);
+            console.log(msgList);
+        };
+
+        // Handle WebSocket errors
+        socket.onerror = (error) => {
+            console.error('WebSocket error:', error);
+        };
+
+        // Handle WebSocket closure
+        socket.onclose = (event) => {
+            console.log('WebSocket connection closed:', event.code);
+        };
+
+        function convert(encodedData) {
+            return PricingData.decode(buffer.Buffer.from(encodedData, 'base64'));
+        }
+    </script>
+</body>
+
+</html>

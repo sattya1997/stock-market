@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiment</title>
+    <style>
+        * {
+            top: 0;
+            left: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* @media (max-width: 768px) {
+            .body {
+
+            }
+        } */
+        /* Style for the entire table */
+        #myTable {
+            border-collapse: collapse;
+            width: 95%;
+            margin: 75px auto;
+            /* Center the table horizontally */
+            font-family: Arial, sans-serif;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            color: black;
+        }
+
+        /* Style for table header cells */
+        #myTable th {
+            background-color: #3498db;
+            /* Header background color */
+            color: #000000;
+            /* Header text color */
+            text-align: left;
+            padding: 6px;
+        }
+
+        /* Style for table data cells */
+        #myTable td {
+            font-size: small;
+            border: 1px solid #ddd;
+            padding: 1.5px;
+        }
+
+        /* Alternate row background color (zebra stripes) */
+        #myTable tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        /* Alternate column background color */
+        #myTable td:nth-child(even),
+        #myTable th:nth-child(even) {
+            background-color: #D6EEEE;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="position: absolute;top: 5%;left: 50%;transform: translate(-50%,-5%)">
+        Start button
+        <button onclick="start()"
+            style="background-color: green;border: none; border-radius: 10px; cursor: pointer;">Click</button>
+        Stop button
+        <button onclick="stop()"
+            style="background-color: red; border: none; border-radius: 10px;cursor: pointer;">Click</button>
+    </div>
+
+    <table id="myTable">
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Ticker 1</th>
+                <th>Ticker 2</th>
+                <th>Ticker 3</th>
+                <th>Ticker 4</th>
+            </tr>
+        </thead>
+        <tbody id="myTableBody"></tbody>
+    </table>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript">
+        const url = "http://localhost:1234/getAll?";
+        var continueReq = false;
+        var count = 0;
+        async function start() {
+            continueReq = true;
+            count++;
+            while (continueReq) {
+                const data = await getStockData("ticker2=TATAMOTORS.NS&ticker1=^NSEI&ticker3=HAL.NS&ticker4=NCC.NS");
+                try {
+                addTableRow(5, data)
+                await new Promise(r => setTimeout(r, 5000));
+                } catch(error) {
+                    console.log(error);
+                }
+            }
+        }
+
+        async function stop() {
+            console.log("stop clicked");
+            continueReq = false;
+        }
+
+        async function getStockData(ticker) {
+            const res = await axios.get(url + ticker);
+            return res.data;
+        }
+
+        function addTableRow(tickerNumber, data) {
+            const tblBody = document.getElementById("myTableBody");
+            // Create cells for the table
+            const row = document.createElement("tr");
+            var cell = document.createElement("td");
+            const date = new Date();
+            var cellText = document.createTextNode(date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds());
+            cell.appendChild(cellText);
+            row.appendChild(cell);
+            for (let j = 0; j < data.length; j++) {
+                cell = document.createElement("td");
+
+                if (data[j].ticker === 'TATAMOTORS.NS') {
+                    cellText = document.createTextNode('T, ' + 'p-' + data[j].price + ' ' + 'ask-' + data[j].ask + ' bid: ' + data[j].bid + ' c: '+ data[j].c.toFixed(2));
+                }
+                if (data[j].ticker === '^NSEI') {
+                    cellText = document.createTextNode('NSE, ' + 'p-' + data[j].price + ' c: '+ data[j].c.toFixed(2));
+                }
+                if (data[j].ticker === 'HAL.NS') {
+                    cellText = document.createTextNode('HAL, ' + 'p-' + data[j].price +' ask-' + data[j].ask +' bid: ' + data[j].bid + ' c: '+ data[j].c.toFixed(2));
+                }
+                if (data[j].ticker === 'NCC.NS') {
+                    cellText = document.createTextNode('NCC, ' + 'p-' + data[j].price +' ask-' + data[j].ask +' bid:' + data[j].bid + ' c: '+ data[j].c.toFixed(2));
+                }
+                cell.appendChild(cellText);
+                row.appendChild(cell);
+            }
+            // Add the row to the end of the table body
+            tblBody.appendChild(row);
+            //window.scrollTo(0, document.body.scrollHeight)
+        }
+    </script>
+</body>
+
+</html>

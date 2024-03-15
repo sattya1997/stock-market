@@ -1,0 +1,117 @@
+#ticker-details {
+  background-color: rgb(255, 255, 255);
+}
+
+h2 {
+  color: #333;
+  text-align: center;
+}
+
+#ticker-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px auto;
+  max-width: 600px;
+  background-color: #f3f4f7;
+  box-shadow: 0 0 10px rgba(45, 43, 43, 0.5);
+  border-radius: 5px;
+  font-family: Arial, sans-serif;
+  text-align: start;
+}
+
+#ticker-list li {
+  border-radius: 5px;
+  display: block;
+  padding: 10px;
+  border-bottom: 2px solid #ffffff;
+  font-size: 16px;
+  color: #333;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+#ticker-list li:last-child {
+  border-bottom: none;
+}
+
+#ticker-list li:hover {
+  background-color: #b9caff;
+}
+
+  /* Hide the default checkbox */
+  #ticker-list .checkbox input[type="checkbox"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  /* Create a custom box */
+  #ticker-list .checkbox input[type="checkbox"]::before {
+    content: '';
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+    border: 1px solid #636363;
+    transition: all 0.3s ease; /* Smooth transition for all changes */
+    background-color: #ffffff;
+  }
+
+  /* Style the custom box when checked */
+  #ticker-list .checkbox input[type="checkbox"]:checked::before {
+    background-image: url("../icons/checkbox.png");
+    background-position: center;
+    background-size: 140%;
+  }
+
+  /* Animate the custom box on hover */
+  #ticker-list .checkbox input[type="checkbox"]:hover::before {
+    transform: scale(1.2); /* Enlarge the box */
+  }
+
+#websocket-connection {
+  margin: 20px auto;
+  padding: 5px 10px 10px 5px;
+  height: 25px;
+  background-color: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 7px;
+  display: flex;
+  max-width: 190px;
+  font-size: 18px;
+  font-weight: 500;
+  }
+
+  /* Hide the default checkbox */
+  #websocket-connection .checkbox input[type="checkbox"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  /* Create a custom box */
+  #websocket-connection .checkbox input[type="checkbox"]::before {
+    content: '';
+    display: flex;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    margin-top: 0;
+    border: 2px solid #555;
+    transition: all 0.3s ease; /* Smooth transition for all changes */
+    /* Add more styles as needed */
+  }
+
+  /* Style the custom box when checked */
+  #websocket-connection .checkbox input[type="checkbox"]:checked::before {
+    background-image: url("../icons/26-share-network.gif");
+    background-position: center;
+    background-size: 100%;
+    background-color: #3e5e60;
+    /* Add more styles as needed */
+  }
+
+  /* Animate the custom box on hover */
+  #websocket-connection .checkbox input[type="checkbox"]:hover::before {
+    transform: scale(1.2); /* Enlarge the box */
+  }

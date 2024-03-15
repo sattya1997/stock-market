@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiment</title>
+    <link rel="stylesheet" type="text/css" href="./style/api.css">
+    <link rel="stylesheet" type="text/css" href="./style/tickerDetails.css">
+    <script src="https://bundle.run/buffer@6.0.3"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/protobufjs/7.2.6/protobuf.js"></script>
+</head>
+
+<body>
+    <div class="tabs">
+        <button class="tab-button active" onclick="showTab(1)">Ticker list</button>
+        <button class="tab-button" onclick="showTab(2)">Details</button>
+        <button class="tab-button" onclick="showTab(3)">Analyze</button>
+    </div>
+    <div class="tab-panel active">
+        <div id="center-buttons">
+            <button onclick="start()" style="color: green;margin-right: 5px;">Start</button>
+            <button onclick="stop()" style="color: red;margin-right: 5px;">Stop</button>
+            <button onclick="editTickers()" style="margin-right: 5px;">Edit Tickers</button>
+            <button onclick="editCells()" style="margin-right: 5px;">Edit Cells</button>
+        </div>
+
+        <div id="editFormTickers" style="display: none;">
+            <form id="edit-tickers-form">
+                <label>
+                    <input type="radio" name="choice" value="add"> Add
+                </label>
+                <br>
+                <label>
+                    <input type="radio" name="choice" value="remove"> Remove
+                </label>
+                <br>
+                <br>
+                <label><input type="text" name="name" placeholder="Enter stock name">
+                </label>
+                <br><br>
+                <label><input type="text" name="value" placeholder="Enter value to be shown">
+                </label>
+                <br>
+                <br>
+
+                <button id="editTickersSubmitBtn">Submit</button>
+                <p id="msg-box-ticker"></p>
+            </form>
+        </div>
+        <div id="checkbox" style="display: none;">
+            <div id="checkboxContainer"></div>
+            <br>
+            <div>
+                <button id="cellSubmitBtn" style="margin-left: auto;margin-right: auto;">Submit Change</button>
+            </div>
+
+        </div>
+
+        <table id="myTable">
+            <tbody id="myTableBody"></tbody>
+        </table>
+    </div>
+    <div class="tab-panel">
+        <div id="ticker-details">
+            <h2>Stock List</h2>
+            <div id="websocket-connection" style="color: black; font-weight: 600; color: green;"><label
+                    class="checkbox"><input type="checkbox" onclick="fetchDetails(this)"></label><span
+                    class="checkmark">Start connection</span></div>
+                    <p style="font-size: x-small; font-style: italic; text-align: center;">(Hint: First select stock name from the list and then start the connection.)</p>
+            <ul id="ticker-list"></ul>
+        </div>
+    </div>
+    <div class="tab-panel">Analyze details will be here</div>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="./code/variables.js"></script>
+    <script type="text/javascript" src="./code/api.js"></script>
+    <script type="text/javascript" src="./code/tickerDetails.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiment</title>
+    <style>
+        *{
+            top: 0;
+            left: 0;
+
+        }
+        /* Style for the entire table */
+        #myTable {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px auto;
+            /* Center the table horizontally */
+            font-family: Arial, sans-serif;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Style for table header cells */
+        #myTable th {
+            background-color: #3498db;
+            /* Header background color */
+            color: #ffffff;
+            /* Header text color */
+            text-align: left;
+            padding: 10px;
+        }
+
+        /* Style for table data cells */
+        #myTable td {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+
+        /* Alternate row background color (zebra stripes) */
+        #myTable tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        /* Alternate column background color */
+        #myTable td:nth-child(even),
+        #myTable th:nth-child(even) {
+            background-color: #D6EEEE;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="position: absolute;top: 5%;left: 50%;transform: translate(-50%,-5%)">
+        Start button
+        <button onclick="start()"
+            style="background-color: green;border: none; border-radius: 10px; cursor: pointer;">Click</button>
+        Stop button
+        <button onclick="stop()"
+            style="background-color: red; border: none; border-radius: 10px;cursor: pointer;">Click</button>
+    </div>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript">
+        const url = "http://localhost:1234/get?ticker=";
+        var continueReq = false;
+        const socket = new WebSocket('ws://localhost:1234/');
+        socket.addEventListener('open', function consolelog() {
+            console.log('connection to websocket is successfull');
+        })
+        async function start() {
+            console.log("clicked");
+            continueReq = true;
+            while (continueReq) {
+                await getStockData("TATAMOTORS.NS");
+
+                await new Promise(r => setTimeout(r, 500))
+            }
+        }
+
+        async function start() {
+            console.log("clicked");
+            continueReq = false;
+        }
+
+        async function getStockData(ticker) {
+            const res = await axios.get(url + ticker);
+            console.log(res.data);
+        }
+
+        function addTableRow() {
+
+        }
+    </script>
+</body>
+
+</html>
