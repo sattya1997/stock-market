@@ -7,6 +7,7 @@
     <title>Experiment</title>
     <link rel="stylesheet" type="text/css" href="./style/api.css">
     <link rel="stylesheet" type="text/css" href="./style/tickerDetails.css">
+    <link rel="stylesheet" type="text/css" href="./style/analyzeDetails.css">
     <script src="https://bundle.run/buffer@6.0.3"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/protobufjs/7.2.6/protobuf.js"></script>
 </head>
@@ -67,16 +68,38 @@
             <div id="websocket-connection" style="color: black; font-weight: 600; color: green;"><label
                     class="checkbox"><input type="checkbox" onclick="fetchDetails(this)"></label><span
                     class="checkmark">Start connection</span></div>
-                    <p style="font-size: x-small; font-style: italic; text-align: center;">(Hint: First select stock name from the list and then start the connection.)</p>
+            <p style="font-size: x-small; font-style: italic; text-align: center;">(Hint: First select stock name from
+                the list and then start the connection.)</p>
             <ul id="ticker-list"></ul>
         </div>
     </div>
-    <div class="tab-panel">Analyze details will be here</div>
+    <div class="tab-panel">
+        <div id="center-buttons">
+            <button onclick="startAnalyze()" style="color: green;margin-right: 5px;">Start</button>
+            <button onclick="stopAnalyze()" style="color: red;margin-right: 5px;">Stop</button>
+            <button id="edit-tickers" style="margin-right: 5px;">Edit List</button>
+        </div>
+        <div class="modal-overlay" id="modal-overlay">
+            <div class="modal-box">
+                <span class="close-modal" id="close-modal"></span>
+                <h2>Edit Stock Tickers</h2>
+                <div id="ticker-form">
+                    <!-- Dynamically populated form fields will go here -->
+                </div>
+                <div id="center-buttons">
+                    <button id="add-ticker" style="color: rgb(0, 0, 0);margin-right: 5px;">Add New Ticker</button>
+                    <button id="save-tickers" style="color: rgb(0, 0, 0);margin-right: 5px;">Save Changes</button>
+                </div>
+            </div>
+        </div>
+        <div id="analyze-details-tab"></div>
+    </div>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript" src="./code/variables.js"></script>
     <script type="text/javascript" src="./code/api.js"></script>
     <script type="text/javascript" src="./code/tickerDetails.js"></script>
+    <script type="text/javascript" src="./code/analyzeDetails.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,195 @@
+.card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 8px;
+    margin: 8px;
+    width: 270px;
+    box-shadow: 0 4px 8px rgba(89, 89, 89, 0.35);
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+    margin-bottom: 8px;
+    /* Add space below each card */
+    background: linear-gradient(135deg, #bdbdbd, #fff5f5);
+    /* Subtle gradient background */
+    border: none;
+    /* Remove border for a cleaner look */
+    border-radius: 5px;
+    /* Rounded corners */
+    overflow: hidden;
+    /* Ensures the content fits within the rounded corners */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Smooth transition for hover effects */
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    /* Slightly raise the card */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+    /* Increase shadow for depth effect */
+    background-color: #f8f8f8;
+    /* Light grey background on hover */
+}
+
+#analyze-details-tab {
+    margin-top: 35px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    /* Align cards to the start of the container */
+    gap: 4px;
+    /* This creates an even gap between cards */
+}
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+    .card {
+        flex: 0 1 calc(33% - 16px);
+        /* 3 cards per row on medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .card {
+        flex: 0 1 calc(50% - 16px);
+        /* 2 cards per row on small screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        flex: 0 1 calc(100% - 16px);
+        /* 1 card per row on very small screens */
+    }
+}
+
+.stock-name {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 8px;
+    color: #007bff;
+}
+
+.current-price {
+    font-size: 22px;
+    font-weight: bold;
+    color: #28a745;
+}
+
+.details {
+    font-size: 16px;
+    color: #000000;
+    /* Soft grey for less important details */
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.list-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.card-list {
+    list-style: none;
+    padding: 0;
+    width: 45%;
+}
+
+.card-list.bid-list li {
+    color: #dc3545;
+    /* Red color for bid list items */
+}
+
+/* Styles for ask list */
+.card-list.ask-list li {
+    color: #28a745;
+    /* Green color for ask list items */
+}
+
+.volume {
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+}
+
+.modal-overlay {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.modal-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 500px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+    font-size: smaller;
+}
+
+.modal-box button {
+    color: black;
+    background-color: #b8b8b8;
+}
+
+#ticker-form {
+    margin-top: 20px;
+}
+
+.input-group {
+    margin-bottom: 10px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.input-group input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .modal-box {
+        width: 90%;
+    }
+}
+
+.close-modal {
+    float: right;
+    cursor: pointer;
+    background-color: red;
+    color: white;
+    font-size: 14px;
+    border: none;
+    border-radius: 6.5px;
+    padding: 0px 5px 0px 5px;
+}
+
+.close-modal:after {
+    content: '✖';
+}
+
+#ticker-form {
+    margin-top: 20px;
+}

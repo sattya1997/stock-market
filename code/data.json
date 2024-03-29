@@ -1,0 +1,56 @@
+[
+    {
+        "id": 1,
+        "name": "Tata motors",
+        "currentprice": 113,
+        "percentchange": 1.5,
+        "change": 5,
+        "dayhigh": 118,
+        "daylow": 108,
+        "open": 112,
+        "volume": 123432,
+        "bidlist": [
+            {
+                "price": 123.34,
+                "quantity": 100
+            },
+            {
+                "price": 123.76,
+                "quantity": 20
+            },
+            {
+                "price": 124,
+                "quantity": 29
+            },
+            {
+                "price": 1124.25,
+                "quantity": 55
+            },
+            {
+                "price": 124.50,
+                "quantity": 68
+            }
+        ],
+        "asklist": [
+            {
+                "price": 123.34,
+                "quantity": 100
+            },
+            {
+                "price": 123.76,
+                "quantity": 20
+            },
+            {
+                "price": 124
+            },
+            {
+                "price": 1124.25,
+                "quantity": 55
+            },
+            {
+                "price": 124.50,
+                "quantity": 68
+            }
+        ]
+    }
+]
