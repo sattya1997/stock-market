@@ -67,11 +67,7 @@ async function stop() {
 }
 
 async function getStockData(postData) {
-  const response = await axios.post(url, postData , {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  const response = await axios.get(url);
   return response.data;
 }
 
