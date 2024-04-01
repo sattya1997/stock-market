@@ -35,8 +35,8 @@ function stopConnection() {
 //need to change
 async function startConnection(tickerNames) {
   var recomendedTickerNames = '';
-  tickerNames.forEach((ticker,index) => {
-    if(index===0){
+  tickerNames.forEach((ticker, index) => {
+    if (index === 0) {
       recomendedTickerNames = `"${ticker}"`
     } else {
       recomendedTickerNames = `${recomendedTickerNames},"${ticker}"`
@@ -57,7 +57,7 @@ async function startConnection(tickerNames) {
     var id = '';
 
     tickerDetailsNameList.forEach(tickerName => {
-      if(tickerName.name === tickerValue) {
+      if (tickerName.name === tickerValue) {
         id = tickerName.data.id;
         tickerValue = tickerName.value;
         return;
@@ -71,29 +71,98 @@ async function startConnection(tickerNames) {
     });
 
     if (requiredList) {
-      const oldSpan = requiredList.querySelector(`#${id}`);
 
-      if (oldSpan) {
-        const oldPrice = oldSpan.textContent;
-        oldSpan.innerHTML = msg.price.toFixed(3);
+      //update price
+      const oldpriceSpan = requiredList.querySelector(`#price-${id}`);
 
-        if(oldPrice < msg.price.toFixed(3)) {
-          oldSpan.style.backgroundColor = "#b6ffb0";
+      if (oldpriceSpan) {
+        const oldPrice = oldpriceSpan.textContent;
+        oldpriceSpan.innerHTML = msg.price.toFixed(3);
+
+        if (oldPrice < msg.price.toFixed(3)) {
+          oldpriceSpan.style.backgroundColor = "#b6ffb0";
         } else if (oldPrice > msg.price.toFixed(3)) {
-          oldSpan.style.backgroundColor  = "#ff5757";
+          oldpriceSpan.style.backgroundColor = "#ff5757";
         }
         else {
-          oldSpan.style.backgroundColor  = "#fff0f0";
+          oldpriceSpan.style.backgroundColor = "#fff0f0";
         }
-        
+
       } else {
-        var newSpan = document.createElement("span"); // Create a new span element
-        newSpan.id = id;
-        newSpan.textContent = msg.price.toFixed(3);
-        newSpan.style.marginLeft = "10px";
-        newSpan.style.color = "black";
-        newSpan.style.backgroundColor  = "white";
-        requiredList.appendChild(newSpan);
+        var newPriceSpan = document.createElement("span"); // Create a new span element
+        newPriceSpan.id = 'price-' + id;
+        newPriceSpan.textContent = msg.price.toFixed(3);
+        newPriceSpan.style.marginLeft = "10px";
+        newPriceSpan.style.color = "black";
+        newPriceSpan.style.backgroundColor = "white";
+        requiredList.appendChild(newPriceSpan);
+      }
+
+      //update open price
+      const oldOpenSpan = requiredList.querySelector(`#open-${id}`);
+
+      if (oldOpenSpan) {
+        oldOpenSpan.innerHTML = 'O: ' + (msg.price - msg.change).toFixed(2);
+      } else {
+        var newOpenSpan = document.createElement("span"); // Create a new span element
+        newOpenSpan.id = 'open-' + id;
+        newOpenSpan.textContent = 'O: ' + (msg.price - msg.change).toFixed(2);
+        newOpenSpan.style.marginLeft = "10px";
+        newOpenSpan.style.color = "black";
+        newOpenSpan.style.backgroundColor = "white";
+        newOpenSpan.style.fontSize = "12px";
+        requiredList.appendChild(newOpenSpan);
+      }
+
+      //update change and percentage
+      const oldchangeSpan = requiredList.querySelector(`#change-${id}`);
+      if (oldchangeSpan) {
+        const oldChange = oldchangeSpan.textContent;
+
+        if (msg.change_percent > 0) {
+          oldchangeSpan.textContent = '+' + msg.change.toFixed(2) + `(+${msg.change_percent.toFixed(2)}%)`;
+        } else {
+          oldchangeSpan.textContent = msg.change.toFixed(2) + `(${msg.change_percent.toFixed(2)}%)`;
+        }
+
+        if (msg.change > 0) {
+          oldchangeSpan.style.backgroundColor = "#b6ffb0";
+        } else if (msg.change < 0) {
+          oldchangeSpan.style.backgroundColor = "#ff5757";
+        }
+        else {
+          oldchangeSpan.style.backgroundColor = "#fff0f0";
+        }
+
+      } else {
+        var newChangeSpan = document.createElement("span"); // Create a new span element
+        newChangeSpan.id = 'change-' + id;
+        if (msg.change_percent > 0) {
+          newChangeSpan.innerHTML = '+' + msg.change.toFixed(2) + `(+${msg.change_percent.toFixed(2)}%)`;
+        } else {
+          newChangeSpan.innerHTML = msg.change.toFixed(2) + `(${msg.change_percent.toFixed(2)}%)`;
+        }
+        newChangeSpan.style.marginLeft = "10px";
+        newChangeSpan.style.color = "black";
+        newChangeSpan.style.backgroundColor = "white";
+        newChangeSpan.style.fontSize = "12px";
+        requiredList.appendChild(newChangeSpan);
+      }
+
+      //update volume
+      const oldVolumeSpan = requiredList.querySelector(`#volume-${id}`);
+
+      if (oldVolumeSpan) {
+        oldVolumeSpan.innerHTML = 'V: ' + (msg.day_volume / 100000).toFixed(2) + ' Lakhs';
+      } else {
+        var newVolumeSpan = document.createElement("span"); // Create a new span element
+        newVolumeSpan.id = 'volume-' + id;
+        newVolumeSpan.textContent = 'V: ' + (msg.day_volume / 100000).toFixed(2) + ' Lakhs';
+        newVolumeSpan.style.marginLeft = "10px";
+        newVolumeSpan.style.color = "black";
+        newVolumeSpan.style.backgroundColor = "white";
+        newVolumeSpan.style.fontSize = "12px";
+        requiredList.appendChild(newVolumeSpan);
       }
     }
   };

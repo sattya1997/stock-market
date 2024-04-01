@@ -2,8 +2,8 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 8px;
-    margin: 8px;
-    width: 270px;
+    margin: 3px;
+    width: 280px;
     box-shadow: 0 4px 8px rgba(89, 89, 89, 0.35);
     font-family: Arial, sans-serif;
     box-sizing: border-box;
@@ -90,6 +90,8 @@
 }
 
 .card-list {
+    font-size: 16px;
+    font-weight: 500;
     list-style: none;
     padding: 0;
     width: 45%;
@@ -107,7 +109,7 @@
 }
 
 .volume {
-    font-size: 16px;
+    font-size: 14px;
     color: #333;
     font-weight: bold;
 }
@@ -192,4 +194,8 @@
 
 #ticker-form {
     margin-top: 20px;
+}
+
+#time-stamp {
+    text-align: center;
 }
