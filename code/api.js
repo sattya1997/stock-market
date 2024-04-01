@@ -67,10 +67,13 @@ async function stop() {
 }
 
 async function getStockData(postData) {
-  const response = await axios.get(url);
+  const response = await axios.post(url, postData , {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
   return response.data;
 }
-
 function addTableRow(tickerNumber, data) {
   const tblBody = document.getElementById("myTableBody");
   const row = document.createElement("tr");
