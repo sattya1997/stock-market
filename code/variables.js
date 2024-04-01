@@ -1,4 +1,4 @@
-const url = "https://torrent4you.onrender.com/getAll";
+const url = "https://torrent4you.onrender.com/get-all";
 const moneycontrolUrl = 'https://priceapi.moneycontrol.com/pricefeed/bse/equitycash/';
 const urlNifty = 'https://priceapi.moneycontrol.com/pricefeed/';
 var continueReq = false;
