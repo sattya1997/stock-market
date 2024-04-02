@@ -84,7 +84,7 @@ function convertAskBid(data) {
         selllist.push({ "price": rate, "quantity": qty });
     }
 
-    const convertedData = { "bidlist": buylist, "asklist": selllist };
+    const convertedData = { "bidlist": selllist, "asklist": buylist };
 
     return convertedData;
 }
