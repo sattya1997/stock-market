@@ -72,12 +72,14 @@ function convertAskBid(data) {
     // Iterate over the data object
     for (const key in data) {
         const item = data[key];
-        const rate = parseFloat(item.sellrate); // Convert rate to a floating-point number
-        const qty = parseFloat(item.sellqty); // Convert qty to a floating-point number
-
+        
+        var rate = parseFloat(item.buyrate); // Convert rate to a floating-point number
+        var qty = parseFloat(item.buyqty); // Convert qty to a floating-point number
         // Add to buylist
         buylist.push({ "price": rate, "quantity": qty });
 
+        rate = parseFloat(item.sellrate); // Convert rate to a floating-point number
+        qty = parseFloat(item.sellqty);
         // Add to selllist
         selllist.push({ "price": rate, "quantity": qty });
     }
