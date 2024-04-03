@@ -23,7 +23,7 @@ h2 {
   border-radius: 5px;
   display: block;
   padding: 10px;
-  border-bottom: 2px solid #ffffff;
+  border-bottom: 5px solid #ffffff;
   font-size: 16px;
   color: #333;
   transition: background-color 0.3s ease;
@@ -31,6 +31,14 @@ h2 {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   align-items: center;
+}
+
+#ticker-list li:nth-child(even) {
+  background-color: #f3f4f7;
+}
+
+#ticker-list li:nth-child(odd) {
+  background-color: #c9cad2;
 }
 
 #ticker-list li:last-child {
