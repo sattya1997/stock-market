@@ -33,14 +33,6 @@ h2 {
   align-items: center;
 }
 
-#ticker-list li:nth-child(even) {
-  background-color: #f3f4f7;
-}
-
-#ticker-list li:nth-child(odd) {
-  background-color: #c9cad2;
-}
-
 #ticker-list li:last-child {
   border-bottom: none;
 }
