@@ -28,6 +28,9 @@ h2 {
   color: #333;
   transition: background-color 0.3s ease;
   cursor: pointer;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
+  align-items: center;
 }
 
 #ticker-list li:last-child {
