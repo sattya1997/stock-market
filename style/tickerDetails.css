@@ -11,9 +11,6 @@ h2 {
   list-style: none;
   padding: 0;
   margin: 20px auto;
-  min-width: 600px;
-  max-width: auto;
-  overflow: auto;
   background-color: #f3f4f7;
   box-shadow: 0 0 10px rgba(45, 43, 43, 0.5);
   border-radius: 5px;
