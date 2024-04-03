@@ -29,7 +29,7 @@ h2 {
   transition: background-color 0.3s ease;
   cursor: pointer;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  grid-template-columns: 25px 70px 85px 85px 90px 80px;
   align-items: center;
 }
 
