@@ -92,7 +92,6 @@ async function startConnection(tickerNames) {
         var newPriceSpan = document.createElement("span"); // Create a new span element
         newPriceSpan.id = 'price-' + id;
         newPriceSpan.textContent = msg.price.toFixed(3);
-        newPriceSpan.style.marginLeft = "10px";
         newPriceSpan.style.color = "black";
         newPriceSpan.style.backgroundColor = "white";
         requiredList.appendChild(newPriceSpan);
@@ -107,7 +106,6 @@ async function startConnection(tickerNames) {
         var newOpenSpan = document.createElement("span"); // Create a new span element
         newOpenSpan.id = 'open-' + id;
         newOpenSpan.textContent = 'O: ' + (msg.price - msg.change).toFixed(2);
-        newOpenSpan.style.marginLeft = "10px";
         newOpenSpan.style.color = "black";
         newOpenSpan.style.backgroundColor = "white";
         newOpenSpan.style.fontSize = "12px";
@@ -142,7 +140,6 @@ async function startConnection(tickerNames) {
         } else {
           newChangeSpan.innerHTML = msg.change.toFixed(2) + `(${msg.change_percent.toFixed(2)}%)`;
         }
-        newChangeSpan.style.marginLeft = "10px";
         newChangeSpan.style.color = "black";
         newChangeSpan.style.backgroundColor = "white";
         newChangeSpan.style.fontSize = "12px";
@@ -153,15 +150,14 @@ async function startConnection(tickerNames) {
       const oldVolumeSpan = requiredList.querySelector(`#volume-${id}`);
 
       if (oldVolumeSpan) {
-        oldVolumeSpan.innerHTML = 'V: ' + (msg.day_volume / 100000).toFixed(2) + ' Lakhs';
+        oldVolumeSpan.innerHTML = 'V: ' + (msg.day_volume / 100000).toFixed(2) + ' L';
       } else {
         var newVolumeSpan = document.createElement("span"); // Create a new span element
         newVolumeSpan.id = 'volume-' + id;
-        newVolumeSpan.textContent = 'V: ' + (msg.day_volume / 100000).toFixed(2) + ' Lakhs';
-        newVolumeSpan.style.marginLeft = "10px";
+        newVolumeSpan.textContent = 'V: ' + (msg.day_volume / 100000).toFixed(2) + ' L';
         newVolumeSpan.style.color = "black";
         newVolumeSpan.style.backgroundColor = "white";
-        newVolumeSpan.style.fontSize = "12px";
+        newVolumeSpan.style.fontSize = "10px";
         requiredList.appendChild(newVolumeSpan);
       }
     }
