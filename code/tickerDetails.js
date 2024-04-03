@@ -157,7 +157,7 @@ async function startConnection(tickerNames) {
         newVolumeSpan.textContent = 'V: ' + (msg.day_volume / 100000).toFixed(2) + ' L';
         newVolumeSpan.style.color = "black";
         newVolumeSpan.style.backgroundColor = "white";
-        newVolumeSpan.style.fontSize = "10px";
+        newVolumeSpan.style.fontSize = "12px";
         requiredList.appendChild(newVolumeSpan);
       }
     }
