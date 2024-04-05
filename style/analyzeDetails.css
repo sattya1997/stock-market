@@ -99,6 +99,7 @@
 
 .card-list.bid-list li {
     color: #dc3545;
+    text-align :center;
     /* Red color for bid list items */
 }
 
