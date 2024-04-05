@@ -169,7 +169,7 @@ function saveChanges() {
     
     newStockTickers.forEach(item => {
         stockTickers.push(item);
-    }
+    });
     fetchTickerData();
     closeModal();
     populateCards();
