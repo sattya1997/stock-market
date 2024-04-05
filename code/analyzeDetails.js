@@ -57,7 +57,7 @@ function updateCard(cardElement, cardData) {
     }
 
     cardElement.querySelector('.volume').innerHTML = volData;
-    cardElement.querySelector('.buy-sell').innerHTML = `B: ${(cardData.tot_buy_qty / 100000).toFixed(2)} L, S: ${(cardData.totSellQty / 100000).toFixed(2)} L, D: ${(cardData.tot_buy_qty - cardData.tot_sell_qty)}`;
+    cardElement.querySelector('.sell-buy').innerHTML = `B: ${(cardData.tot_buy_qty / 100000).toFixed(2)} L, S: ${(cardData.tot_sell_qty / 100000).toFixed(2)} L, D: ${(cardData.tot_buy_qty - cardData.tot_sell_qty)}`;
 }
 
 function refreshCardData(newCardData, id) {
