@@ -24,6 +24,7 @@ function createCard(cardData) {
       </ul>
     </div>
       <div class="volume">Volume: ${cardData.volume}</div>
+      <div class="sell-buy">B: ${cardData.totBuyQty} S: ${cardData.totSellQty} D: ${cardData.buySellDiff}</div>
     `;
     return card;
 }
@@ -56,6 +57,7 @@ function updateCard(cardElement, cardData) {
     }
 
     cardElement.querySelector('.volume').innerHTML = volData;
+    cardElement.querySelector('.buy-sell').innerHTML = `B: ${(cardData.tot_buy_qty / 100000).toFixed(2)} L, S: ${(cardData.totSellQty / 100000).toFixed(2)} L, D: ${(cardData.tot_buy_qty - cardData.tot_sell_qty)}`;
 }
 
 function refreshCardData(newCardData, id) {
@@ -163,8 +165,11 @@ function saveChanges() {
         closeModal();
         return;
     }
-
-    stockTickers = newStockTickers; // Update the stockTickers array
+    stockTickers.length = 0;
+    
+    newStockTickers.forEach(item => {
+        stockTickers.push(item);
+    }
     fetchTickerData();
     closeModal();
     populateCards();
@@ -188,6 +193,9 @@ function generateCardsArray() {
             "daylow": 0,
             "open": 0,
             "volume": 0,
+            "totBuyQty": 0,
+            "totSellQty": 0,
+            "buySellDiff": 0,
             "bidlist": [
                 {
                     "price": 0,
