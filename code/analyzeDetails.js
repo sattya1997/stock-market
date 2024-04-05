@@ -182,6 +182,7 @@ document.getElementById('save-tickers').addEventListener('click', function (even
 });
 
 function generateCardsArray() {
+    cards.length = 0;
     stockTickers.forEach(ticker => {
         cards.push({
             "id": ticker.id,
