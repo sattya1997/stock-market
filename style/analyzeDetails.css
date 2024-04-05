@@ -114,6 +114,12 @@
     font-weight: bold;
 }
 
+.buy-sell {
+    font-size: 12px;
+    color: #450;
+    font-weight: bold;
+}
+
 .modal-overlay {
     display: none;
     /* Hidden by default */
