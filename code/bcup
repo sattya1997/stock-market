@@ -45,8 +45,8 @@ function generateHeader() {
 
 async function start() {
   var tickerObject = [];
-  tickers.forEach((ticker, index) => {
-    tickerObject.push(ticker.name);
+  stockTickersForTickerListTab.forEach((ticker, index) => {
+    tickerObject.push(ticker.id);
   });
 
   continueReq = true;
@@ -55,7 +55,7 @@ async function start() {
     const data = await getStockData(tickerObject);
     try {
       addTableRow(5, data);
-      await new Promise((r) => setTimeout(r, 15000));
+      await new Promise((r) => setTimeout(r, 5000));
     } catch (error) {
       console.log(error);
     }
@@ -66,14 +66,17 @@ async function stop() {
   continueReq = false;
 }
 
-async function getStockData(postData) {
-  const response = await axios.post(url, postData , {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+async function getStockData(data) {
+  var response;
+  if (data === 'notapplicable/inidicesindia/in%3BNSX') {
+    response = await axios.get(urlNifty, postData);
+  } else {
+    response = await axios.get(moneycontrolUrl, postData);
+  }
+
   return response.data;
 }
+
 function addTableRow(tickerNumber, data) {
   const tblBody = document.getElementById("myTableBody");
   const row = document.createElement("tr");

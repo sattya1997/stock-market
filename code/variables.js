@@ -1,4 +1,6 @@
-const url = "http://localhost:1234/getAll";
+const url = "https://stock-server-qag4.onrender.com/getAll";
+const moneycontrolUrl = 'https://priceapi.moneycontrol.com/pricefeed/bse/equitycash/';
+const urlNifty = 'https://priceapi.moneycontrol.com/pricefeed/';
 var continueReq = false;
 var count = 0;
 var tickers = [
@@ -9,6 +11,9 @@ var tickers = [
   { name: "ICICIB22.NS", value: "B22" },
   { name: "ONGC.NS", value: "ONGC" },
 ];
+
+var stockTickersForTickerListTab = [{ "id": "notapplicable/inidicesindia/in%3BNSX", "displayName": "Nifty 50" }, { "id": "TEL", "displayName": "Tata Motors" }, { "id": "IT", "displayName": "Infosys" }, { "id": "NCC01", "displayName": "NCC Ltd" }, { "id": "HAL", "displayName": "HAL" }, { "id": "ICI15", "displayName": "ICICIB22" }, { "id": "ONG", "displayName": "ONGC" }, { "id": "CES", "displayName": "CESC" },]
+
 const totalCell = [
   { name: "name", value: "N" },
   { name: "price", value: "P" },
@@ -35,17 +40,19 @@ var tickerNameList = [
 
 //array of ticker names for details tab For now
 const tickerDetailsNameList = [
-    { name: "^NSEI", value: "Nifty 50", data: {id: "NSEI"} },
-    { name: "TATAMOTORS.NS", value: "TATA Motors", data: {id: "TATAMOTORS"} },
-    { name: "INFY.NS", value: "Infosys", data: {id: "INFY"} },
-    { name: "NCC.NS", value: "NCC LTD", data: {id: "NCC"} },
-    { name: "HAL.NS", value: "HAL", data: {id: "HAL"} },
-    { name: "ICICIB22.NS", value: "ICICIB22", data: {id: "ICICIB22"} },
-    { name: "ONGC.NS", value: "ONGC", data: {id: "ONGC"} },
-    { name: "CESC.NS", value: "CESC", data: {id: "CESC"} },
-    { name: "AAPL", value: "APPLE INC", data: {id: "AAPL"} },
-    { name: "GOOG", value: "Alphabet", data: {id: "GOOG"} },
-  ];
+  { name: "^NSEI", value: "Nifty 50", data: { id: "NSEI" } },
+  { name: "TATAMOTORS.NS", value: "TATA Motors", data: { id: "TATAMOTORS" } },
+  { name: "INFY.NS", value: "Infosys", data: { id: "INFY" } },
+  { name: "NCC.NS", value: "NCC LTD", data: { id: "NCC" } },
+  { name: "HAL.NS", value: "HAL", data: { id: "HAL" } },
+  { name: "ICICIB22.NS", value: "ICICIB22", data: { id: "ICICIB22" } },
+  { name: "ONGC.NS", value: "ONGC", data: { id: "ONGC" } },
+  { name: "CESC.NS", value: "CESC", data: { id: "CESC" } },
+  { name: "OIL.NS", value: "OIL", data: { id: "OIL" } },
+  { name: "GOLDBEES.NS", value: "Goldbees", data: { id: "GOLDBEES" } },
+  { name: "AAPL", value: "APPLE INC", data: { id: "AAPL" } },
+  { name: "GOOG", value: "Alphabet", data: { id: "GOOG" } },
+];
 
 const PricingData = new protobuf.Type("PricingData")
   .add(new protobuf.Field("id", 1, "string"))

@@ -1,397 +1,7 @@
-// const cards = [
-//     {
-//         "id": 1,
-//         "name": "Tata motors",
-//         "currentprice": 113,
-//         "percentchange": 1.5,
-//         "change": 5,
-//         "dayhigh": 118,
-//         "daylow": 108,
-//         "open": 112,
-//         "volume": 123432,
-//         "bidlist": [
-//             {
-//                 "price": 123.34,
-//                 "quantity": 100
-//             },
-//             {
-//                 "price": 123.76,
-//                 "quantity": 20
-//             },
-//             {
-//                 "price": 124,
-//                 "quantity": 29
-//             },
-//             {
-//                 "price": 1124.25,
-//                 "quantity": 55
-//             },
-//             {
-//                 "price": 124.50,
-//                 "quantity": 68
-//             }
-//         ],
-//         "asklist": [
-//             {
-//                 "price": 123.34,
-//                 "quantity": 100
-//             },
-//             {
-//                 "price": 123.76,
-//                 "quantity": 20
-//             },
-//             {
-//                 "price": 124,
-//                 "quantity": 123
-//             },
-//             {
-//                 "price": 1124.25,
-//                 "quantity": 55
-//             },
-//             {
-//                 "price": 124.50,
-//                 "quantity": 68
-//             }
-//         ]
-//     },
-//     {
-//         "id": 1,
-//         "name": "Tata motors",
-//         "currentprice": 113,
-//         "percentchange": 1.5,
-//         "change": 5,
-//         "dayhigh": 118,
-//         "daylow": 108,
-//         "open": 112,
-//         "volume": 123432,
-//         "bidlist": [
-//             {
-//                 "price": 123.34,
-//                 "quantity": 100
-//             },
-//             {
-//                 "price": 123.76,
-//                 "quantity": 20
-//             },
-//             {
-//                 "price": 124,
-//                 "quantity": 29
-//             },
-//             {
-//                 "price": 1124.25,
-//                 "quantity": 55
-//             },
-//             {
-//                 "price": 124.50,
-//                 "quantity": 68
-//             }
-//         ],
-//         "asklist": [
-//             {
-//                 "price": 123.34,
-//                 "quantity": 100
-//             },
-//             {
-//                 "price": 123.76,
-//                 "quantity": 20
-//             },
-//             {
-//                 "price": 124,
-//                 "quantity": 123
-//             },
-//             {
-//                 "price": 1124.25,
-//                 "quantity": 55
-//             },
-//             {
-//                 "price": 124.50,
-//                 "quantity": 68
-//             }
-//         ]
-//     },
-//     {
-//         "id": 1,
-//         "name": "Tata motors",
-//         "currentprice": 113,
-//         "percentchange": 1.5,
-//         "change": 5,
-//         "dayhigh": 118,
-//         "daylow": 108,
-//         "open": 112,
-//         "volume": 123432,
-//         "bidlist": [
-//             {
-//                 "price": 123.34,
-//                 "quantity": 100
-//             },
-//             {
-//                 "price": 123.76,
-//                 "quantity": 20
-//             },
-//             {
-//                 "price": 124,
-//                 "quantity": 29
-//             },
-//             {
-//                 "price": 1124.25,
-//                 "quantity": 55
-//             },
-//             {
-//                 "price": 124.50,
-//                 "quantity": 68
-//             }
-//         ],
-//         "asklist": [
-//             {
-//                 "price": 123.34,
-//                 "quantity": 100
-//             },
-//             {
-//                 "price": 123.76,
-//                 "quantity": 20
-//             },
-//             {
-//                 "price": 124,
-//                 "quantity": 123
-//             },
-//             {
-//                 "price": 1124.25,
-//                 "quantity": 55
-//             },
-//             {
-//                 "price": 124.50,
-//                 "quantity": 68
-//             }
-//         ]
-//     },
-//     {
-//         "id": 1,
-//         "name": "Tata motors",
-//         "currentprice": 113,
-//         "percentchange": 1.5,
-//         "change": 5,
-//         "dayhigh": 118,
-//         "daylow": 108,
-//         "open": 112,
-//         "volume": 123432,
-//         "bidlist": [
-//             {
-//                 "price": 123.34,
-//                 "quantity": 100
-//             },
-//             {
-//                 "price": 123.76,
-//                 "quantity": 20
-//             },
-//             {
-//                 "price": 124,
-//                 "quantity": 29
-//             },
-//             {
-//                 "price": 1124.25,
-//                 "quantity": 55
-//             },
-//             {
-//                 "price": 124.50,
-//                 "quantity": 68
-//             }
-//         ],
-//         "asklist": [
-//             {
-//                 "price": 123.34,
-//                 "quantity": 100
-//             },
-//             {
-//                 "price": 123.76,
-//                 "quantity": 20
-//             },
-//             {
-//                 "price": 124,
-//                 "quantity": 123
-//             },
-//             {
-//                 "price": 1124.25,
-//                 "quantity": 55
-//             },
-//             {
-//                 "price": 124.50,
-//                 "quantity": 68
-//             }
-//         ]
-//     },
-//     {
-//         "id": 1,
-//         "name": "Tata motors",
-//         "currentprice": 113,
-//         "percentchange": 1.5,
-//         "change": 5,
-//         "dayhigh": 118,
-//         "daylow": 108,
-//         "open": 112,
-//         "volume": 123432,
-//         "bidlist": [
-//             {
-//                 "price": 123.34,
-//                 "quantity": 100
-//             },
-//             {
-//                 "price": 123.76,
-//                 "quantity": 20
-//             },
-//             {
-//                 "price": 124,
-//                 "quantity": 29
-//             },
-//             {
-//                 "price": 1124.25,
-//                 "quantity": 55
-//             },
-//             {
-//                 "price": 124.50,
-//                 "quantity": 68
-//             }
-//         ],
-//         "asklist": [
-//             {
-//                 "price": 123.34,
-//                 "quantity": 100
-//             },
-//             {
-//                 "price": 123.76,
-//                 "quantity": 20
-//             },
-//             {
-//                 "price": 124,
-//                 "quantity": 123
-//             },
-//             {
-//                 "price": 1124.25,
-//                 "quantity": 55
-//             },
-//             {
-//                 "price": 124.50,
-//                 "quantity": 68
-//             }
-//         ]
-//     },
-//     {
-//         "id": 1,
-//         "name": "Tata motors",
-//         "currentprice": 113,
-//         "percentchange": 1.5,
-//         "change": 5,
-//         "dayhigh": 118,
-//         "daylow": 108,
-//         "open": 112,
-//         "volume": 123432,
-//         "bidlist": [
-//             {
-//                 "price": 123.34,
-//                 "quantity": 100
-//             },
-//             {
-//                 "price": 123.76,
-//                 "quantity": 20
-//             },
-//             {
-//                 "price": 124,
-//                 "quantity": 29
-//             },
-//             {
-//                 "price": 1124.25,
-//                 "quantity": 55
-//             },
-//             {
-//                 "price": 124.50,
-//                 "quantity": 68
-//             }
-//         ],
-//         "asklist": [
-//             {
-//                 "price": 123.34,
-//                 "quantity": 100
-//             },
-//             {
-//                 "price": 123.76,
-//                 "quantity": 20
-//             },
-//             {
-//                 "price": 124,
-//                 "quantity": 123
-//             },
-//             {
-//                 "price": 1124.25,
-//                 "quantity": 55
-//             },
-//             {
-//                 "price": 124.50,
-//                 "quantity": 68
-//             }
-//         ]
-//     },
-//     {
-//         "id": 1,
-//         "name": "Tata motors",
-//         "currentprice": 113,
-//         "percentchange": 1.5,
-//         "change": 5,
-//         "dayhigh": 118,
-//         "daylow": 108,
-//         "open": 112,
-//         "volume": 123432,
-//         "bidlist": [
-//             {
-//                 "price": 123.34,
-//                 "quantity": 100
-//             },
-//             {
-//                 "price": 123.76,
-//                 "quantity": 20
-//             },
-//             {
-//                 "price": 124,
-//                 "quantity": 29
-//             },
-//             {
-//                 "price": 1124.25,
-//                 "quantity": 55
-//             },
-//             {
-//                 "price": 124.50,
-//                 "quantity": 68
-//             }
-//         ],
-//         "asklist": [
-//             {
-//                 "price": 123.34,
-//                 "quantity": 100
-//             },
-//             {
-//                 "price": 123.76,
-//                 "quantity": 20
-//             },
-//             {
-//                 "price": 124,
-//                 "quantity": 123
-//             },
-//             {
-//                 "price": 1124.25,
-//                 "quantity": 55
-//             },
-//             {
-//                 "price": 124.50,
-//                 "quantity": 68
-//             }
-//         ]
-//     }
-// ];
-
 var cards = [];
-
 var stockTickers = [{ "id": "notapplicable/inidicesindia/in%3BNSX", "displayName": "Nifty 50" }, { "id": "TEL", "displayName": "Tata Motors" }, { "id": "IT", "displayName": "Infosys" }, { "id": "NCC01", "displayName": "NCC Ltd" }, { "id": "HAL", "displayName": "HAL" }, { "id": "ICI15", "displayName": "ICICIB22" }, { "id": "ONG", "displayName": "ONGC" }, { "id": "CES", "displayName": "CESC" },]
 var analyzeStart = false;
-const moneycontrolUrl = 'https://priceapi.moneycontrol.com/pricefeed/nse/equitycash/';
-const urlNifty = 'https://priceapi.moneycontrol.com/pricefeed/'
+
 function createCard(cardData) {
     const card = document.createElement('div');
     card.className = 'card';
@@ -410,10 +20,11 @@ function createCard(cardData) {
       </ul>
       <ul class="card-list ask-list">
         <li><strong>Ask List:</strong></li>
-        ${cardData.asklist.map(ask => `<li>${ask.price} x ${ask.quantity || 'N/A'}</li>`).join('')}
+        ${cardData.asklist.map(ask => `<li>${ask.price} x ${ask.quantity}</li>`).join('')}
       </ul>
     </div>
       <div class="volume">Volume: ${cardData.volume}</div>
+      <div class="sell-buy">B: ${cardData.totBuyQty} S: ${cardData.totSellQty} D: ${cardData.buySellDiff}</div>
     `;
     return card;
 }
@@ -430,16 +41,23 @@ function populateCards() {
 }
 
 function updateCard(cardElement, cardData) {
+    const askbid = convertAskBid(cardData.best_5_set);
     // Update the card element with the new data
-    //cardElement.querySelector('.stock-name').textContent = cardData.name;
-    cardElement.querySelector('.current-price').textContent = cardData.pricecurrent;
-    cardElement.querySelector('.details').innerHTML = `Chg: ${cardData.pricechange} (${cardData.pricepercentchange}%) | 
-    O: ${cardData.OPN} | H: ${cardData.HP} | L: ${cardData.LP}`;
-    // cardElement.querySelector('.bid-list').innerHTML = `<li><strong>Bid List:</strong></li>
-    // ${cardData.bidlist.map(bid => `<li>${bid.price} x ${bid.quantity}</li>`).join('')}`;
-    // cardElement.querySelector('.ask-list').innerHTML = `<li><strong>Bid List:</strong></li>
-    // ${cardData.asklist.map(ask => `<li>${ask.price} x ${ask.quantity}</li>`).join('')}`;
-    cardElement.querySelector('.volume').innerHTML = cardData.VOL
+    cardElement.querySelector('.current-price').textContent = parseFloat(cardData.pricecurrent).toFixed(2);
+    cardElement.querySelector('.details').innerHTML = `<p>Chg: ${parseFloat(cardData.pricechange).toFixed(2)} (${parseFloat(cardData.pricepercentchange).toFixed(2)}%) | 
+    Open: ${cardData.OPN || 'NA'}</p><p>High: ${cardData.HP || 'NA'} | Low: ${cardData.LP || 'NA'}</p>`;
+    cardElement.querySelector('.bid-list').innerHTML = `<li><strong>Bid List:</strong></li>
+    ${askbid.bidlist.map(bid => `<li>${bid.price} x ${bid.quantity}</li>`).join('')}`;
+    cardElement.querySelector('.ask-list').innerHTML = `<li><strong>Ask List:</strong></li>
+    ${askbid.asklist.map(ask => `<li>${ask.price} x ${ask.quantity}</li>`).join('')}`;
+    var volData = '<span>vol: '+(cardData.VOL / 100000).toFixed(2) + ' Lakh  </span>';
+
+    if(cardData && cardData.DVolAvg30 && cardData.DVolAvg30 > 0) {
+        volData = volData + '<span>, monthly avg: '+(cardData.DVolAvg30 / 100000).toFixed(2)+'L</span>';
+    }
+
+    cardElement.querySelector('.volume').innerHTML = volData;
+    cardElement.querySelector('.sell-buy').innerHTML = `B: ${(cardData.tot_buy_qty / 100000).toFixed(2)} L | S: ${(cardData.tot_sell_qty / 100000).toFixed(2)} L | D: ${((cardData.tot_buy_qty - cardData.tot_sell_qty) / 100000).toFixed(3)} L`;
 }
 
 function refreshCardData(newCardData, id) {
@@ -447,6 +65,30 @@ function refreshCardData(newCardData, id) {
     if (cardElement) {
         updateCard(cardElement, newCardData);
     }
+}
+
+function convertAskBid(data) {
+    const buylist = [];
+    const selllist = [];
+
+    // Iterate over the data object
+    for (const key in data) {
+        const item = data[key];
+        
+        var rate = parseFloat(item.buyrate); // Convert rate to a floating-point number
+        var qty = parseFloat(item.buyqty); // Convert qty to a floating-point number
+        // Add to buylist
+        buylist.push({ "price": rate, "quantity": qty });
+
+        rate = parseFloat(item.sellrate); // Convert rate to a floating-point number
+        qty = parseFloat(item.sellqty);
+        // Add to selllist
+        selllist.push({ "price": rate, "quantity": qty });
+    }
+
+    const convertedData = { "bidlist": selllist, "asklist": buylist };
+
+    return convertedData;
 }
 
 function showModal() {
@@ -523,8 +165,11 @@ function saveChanges() {
         closeModal();
         return;
     }
-
-    stockTickers = newStockTickers; // Update the stockTickers array
+    stockTickers.length = 0;
+    
+    newStockTickers.forEach(item => {
+        stockTickers.push(item);
+    });
     fetchTickerData();
     closeModal();
     populateCards();
@@ -537,6 +182,7 @@ document.getElementById('save-tickers').addEventListener('click', function (even
 });
 
 function generateCardsArray() {
+    cards.length = 0;
     stockTickers.forEach(ticker => {
         cards.push({
             "id": ticker.id,
@@ -548,6 +194,9 @@ function generateCardsArray() {
             "daylow": 0,
             "open": 0,
             "volume": 0,
+            "totBuyQty": 0,
+            "totSellQty": 0,
+            "buySellDiff": 0,
             "bidlist": [
                 {
                     "price": 0,
@@ -597,17 +246,21 @@ function generateCardsArray() {
 };
 
 async function fetchTickerData() {
+    var res;
     for (let index = 0; index < stockTickers.length; index++) {
         if (stockTickers[index].displayName === "Nifty 50") {
-            const res = await axios.get(urlNifty + stockTickers[index].id);
-            console.log(res.data);
+            res = await axios.get(urlNifty + stockTickers[index].id);
+            //console.log(res.data);
             refreshCardData(res.data.data, stockTickers[index].id);
         } else {
-            const res = await axios.get(moneycontrolUrl + stockTickers[index].id);
-            console.log(res.data);
+            res = await axios.get(moneycontrolUrl + stockTickers[index].id);
+            //console.log(res.data);
             refreshCardData(res.data.data, stockTickers[index].id);
         }
     }
+
+    //update time
+    document.getElementById('time-stamp').innerHTML = '<p style="color: #373737;font-weight: 600;">Last update time: <span style="color:green">' + res.data.data.lastupd.split(' ')[1] + '</span></p>';
 }
 
 populateCards();
@@ -627,4 +280,3 @@ async function startAnalyze() {
 function stopAnalyze() {
     analyzeStart = false;
 }
-
