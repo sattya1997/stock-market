@@ -87,21 +87,21 @@ function updateCard(cardElement, cardData) {
       highPrice = cardData.HIGH;
       lowPrice = cardData.LOW;
     }
-    updateBar(openPrice, currentPrice, highPrice, lowPrice);
+    updateBar(cardElement, openPrice, currentPrice, highPrice, lowPrice);
 }
 
-function updateBar(openPrice, currentPrice, highPrice, lowPrice) {
-      var price = document.getElementById("low-price");
-      price.textContent = lowPrice;
-      price = document.getElementById("high-price");
-      price.textContent = highPrice;
+function updateBar(cardElement, openPrice, currentPrice, highPrice, lowPrice) {
+      cardElement.querySelector('#low-price').innerHTML = lowPrice;
+      cardElement.querySelector('#high-price').innerHTML = highPrice;
 
       const currentPercentage = ((currentPrice - lowPrice) / (highPrice - lowPrice)) * 100;
       const openPercent = ((openPrice - lowPrice) / (highPrice - lowPrice)) * 100;
 
-      const barElement = document.getElementById("priceBar");
-      const arrowElement = document.getElementById("arrow");
-      const arrowText = document.getElementById("arrowText");
+      const barElement = cardElement.querySelector('#priceBar');
+      const arrowElement = cardElement.querySelector('#arrow')
+    
+      const arrowText = document.getElementById('#arrow');
+      const arrowText = cardElement.querySelector('#arrowText');
 
       barElement.style.backgroundColor = currentPrice >= openPrice ? "#95d899" : "#ff8181";
       barElement.style.left = `${openPercent}%`;
