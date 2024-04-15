@@ -92,9 +92,9 @@ function updateCard(cardElement, cardData) {
 
 function updateBar(openPrice, currentPrice, highPrice, lowPrice) {
       var price = document.getElementById("low-price");
-      price.textContent = lowPrice.toFixed(2);
+      price.textContent = lowPrice;
       price = document.getElementById("high-price");
-      price.textContent = highPrice.toFixed(2);
+      price.textContent = highPrice;
 
       const currentPercentage = ((currentPrice - lowPrice) / (highPrice - lowPrice)) * 100;
       const openPercent = ((openPrice - lowPrice) / (highPrice - lowPrice)) * 100;
@@ -107,7 +107,7 @@ function updateBar(openPrice, currentPrice, highPrice, lowPrice) {
       barElement.style.left = `${openPercent}%`;
 
       arrowElement.style.left = `${currentPercentage}%`;
-      arrowText.innerHTML = currentPrice.toFixed(2);
+      arrowText.innerHTML = currentPrice;
 
       if (currentPrice >= openPrice) {
         barElement.style.left = `${openPercent}%`;
