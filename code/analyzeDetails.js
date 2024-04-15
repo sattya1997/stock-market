@@ -13,6 +13,23 @@ function createCard(cardData) {
         Chg: ${cardData.change} (${cardData.percentchange}%) | 
         O: ${cardData.open} | H: ${cardData.dayhigh} | L: ${cardData.daylow}
       </div>
+      <div class="bar">
+    <div class="bar-container" data-name="details-days-range">
+      <div class="header">
+        <span class="price" id="low-price">960</span>
+        <span class="title">Day's Range</span>
+        <span class="price" id="high-price">1000</span>
+      </div>
+      <div class="range">
+        <div class="range-bar" id="priceBar"></div>
+        <div class="arrowContainer">
+          <div class="arrow" id="arrow">
+            <img src="./icons/arrow.svg" alt="^" /><span id="arrowText"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
       <div class="list-container">
       <ul class="card-list bid-list">
         <li><strong>Bid List:</strong></li>
@@ -58,7 +75,42 @@ function updateCard(cardElement, cardData) {
 
     cardElement.querySelector('.volume').innerHTML = volData;
     cardElement.querySelector('.sell-buy').innerHTML = `B: ${(cardData.tot_buy_qty / 100000).toFixed(2)} L | S: ${(cardData.tot_sell_qty / 100000).toFixed(2)} L | D: ${((cardData.tot_buy_qty - cardData.tot_sell_qty) / 100000).toFixed(3)} L`;
+    //update bar
+    const openPrice = cardData.OPN;
+    const currentPrice = cardData.pricecurrent;
+    const highPrice = cardData.HP;
+    const lowPrice = cardData.LP;
+
+    updateBar(openPrice, currentPrice, highPrice, lowPrice);
 }
+
+function updateBar(openPrice, currentPrice, highPrice, lowPrice) {
+      var price = document.getElementById("low-price");
+      price.textContent = lowPrice.toFixed(2);
+      price = document.getElementById("high-price");
+      price.textContent = highPrice.toFixed(2);
+
+      const currentPercentage = ((currentPrice - lowPrice) / (highPrice - lowPrice)) * 100;
+      const openPercent = ((openPrice - lowPrice) / (highPrice - lowPrice)) * 100;
+
+      const barElement = document.getElementById("priceBar");
+      const arrowElement = document.getElementById("arrow");
+      const arrowText = document.getElementById("arrowText");
+
+      barElement.style.backgroundColor = currentPrice >= openPrice ? "#95d899" : "#ff8181";
+      barElement.style.left = `${openPercent}%`;
+
+      arrowElement.style.left = `${currentPercentage}%`;
+      arrowText.innerHTML = currentPrice.toFixed(2);
+
+      if (currentPrice >= openPrice) {
+        barElement.style.left = `${openPercent}%`;
+        barElement.style.width = `${currentPercentage - openPercent}%`;
+      } else {
+        barElement.style.left = `${currentPercentage}%`;
+        barElement.style.width = `${openPercent - currentPercentage}%`;
+      }
+    }
 
 function refreshCardData(newCardData, id) {
     const cardElement = document.querySelector(`.card[data-id="${id}"]`);
