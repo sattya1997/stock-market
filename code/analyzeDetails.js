@@ -99,8 +99,6 @@ function updateBar(cardElement, openPrice, currentPrice, highPrice, lowPrice) {
 
       const barElement = cardElement.querySelector('#priceBar');
       const arrowElement = cardElement.querySelector('#arrow')
-    
-      const arrowText = document.getElementById('#arrow');
       const arrowText = cardElement.querySelector('#arrowText');
 
       barElement.style.backgroundColor = currentPrice >= openPrice ? "#95d899" : "#ff8181";
