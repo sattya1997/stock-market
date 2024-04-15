@@ -209,3 +209,85 @@
 #time-stamp {
     text-align: center;
 }
+.bar-container {
+      margin-bottom: 8px;
+      min-height: 39px;
+    }
+
+    .header {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .arrowContainer {
+      height: 8px;
+      position: relative;
+    }
+
+    .header .price {
+      color: #131722;
+      font-size: 13px;
+      line-height: 19px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .header .title {
+      color: #9598a1;
+      font-size: 11px;
+      letter-spacing: 0.4px;
+      line-height: 16px;
+      padding: 0 2px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .header .price {
+      color: #131722;
+      font-size: 13px;
+      line-height: 19px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .arrowContainer .arrow {
+      margin-top: 2px;
+      display: flex;
+      margin-left: -6px;
+      position: absolute;
+      width: 12px;
+      height: 8px;
+      background-color: #00000000;
+      transition: left 0.4s ease, opacity 0.4s ease;
+    }
+
+    .range {
+      position: relative;
+      background-color: #e4e3e3;
+      border-radius: 5px;
+      flex-shrink: 0;
+      height: 12px;
+      margin: 4px 0 2px;
+      width: 100%;
+      border-width: 2px;
+    }
+
+    .range-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 8px;
+      background-color: #ccc;
+      transition: all 0.4s ease;
+    }
+
+    .range .range-bar {
+      background-color: #24b29b;
+      border-style: solid;
+      border-width: 0 0.5px;
+      height: inherit;
+      position: relative;
+    }
