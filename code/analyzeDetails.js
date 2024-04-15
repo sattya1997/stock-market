@@ -62,7 +62,7 @@ function updateCard(cardElement, cardData) {
     // Update the card element with the new data
     cardElement.querySelector('.current-price').textContent = parseFloat(cardData.pricecurrent).toFixed(2);
     cardElement.querySelector('.details').innerHTML = `<p>Chg: ${parseFloat(cardData.pricechange).toFixed(2)} (${parseFloat(cardData.pricepercentchange).toFixed(2)}%) | 
-    Open: ${cardData.OPN || 'NA'}</p><p>High: ${cardData.HP? cardData.HP: cardData.High} | Low: ${cardData.LP? cardData.LP: cardData.LOW}</p>`;
+    Open: ${cardData.OPN || 'NA'}</p><p>High: ${cardData.HP? cardData.HP: cardData.HIGH} | Low: ${cardData.LP? cardData.LP: cardData.LOW}</p>`;
     cardElement.querySelector('.bid-list').innerHTML = `<li><strong>Bid List:</strong></li>
     ${askbid.bidlist.map(bid => `<li>${bid.price} x ${bid.quantity}</li>`).join('')}`;
     cardElement.querySelector('.ask-list').innerHTML = `<li><strong>Ask List:</strong></li>
