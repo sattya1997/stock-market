@@ -78,7 +78,16 @@ function updateCard(cardElement, cardData) {
     //update bar
     const openPrice = cardData.OPN;
     const currentPrice = cardData.pricecurrent;
-    const highPrice = cardData.HP;
+    var highPrice = 0;
+    lowPrice =0;
+    if(cardData.HP && cardData.LP) {
+      highPrice = cardData.HP;
+      lowPrice =cardData.LP
+    } else {
+      highPrice = cardData.HIGH;
+      lowPrice = cardData.LOW;
+    }
+    
     const lowPrice = cardData.LP;
 
     updateBar(openPrice, currentPrice, highPrice, lowPrice);
