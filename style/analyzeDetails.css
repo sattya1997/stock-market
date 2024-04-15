@@ -210,6 +210,7 @@
     text-align: center;
 }
 .bar-container {
+      max-width:95%;
       margin-bottom: 8px;
       min-height: 39px;
     }
@@ -266,7 +267,7 @@
 
     .range {
       position: relative;
-      background-color: #e4e3e3;
+      background-color: #fffff1;
       border-radius: 5px;
       flex-shrink: 0;
       height: 12px;
