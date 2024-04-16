@@ -62,7 +62,7 @@ function updateCard(cardElement, cardData) {
     // Update the card element with the new data
     cardElement.querySelector('.current-price').textContent = parseFloat(cardData.pricecurrent).toFixed(2);
     cardElement.querySelector('.details').innerHTML = `<p>Chg: ${parseFloat(cardData.pricechange).toFixed(2)} (${parseFloat(cardData.pricepercentchange).toFixed(2)}%) | 
-    Open: ${cardData.OPN || 'NA'}</p><p>High: ${cardData.HP? cardData.HP: cardData.HIGH} | Low: ${cardData.LP? cardData.LP: cardData.LOW}</p>`;
+    Open: ${cardData.OPN? cardData.OPN: cardData.OPEN}</p>`;
     cardElement.querySelector('.bid-list').innerHTML = `<li><strong>Bid List:</strong></li>
     ${askbid.bidlist.map(bid => `<li>${bid.price} x ${bid.quantity}</li>`).join('')}`;
     cardElement.querySelector('.ask-list').innerHTML = `<li><strong>Ask List:</strong></li>
@@ -76,7 +76,13 @@ function updateCard(cardElement, cardData) {
     cardElement.querySelector('.volume').innerHTML = volData;
     cardElement.querySelector('.sell-buy').innerHTML = `B: ${(cardData.tot_buy_qty / 100000).toFixed(2)} L | S: ${(cardData.tot_sell_qty / 100000).toFixed(2)} L | D: ${((cardData.tot_buy_qty - cardData.tot_sell_qty) / 100000).toFixed(3)} L`;
     //update bar
-    const openPrice = cardData.OPN;
+    var openPrice = 0;
+    if (cardData.OPN) {
+      openPrice = cardData.OPN;
+    } else {
+      openPrice = cardData.OPEN;
+    }
+    
     const currentPrice = cardData.pricecurrent;
     var highPrice = 0;
     var lowPrice = 0;
