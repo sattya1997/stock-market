@@ -24,7 +24,7 @@ function createCard(cardData) {
         <div class="range-bar" id="priceBar"></div>
         <div class="arrowContainer">
           <div class="arrow" id="arrow">
-            <span id="arrowText"></span><img src="./icons/arrow.svg" alt="^" />
+            <img src="./icons/arrow.svg" alt="^"/><span id="arrowText"></span>
           </div>
         </div>
       </div>
