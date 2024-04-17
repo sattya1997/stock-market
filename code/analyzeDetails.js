@@ -98,7 +98,9 @@ function updateCard(cardElement, cardData) {
 
 function updateBar(cardElement, openPrice, currentPrice, highPrice, lowPrice) {
       cardElement.querySelector('#low-price').innerHTML = lowPrice;
+      cardElement.querySelector('#low-price').style.fontWeight = "500";
       cardElement.querySelector('#high-price').innerHTML = highPrice;
+      cardElement.querySelector('#high-price').style.fontWeight = "500";
 
       const currentPercentage = ((currentPrice - lowPrice) / (highPrice - lowPrice)) * 100;
       const openPercent = ((openPrice - lowPrice) / (highPrice - lowPrice)) * 100;
