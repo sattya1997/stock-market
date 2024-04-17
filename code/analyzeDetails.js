@@ -61,8 +61,8 @@ function updateCard(cardElement, cardData) {
     const askbid = convertAskBid(cardData.best_5_set);
     // Update the card element with the new data
     cardElement.querySelector('.current-price').textContent = parseFloat(cardData.pricecurrent).toFixed(2);
-    cardElement.querySelector('.details').innerHTML = `<span style="color:#525252; font-size:14px;font-weight:600">Chg: ${parseFloat(cardData.pricechange).toFixed(2)} (${parseFloat(cardData.pricepercentchange).toFixed(2)}%)</span> 
-    <span style="color:#252F37; font-size:14px;font-weight:600">Open: ${cardData.OPN? cardData.OPN: cardData.OPEN}</span>`;
+    cardElement.querySelector('.details').innerHTML = `<span style="color:#525552; font-size:12px;font-weight:600">Chg: ${parseFloat(cardData.pricechange).toFixed(2)} (${parseFloat(cardData.pricepercentchange).toFixed(2)}%)</span> 
+    <span style="color:#252F68; font-size:12px;font-weight:600">Open: ${cardData.OPN? cardData.OPN: cardData.OPEN}</span>`;
     cardElement.querySelector('.bid-list').innerHTML = `<li><strong>Bid List:</strong></li>
     ${askbid.bidlist.map(bid => `<li>${bid.price} x ${bid.quantity}</li>`).join('')}`;
     cardElement.querySelector('.ask-list').innerHTML = `<li><strong>Ask List:</strong></li>
