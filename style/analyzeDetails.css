@@ -292,3 +292,10 @@
       height: inherit;
       position: relative;
     }
+    
+    #arrowText {
+      font-size: 8px;
+      font-weight:700;
+      margin-top: 7px;
+      margin-left: -20px;
+    }
