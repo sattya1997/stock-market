@@ -333,7 +333,8 @@ var analyzeToggle = document.getElementById('analyzeToggle');var onOffText = doc
 analyzeToggle.addEventListener('change', function() { var isChecked = analyzeToggle.checked;
 
 slider.style.backgroundColor = isChecked ? '#7cd380' : '#ccc'; onOffText.textContent = isChecked ? 'On' : 'Off'; onOffText.style.left = isChecked ? '25%' : '70%'; icon.style.left = isChecked ? '33px' : '6.7px'; icon.style.color = isChecked ? '#333' : '#e6e3e3'; 
-if(isChecked) { 
+if(isChecked) {
+  analyzeStart = true;
   startAnalyze();
 } else {
 stopAnalyze();
@@ -341,7 +342,6 @@ stopAnalyze();
 });
 
 async function startAnalyze() {
-    analyzeStart = true;
     while (analyzeStart) {
         fetchTickerData();
         try {
