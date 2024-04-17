@@ -98,7 +98,7 @@
 }
 
 .card-list.bid-list li {
-    color: #ff8181;
+    color: red;
     text-align :center;
     font-size: 12px;
     font-weight: 600;
@@ -107,7 +107,7 @@
 
 /* Styles for ask list */
 .card-list.ask-list li {
-    color: #7cd380;
+    color: green;
     text-align: center;
     font-size: 12px;
     font-weight: 600;
