@@ -100,7 +100,7 @@
 .card-list.bid-list li {
     color: #ff8181;
     text-align :center;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 600;
     /* Red color for bid list items */
 }
@@ -109,7 +109,7 @@
 .card-list.ask-list li {
     color: #7cd380;
     text-align: center;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 600;
     /* Green color for ask list items */
 }
