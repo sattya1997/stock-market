@@ -88,6 +88,10 @@ table td {
     justify-content: center;
 }
 
+#center-buttons > label{
+  margin-right: 5px;
+}
+
 #center-buttons button {
     font-size: 14px;
     font-weight: bold;
