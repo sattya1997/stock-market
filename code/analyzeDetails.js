@@ -13,6 +13,23 @@ function createCard(cardData) {
         Chg: ${cardData.change} (${cardData.percentchange}%) | 
         O: ${cardData.open} | H: ${cardData.dayhigh} | L: ${cardData.daylow}
       </div>
+      <div class="bar">
+    <div class="bar-container" data-name="details-days-range">
+      <div class="header">
+        <span class="price" id="low-price">960</span>
+        <span class="title">Day's Range</span>
+        <span class="price" id="high-price">1000</span>
+      </div>
+      <div class="range">
+        <div class="range-bar" id="priceBar"></div>
+        <div class="arrowContainer">
+          <div class="arrow" id="arrow">
+            <img src="./icons/arrow.svg" alt="^"/><span id="arrowText"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
       <div class="list-container">
       <ul class="card-list bid-list">
         <li><strong>Bid List:</strong></li>
@@ -45,7 +62,7 @@ function updateCard(cardElement, cardData) {
     // Update the card element with the new data
     cardElement.querySelector('.current-price').textContent = parseFloat(cardData.pricecurrent).toFixed(2);
     cardElement.querySelector('.details').innerHTML = `<p>Chg: ${parseFloat(cardData.pricechange).toFixed(2)} (${parseFloat(cardData.pricepercentchange).toFixed(2)}%) | 
-    Open: ${cardData.OPN || 'NA'}</p><p>High: ${cardData.HP || 'NA'} | Low: ${cardData.LP || 'NA'}</p>`;
+    Open: ${cardData.OPN? cardData.OPN: cardData.OPEN}</p>`;
     cardElement.querySelector('.bid-list').innerHTML = `<li><strong>Bid List:</strong></li>
     ${askbid.bidlist.map(bid => `<li>${bid.price} x ${bid.quantity}</li>`).join('')}`;
     cardElement.querySelector('.ask-list').innerHTML = `<li><strong>Ask List:</strong></li>
@@ -58,7 +75,52 @@ function updateCard(cardElement, cardData) {
 
     cardElement.querySelector('.volume').innerHTML = volData;
     cardElement.querySelector('.sell-buy').innerHTML = `B: ${(cardData.tot_buy_qty / 100000).toFixed(2)} L | S: ${(cardData.tot_sell_qty / 100000).toFixed(2)} L | D: ${((cardData.tot_buy_qty - cardData.tot_sell_qty) / 100000).toFixed(3)} L`;
+    //update bar
+    var openPrice = 0;
+    if (cardData.OPN) {
+      openPrice = cardData.OPN;
+    } else {
+      openPrice = cardData.OPEN;
+    }
+    
+    const currentPrice = cardData.pricecurrent;
+    var highPrice = 0;
+    var lowPrice = 0;
+    if(cardData.HP && cardData.LP) {
+      highPrice = cardData.HP;
+      lowPrice = cardData.LP
+    } else {
+      highPrice = cardData.HIGH;
+      lowPrice = cardData.LOW;
+    }
+    updateBar(cardElement, openPrice, currentPrice, highPrice, lowPrice);
 }
+
+function updateBar(cardElement, openPrice, currentPrice, highPrice, lowPrice) {
+      cardElement.querySelector('#low-price').innerHTML = lowPrice;
+      cardElement.querySelector('#high-price').innerHTML = highPrice;
+
+      const currentPercentage = ((currentPrice - lowPrice) / (highPrice - lowPrice)) * 100;
+      const openPercent = ((openPrice - lowPrice) / (highPrice - lowPrice)) * 100;
+
+      const barElement = cardElement.querySelector('#priceBar');
+      const arrowElement = cardElement.querySelector('#arrow')
+      const arrowText = cardElement.querySelector('#arrowText');
+
+      barElement.style.backgroundColor = currentPrice >= openPrice ? "#95d899" : "#ff8181";
+      barElement.style.left = `${openPercent}%`;
+
+      arrowElement.style.left = `${currentPercentage}%`;
+      arrowText.innerHTML = currentPrice;
+
+      if (currentPrice >= openPrice) {
+        barElement.style.left = `${openPercent}%`;
+        barElement.style.width = `${currentPercentage - openPercent}%`;
+      } else {
+        barElement.style.left = `${currentPercentage}%`;
+        barElement.style.width = `${openPercent - currentPercentage}%`;
+      }
+    }
 
 function refreshCardData(newCardData, id) {
     const cardElement = document.querySelector(`.card[data-id="${id}"]`);
