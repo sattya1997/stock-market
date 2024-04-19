@@ -374,4 +374,51 @@ function stopAnalyze() {
     analyzeStart = false;
 }
 
+// Event listener for the search button
+      document
+        .getElementById("search-button")
+        .addEventListener("click", function () {
+          var searchQuery = document.getElementById("search-input").value;
+          axios
+            .post(
+              `https://www.moneycontrol.com/mccode/common/autosuggestion_solr.php?classic=true&query=${searchQuery}&type=1&format=json`
+            )
+            .then(function (response) {
+              var results = response.data;
+              var resultsContainer = document.getElementById(
+                "search-results-container"
+              );
+              resultsContainer.style.display = "block";
+              resultsContainer.innerHTML = "";
+              results.forEach(function (item) {
+                console.log(item.stock_name);
+                var resultItem = document.createElement("span");
+                resultItem.textContent = `${item.stock_name}(id: ${item.sc_id})`;
+                resultItem.addEventListener("click", function () {
+                  addTickerToForm(item.sc_id, item.stock_name);
+                  resultsContainer.innerHTML = "";
+                  resultsContainer.style.display = "none";
+                });
+                resultsContainer.appendChild(resultItem);
+              });
+            })
+            .catch(function (error) {
+              console.error(error);
+            });
+        });
+ 
+      // Function to add the selected ticker to the form
+      function addTickerToForm(id, displayName) {
+        var form = document.getElementById("ticker-form");
+        var inputGroup = document.createElement("div");
+        inputGroup.setAttribute("class", "input-group");
+        inputGroup.innerHTML = `
+        <label>ID:</label>
+        <input type="text" name="id-${form.children.length}" value="${id}" />
+        <label>Display Name:</label>
+        <input type="text" name="displayName-${form.children.length}" value="${displayName}" />
+    `;
+        form.appendChild(inputGroup);
+      }
+
 analyzeToggle.dispatchEvent(new Event('change'));
