@@ -126,11 +126,17 @@ function updateBar(cardElement, openPrice, currentPrice, highPrice, lowPrice) {
       if(openPrice === highPrice || currentPrice === highPrice) {
         barElement.style.borderBottomRightRadius = '10px';
         barElement.style.borderTopRightRadius = '10px';
+      } else {
+        barElement.style.borderBottomRightRadius = '0';
+        barElement.style.borderTopRightRadius = '0';
       }
     
       if(openPrice === lowPrice || currentPrice === lowPrice) {
         barElement.style.borderBottomLeftRadius = '10px';
         barElement.style.borderTopLeftRadius = '10px';
+      } else {
+        barElement.style.borderBottomLeftRadius = '0';
+        barElement.style.borderTopLeftRadius = '0';
       }
     }
 
