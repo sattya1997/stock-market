@@ -11,7 +11,7 @@ function createCard(cardData) {
       <div class="current-price">${cardData.currentprice}</div>
       <div class="details">
         Chg: ${cardData.change} (${cardData.percentchange}%) | 
-        O: ${cardData.open} | H: ${cardData.dayhigh} | L: ${cardData.daylow}
+        O: ${cardData.open}
       </div>
       <div class="bar">
     <div class="bar-container" data-name="details-days-range">
@@ -61,8 +61,8 @@ function updateCard(cardElement, cardData) {
     const askbid = convertAskBid(cardData.best_5_set);
     // Update the card element with the new data
     cardElement.querySelector('.current-price').textContent = parseFloat(cardData.pricecurrent).toFixed(2);
-    cardElement.querySelector('.details').innerHTML = `<p>Chg: ${parseFloat(cardData.pricechange).toFixed(2)} (${parseFloat(cardData.pricepercentchange).toFixed(2)}%) | 
-    Open: ${cardData.OPN? cardData.OPN: cardData.OPEN}</p>`;
+    cardElement.querySelector('.details').innerHTML = `<span style="color:#525552; font-size:12px;font-weight:600">Chg: ${parseFloat(cardData.pricechange).toFixed(2)} (${parseFloat(cardData.pricepercentchange).toFixed(2)}%)</span> 
+    <span style="color:#252F68; font-size:12px;font-weight:600">Open: ${cardData.OPN? cardData.OPN: cardData.OPEN}</span>`;
     cardElement.querySelector('.bid-list').innerHTML = `<li><strong>Bid List:</strong></li>
     ${askbid.bidlist.map(bid => `<li>${bid.price} x ${bid.quantity}</li>`).join('')}`;
     cardElement.querySelector('.ask-list').innerHTML = `<li><strong>Ask List:</strong></li>
@@ -98,7 +98,9 @@ function updateCard(cardElement, cardData) {
 
 function updateBar(cardElement, openPrice, currentPrice, highPrice, lowPrice) {
       cardElement.querySelector('#low-price').innerHTML = lowPrice;
+      cardElement.querySelector('#low-price').style.fontWeight = "500";
       cardElement.querySelector('#high-price').innerHTML = highPrice;
+      cardElement.querySelector('#high-price').style.fontWeight = "500";
 
       const currentPercentage = ((currentPrice - lowPrice) / (highPrice - lowPrice)) * 100;
       const openPercent = ((openPrice - lowPrice) / (highPrice - lowPrice)) * 100;
@@ -119,6 +121,22 @@ function updateBar(cardElement, openPrice, currentPrice, highPrice, lowPrice) {
       } else {
         barElement.style.left = `${currentPercentage}%`;
         barElement.style.width = `${openPercent - currentPercentage}%`;
+      }
+      
+      if(openPrice === highPrice || currentPrice === highPrice) {
+        barElement.style.borderBottomRightRadius = '10px';
+        barElement.style.borderTopRightRadius = '10px';
+      } else {
+        barElement.style.borderBottomRightRadius = '0';
+        barElement.style.borderTopRightRadius = '0';
+      }
+    
+      if(openPrice === lowPrice || currentPrice === lowPrice) {
+        barElement.style.borderBottomLeftRadius = '10px';
+        barElement.style.borderTopLeftRadius = '10px';
+      } else {
+        barElement.style.borderBottomLeftRadius = '0';
+        barElement.style.borderTopLeftRadius = '0';
       }
     }
 
@@ -327,8 +345,21 @@ async function fetchTickerData() {
 
 populateCards();
 
+
+var analyzeToggle = document.getElementById('analyzeToggle');var onOffText = document.getElementById('onOffText');var slider = document.querySelector('.slider');var icon = document.querySelector('.icon');
+
+analyzeToggle.addEventListener('change', function() { var isChecked = analyzeToggle.checked;
+
+slider.style.backgroundColor = isChecked ? '#7cd380' : '#ff8181'; onOffText.textContent = isChecked ? 'On' : 'Off'; onOffText.style.left = isChecked ? '25%' : '70%'; icon.style.left = isChecked ? '33px' : '6.7px'; icon.style.color = isChecked ? '#333' : '#e6e3e3'; 
+if(isChecked) {
+  analyzeStart = true;
+  startAnalyze();
+} else {
+stopAnalyze();
+}
+});
+
 async function startAnalyze() {
-    analyzeStart = true;
     while (analyzeStart) {
         fetchTickerData();
         try {
@@ -342,3 +373,5 @@ async function startAnalyze() {
 function stopAnalyze() {
     analyzeStart = false;
 }
+
+analyzeToggle.dispatchEvent(new Event('change'));

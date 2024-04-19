@@ -1,7 +1,7 @@
 .card {
     border: 1px solid #ccc;
     border-radius: 5px;
-    padding: 8px;
+    padding: 15px;
     margin: 3px;
     width: 280px;
     box-shadow: 0 4px 8px rgba(89, 89, 89, 0.35);
@@ -9,7 +9,7 @@
     box-sizing: border-box;
     margin-bottom: 8px;
     /* Add space below each card */
-    background: linear-gradient(135deg, #bdbdbd, #fff5f5);
+    background: linear-gradient(135deg, #d1d1d1, #FDFCFF);
     /* Subtle gradient background */
     border: none;
     /* Remove border for a cleaner look */
@@ -98,15 +98,19 @@
 }
 
 .card-list.bid-list li {
-    color: #dc3545;
+    color: red;
     text-align :center;
+    font-size: 12px;
+    font-weight: 600;
     /* Red color for bid list items */
 }
 
 /* Styles for ask list */
 .card-list.ask-list li {
-    color: #28a745;
-    text-align :center;
+    color: green;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
     /* Green color for ask list items */
 }
 
@@ -210,7 +214,6 @@
     text-align: center;
 }
 .bar-container {
-      max-width:95%;
       margin-bottom: 8px;
       min-height: 39px;
     }
@@ -257,7 +260,7 @@
     .arrowContainer .arrow {
       margin-top: 2px;
       display: flex;
-      margin-left: -6px;
+      margin-left: -5px;
       position: absolute;
       width: 12px;
       height: 8px;
@@ -296,18 +299,15 @@
     #arrowText {
       font-size: 8px;
       font-weight:700;
-      margin-top: 7px;
+      margin-top: 9px;
       margin-left: -20px;
     }
     
-    .switch { position: relative; display: inline-block; margin-top: 100px; width: 60px; height: 34px;}
+    .switch { position: relative; display: inline-block;width: 60px; height: 34px;}
     .switch input { opacity: 0; width: 0; height: 0;}
-    .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 15px;}
-    .slider:before { position: absolute; content: “”; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%;}
+    .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ff8181; transition: .4s; border-radius: 15px;}
+    .slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%;}
     input:checked + .slider { background-color: #7cd380; box-shadow: 0 0 10px #7cd380;}
     input:checked + .slider:before { transform: translateX(26px);}
     #onOffText { position: absolute; z-index: 2; left: 70%; top: 50%; transform: translate(-50%, -50%); pointer-events: none;}
-    .icon { position: absolute; top: 50%; left: 6.7px; transform: translateY(-50%); font-size: 16px; transition: left 0.4s;}
-    .tooltip .tooltiptext { visibility: hidden; width: 120px; background-color: #555; color: #fff; text-align: center; border-radius: 6px; padding: 5px 0; position: absolute; z-index: 1; bottom: 125%; left: 50%; margin-left: -60px; opacity: 0; transition: visibility 0s, opacity 0.5s linear;}
-    .tooltip:hover .tooltiptext { visibility: visible; opacity: 1;}
-    .tooltip .tooltiptext::after { content: “”; position: absolute; top: 100%; left: 50%; margin-left: -5px; border-width: 5px; border-style: solid; border-color: #555 transparent transparent transparent;}
+    .icon { position: absolute; top: 50%; left: 6.7px; transform: translateY(-50%); font-size: 16px; transition: left 0.4s;pointer-events: none;}
