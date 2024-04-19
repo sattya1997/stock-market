@@ -122,6 +122,16 @@ function updateBar(cardElement, openPrice, currentPrice, highPrice, lowPrice) {
         barElement.style.left = `${currentPercentage}%`;
         barElement.style.width = `${openPercent - currentPercentage}%`;
       }
+      
+      if(openPrice === highPrice || currentPrice === highPrice) {
+        barElement.style.borderBottomRightRadius = '10px';
+        barElement.style.borderTopRightRadius = '10px';
+      }
+    
+      if(openPrice === lowPrice || currentPrice === lowPrice) {
+        barElement.style.borderBottomLeftRadius = '10px';
+        barElement.style.borderTopLeftRadius = '10px';
+      }
     }
 
 function refreshCardData(newCardData, id) {
