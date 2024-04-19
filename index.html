@@ -75,7 +75,8 @@
     </div>
     <div class="tab-panel">
         <div id="center-buttons">
-            <label class="switch tooltip"> <input type="checkbox" id="analyzeToggle"> <span class="slider round"></span> <span id="onOffText">Off</span> <span class="icon">&#x26A1</span>
+            <label class="switch tooltip"> <input type="checkbox" id="analyzeToggle"> <span class="slider round"></span>
+                <span id="onOffText">Off</span> <span class="icon">&#x26A1</span>
             </label>
             <button id="edit-tickers" style="margin-right: 5px;">Edit List</button>
         </div>
@@ -85,10 +86,12 @@
                 <span class="close-modal" id="close-modal"></span>
                 <h2>Edit Stock Tickers</h2>
                 <div class="search-container">
-                  <input type="text" id="search-input" placeholder="Stock name..." />
-                  <button id="search-button">&#x1F50D;</button>
-                </div>
-                <div id="search-results-container"></div>
+                    <input type="text" id="search-input" placeholder="Stock name..." />
+                    <button id="clear-button">✖️</button>
+                    <button id="search-button">&#x1F50D;</button>
+                </div>
+                <div id="search-results-container">
+                </div>
                 <div id="ticker-form">
                     <!-- Dynamically populated form fields will go here -->
                 </div>
