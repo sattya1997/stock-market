@@ -434,7 +434,7 @@ function stopAnalyze() {
 }
 
 // Event listener for the search button
-document.getElementById("search-button").addEventListener("click", function (event) {
+document.getElementById("stock-search-form").addEventListener("click", function (event) {
   event.preventDefault();
   var searchQuery = document.getElementById("search-input").value;
   axios
@@ -480,7 +480,8 @@ function addTickerToForm(id, displayName) {
   form.appendChild(inputGroup);
 }
 
-document.getElementById("clear-button").addEventListener("click", function () {
+document.getElementById("clear-button").addEventListener("click", function (event) {
+  event.preventDefault();
   var resultsContainer = document.getElementById("search-results-container");
 
   resultsContainer.innerHTML = "";
