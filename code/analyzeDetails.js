@@ -1,15 +1,15 @@
 var cards = [];
 var stockTickers = [
-  { id: "notapplicable/inidicesindia/in%3BNSX", displayName: "Nifty 50" },
-  { id: "TEL", displayName: "Tata Motors" },
-  { id: "IT", displayName: "Infosys" },
-  { id: "NCC01", displayName: "NCC Ltd" },
-  { id: "HAL", displayName: "HAL" },
-  { id: "ICI15", displayName: "ICICIB22" },
-  { id: "ONG", displayName: "ONGC" },
-  { id: "CES", displayName: "CESC" },
-  { id: "OI13", displayName: "Oil India" },
-  { id: "GBE", displayName: "Goldbees" },
+  { id: "notapplicable/inidicesindia/in%3BNSX", displayName: "Nifty 50", name:  "in%3BNSX"},
+  { id: "TEL", displayName: "Tata Motors", name:  "TATAMOTORS" },
+  { id: "IT", displayName: "Infosys", name:  "INFY" },
+  { id: "NCC01", displayName: "NCC Ltd", name:  "NCC" },
+  { id: "HAL", displayName: "HAL", name:  "HAL" },
+  { id: "ICI15", displayName: "ICICIB22", name:  "ICICIB22" },
+  { id: "ONG", displayName: "ONGC", name:  "ONGC" },
+  { id: "CES", displayName: "CESC", name:  "CESC" },
+  { id: "OI13", displayName: "Oil India", name:  "OIL" },
+  { id: "GBE", displayName: "Goldbees", name:  "GOLDBEES" },
 ];
 var analyzeStart = false;
 
@@ -18,29 +18,32 @@ function createCard(cardData) {
   card.className = "card";
   card.setAttribute("data-id", cardData.id);
   card.innerHTML = `
-      <div class="stock-name">${cardData.name}</div>
-      <div class="current-price">${cardData.currentprice}</div>
+      <div class="card-title">
+        <span class="stock-name">${cardData.name}</span>
+        <span class="current-price">${cardData.currentprice}</span>
+      </div>
       <div class="details">
-        Chg: ${cardData.change} (${cardData.percentchange}%) | 
-        O: ${cardData.open}
+        <span class="percent-change">Chg: ${cardData.change} (${cardData.percentchange}%)</span>
+        <span class="open-price">O: ${cardData.open}</span>
       </div>
+      <div class="graph"><canvas id="stockChart"></canvas></div>
       <div class="bar">
-    <div class="bar-container" data-name="details-days-range">
-      <div class="header">
-        <span class="price" id="low-price">960</span>
-        <span class="title">Day's Range</span>
-        <span class="price" id="high-price">1000</span>
-      </div>
-      <div class="range">
-        <div class="range-bar" id="priceBar"></div>
-        <div class="arrowContainer">
-          <div class="arrow" id="arrow">
-            <img src="./icons/arrow.svg" alt="^"/><span id="arrowText"></span>
+        <div class="bar-container" data-name="details-days-range">
+          <div class="header">
+            <span class="price" id="low-price">0</span>
+            <span class="title">Day's Range</span>
+            <span class="price" id="high-price">0</span>
+          </div>
+          <div class="range">
+            <div class="range-bar" id="priceBar"></div>
+            <div class="arrowContainer">
+              <div class="arrow" id="arrow">
+                <img src="./icons/arrow.svg" alt="^"/><span id="arrowText"></span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
       <div class="list-container">
       <ul class="card-list bid-list">
         <li><strong>Bid List:</strong></li>
@@ -76,21 +79,22 @@ function populateCards() {
 
 function updateCard(cardElement, cardData) {
   const askbid = convertAskBid(cardData.best_5_set);
+
   // Update the card element with the new data
-  cardElement.querySelector(".current-price").textContent = parseFloat(
-    cardData.pricecurrent
-  ).toFixed(2);
-  cardElement.querySelector(
-    ".details"
-  ).innerHTML = `<span style="color:#525552; font-size:12px;font-weight:600">Chg: ${parseFloat(
-    cardData.pricechange
-  ).toFixed(2)} (${parseFloat(cardData.pricepercentchange).toFixed(2)}%)</span> 
-    <span style="color:#252F68; font-size:12px;font-weight:600">Open: ${
-      cardData.OPN ? cardData.OPN : cardData.OPEN
-    }</span>`;
-  cardElement.querySelector(
-    ".bid-list"
-  ).innerHTML = `<li><strong>Bid List:</strong></li>
+  cardElement.querySelector(".current-price").textContent = parseFloat(cardData.pricecurrent).toFixed(2);
+  cardElement.querySelector(".current-price").style.color = (cardData.pricecurrent < cardData.OPEN | cardData.pricecurrent < cardData.OPN)? "red": "green" 
+
+  const details = cardElement.querySelector(".details");
+  
+  if(cardData.pricechange > 0) {
+    details.innerHTML = `<span>Chg: +${parseFloat(cardData.pricechange).toFixed(2)} (+${parseFloat(cardData.pricepercentchange).toFixed(2)}%)</span><span>O: ${cardData.OPN ? cardData.OPN : cardData.OPEN}</span>`;
+    details.style.color = "green";
+  } else {
+    details.innerHTML = `<span>Chg: ${parseFloat(cardData.pricechange).toFixed(2)} (${parseFloat(cardData.pricepercentchange).toFixed(2)}%)</span><span>O: ${cardData.OPN ? cardData.OPN : cardData.OPEN}</span>`;
+    details.style.color = "red";
+  }
+  
+  cardElement.querySelector(".bid-list").innerHTML = `<li><strong>Bid List:</strong></li>
     ${askbid.bidlist
       .map((bid) => `<li>${bid.price} x ${bid.quantity}</li>`)
       .join("")}`;
@@ -418,7 +422,102 @@ analyzeToggle.addEventListener("change", function () {
   }
 });
 
+async function loadGraphData() {
+
+
+  var graphData;
+
+  // for (let index = 0; index < stockTickers.length; index++) {
+  //   if (stockTickers[index].displayName === "Nifty 50") {
+  //     continue;
+  //     // res = await axios.get(`https://api.moneycontrol.com/mcapi/v1/stock/estimates/price-forecast?scId=${ stockTickers[index].id }&ex=N&deviceType=W`);
+  //     // console.log(res.data);
+  //     //refreshCardData(res.data.data, stockTickers[index].id);
+  //   } else {
+  //     res = await axios.get(`https://api.moneycontrol.com/mcapi/v1/stock/estimates/price-forecast?scId=${ stockTickers[index].id }&ex=N&deviceType=W`);
+  //     if(res && res.data && res.data.data && res.data.data.graphData) {
+  //       graphData = res.data.data.graphData;
+  //     } else {
+  //       continue;
+  //     }
+
+  //     const cardElement = document.querySelector(`.card[data-id="${stockTickers[index].id}"]`);
+  //     createGraph(graphData, cardElement);
+  //     graphData = null;
+  //   }
+  // }
+
+  const toTimestamp = Math.floor(Date.now() / 1000);
+  const fromTimestamp = new Date();
+  fromTimestamp.setHours(5, 0, 0, 0); // Set time to 5:00 AM
+  const fromTimestampInSeconds = Math.floor(fromTimestamp / 1000);
+
+  for (let index = 0; index < stockTickers.length; index++) {
+    const apiUrl = `https://priceapi.moneycontrol.com/techCharts/indianMarket/stock/history?symbol=${ stockTickers[index].name }&resolution=1&from=${fromTimestampInSeconds}&to=${toTimestamp}&countback=500&currencyCode=INR`;
+    res = await axios.get(apiUrl);
+    if(res && res.data && res.data.t) {
+      graphData = res.data;
+    } else {
+      continue;
+    }
+
+    const cardElement = document.querySelector(`.card[data-id="${stockTickers[index].id}"]`);
+    createGraph(graphData, cardElement);
+    graphData = null;
+
+  }
+
+}
+
+function createGraph(graphData, cardElement) {
+  const labels = graphData.t.map(timestamp => new Date(timestamp * 1000).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }).slice(0, -3))
+  const prices = graphData.c
+
+  const ctx = cardElement.querySelector("#stockChart").getContext("2d");
+  new Chart(ctx, {
+        type: "line",
+        data: {
+            labels: labels,
+            datasets: [{
+                label: "Stock Price",
+                data: prices,
+                borderColor: "black",
+                borderWidth: 0.5,
+                fill: true,
+                pointRadius: 0,
+            }],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                  type: "time",
+                  unit: "minute",
+                  displayFormats: {
+                  minute: 'HH:mm' // Display time in HH:MM format
+                  },
+                },
+                y: {
+                  title: {
+                    display: false,
+                  },
+                  ticks: {
+                    fontSize: 10, // Set the desired font size
+                  },
+              },
+              plugins: {
+                legend: {
+                display: false // Hide legend
+              } 
+    }
+          },
+      },
+  });
+}
+
 async function startAnalyze() {
+  loadGraphData();
   while (analyzeStart) {
     fetchTickerData();
     try {
@@ -449,7 +548,6 @@ document.getElementById("search-button").addEventListener("click", function (eve
       resultsContainer.style.display = "block";
       resultsContainer.innerHTML = "";
       results.forEach(function (item) {
-        console.log(item.stock_name);
         var resultItem = document.createElement("span");
         resultItem.textContent = `${item.stock_name}(id: ${item.sc_id})`;
         resultItem.addEventListener("click", function () {

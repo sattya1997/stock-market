@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="./style/analyzeDetails.css">
     <script src="https://bundle.run/buffer@6.0.3"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/protobufjs/7.2.6/protobuf.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 </head>
 
 <body>
@@ -86,7 +87,7 @@
                 <span class="close-modal" id="close-modal"></span>
                 <h3>Edit Stock Tickers</h3>
                 <div class="search-container">
-                    <input type="text" id="search-input" placeholder="Stock name..." />
+                    <input type="text" id="search-input" placeholder="Enter Stock name..." />
                     <button id="clear-button">✖️</button>
                     <button id="search-button" type="submit">&#x1F50D;</button>
                 </div>
@@ -96,8 +97,8 @@
                     <!-- Dynamically populated form fields will go here -->
                 </div>
                 <div id="center-buttons">
-                    <button id="add-ticker" style="color: rgb(0, 0, 0);margin-right: 5px;">Add New Ticker</button>
-                    <button id="save-tickers" style="color: rgb(0, 0, 0);margin-right: 5px;">Save Changes</button>
+                    <button id="add-ticker" style="color: rgb(0, 0, 0);margin-right: 5px;">Add New</button>
+                    <button id="save-tickers" style="color: rgb(0, 0, 0);margin-right: 5px;">Save</button>
                 </div>
             </div>
         </div>

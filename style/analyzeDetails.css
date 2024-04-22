@@ -62,6 +62,13 @@
     }
 }
 
+.card-title {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-around;
+}
+
 .stock-name {
     font-size: 24px;
     color: #333;
@@ -70,17 +77,17 @@
 }
 
 .current-price {
-    font-size: 22px;
+    font-size: 24px;
     font-weight: bold;
     color: #28a745;
 }
 
 .details {
-    font-size: 16px;
-    color: #000000;
-    /* Soft grey for less important details */
-    margin-bottom: 8px;
-    font-weight: 500;
+    display: flex;
+    justify-content: space-around;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 10px;;
 }
 
 .list-container {
@@ -273,7 +280,7 @@
 /* Responsive styles */
 @media (max-width: 425px) {
     .modal-box {
-        width: 80%;
+        width: 70%;
     }
 }
 
@@ -284,8 +291,10 @@
     color: white;
     font-size: 14px;
     border: none;
-    border-radius: 6.5px;
-    padding: 0px 5px 0px 5px;
+    border-radius: 5.5px;
+    padding: 0px 5px 2px 5px;
+    margin-right: -16px;
+    margin-top: -16px;
 }
 
 .close-modal:after {
@@ -441,7 +450,7 @@ input:checked+.slider:before {
     z-index: 2;
     left: 70%;
     top: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-40%, -55%);
     pointer-events: none;
 }
 
