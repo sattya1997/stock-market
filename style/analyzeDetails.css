@@ -271,7 +271,7 @@
 }
 
 /* Responsive styles */
-@media (max-width: 768px) {
+@media (max-width: 350px) {
     .modal-box {
         width: 80%;
     }
