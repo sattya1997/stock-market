@@ -434,7 +434,8 @@ function stopAnalyze() {
 }
 
 // Event listener for the search button
-document.getElementById("search-button").addEventListener("click", function () {
+document.getElementById("search-button").addEventListener("click", function (event) {
+  event.preventDefault();
   var searchQuery = document.getElementById("search-input").value;
   axios
     .post(
