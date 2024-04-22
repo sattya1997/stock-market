@@ -136,7 +136,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.7);
     z-index: 1000;
 }
 
@@ -154,6 +154,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     z-index: 1001;
     font-size: smaller;
+    overflow-x: hidden;
 }
 
 .modal-box button {
@@ -169,7 +170,7 @@
     top: 15%;
     left: 50%;
     transform: translate(-50%, -20%);
-    width: 100%;
+    width: 90%;
     background: #fff;
     padding: 10px;
     border-radius: 5px;
@@ -213,8 +214,8 @@
 }
 
 #clear-button {
-    margin-left: -30px;
-    margin-right: 15px;
+    margin-left: -35px;
+    margin-right: 5px;
     border: none;
     background: transparent;
     cursor: pointer;
