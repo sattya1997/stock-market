@@ -225,13 +225,13 @@
     width: 80%;
     left: 50%;
     transform: translate(-50%, 0%);
-    max-height: 130px;
+    max-height: 190px;
     overflow-y: auto;
     background: #ffffff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     position: absolute;
     z-index: 1002;
-    padding: 8px 15px;
+    padding: 2px 5px;
     display: none;
     border-radius: 5px;
     top: 135px;
