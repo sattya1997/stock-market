@@ -454,3 +454,8 @@ input:checked+.slider:before {
     transition: left 0.4s;
     pointer-events: none;
 }
+
+h3 {
+  color: #333;
+  text-align: center;
+}
