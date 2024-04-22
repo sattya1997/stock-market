@@ -8,6 +8,8 @@ var stockTickers = [
   { id: "ICI15", displayName: "ICICIB22" },
   { id: "ONG", displayName: "ONGC" },
   { id: "CES", displayName: "CESC" },
+  { id: "OI13", displayName: "Oil India" },
+  { id: "GBE", displayName: "Goldbees" },
 ];
 var analyzeStart = false;
 
