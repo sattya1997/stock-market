@@ -1,5 +1,5 @@
 var cards = [];
-var stockTickers = [{ "id": "notapplicable/inidicesindia/in%3BNSX", "displayName": "Nifty 50" }, { "id": "TEL", "displayName": "Tata Motors" }, { "id": "IT", "displayName": "Infosys" }, { "id": "NCC01", "displayName": "NCC Ltd" }, { "id": "HAL", "displayName": "HAL" }, { "id": "ICI15", "displayName": "ICICIB22" }, { "id": "ONG", "displayName": "ONGC" }, { "id": "CES", "displayName": "CESC" },]
+var stockTickers = [{ "id": "notapplicable/inidicesindia/in%3BNSX", "displayName": "Nifty 50", "symbol": "NIFTY" }, { "id": "TEL", "displayName": "Tata Motors", "symbol": "TATAMOTORS" }, { "id": "IT", "displayName": "Infosys", "symbol": "INFY" }, { "id": "NCC01", "displayName": "NCC Ltd" ,"symbol": "NCC"}, { "id": "HAL", "displayName": "HAL", "symbol": "HAL" }, { "id": "ICI15", "displayName": "ICICIB22", "symbol": "ICICIB22" }, { "id": "ONG", "displayName": "ONGC", "symbol": "ONGC" }, { "id": "CES", "displayName": "CESC", "symbol": "CESC" },]
 var analyzeStart = false;
 
 function createCard(cardData) {
@@ -375,3 +375,20 @@ function stopAnalyze() {
 }
 
 analyzeToggle.dispatchEvent(new Event('change'));
+
+function goToDetails(element) {
+        var cardElement = element.closest(".card");
+        var dataId = cardElement.getAttribute("data-id");
+        var stockSymbol;
+        stockTickers.find(tickers => tickers.id)
+        
+        if (dataId === "notapplicable/inidicesindia/in%3BNSX") {
+          stockSymbol = "INFY";
+        } else if (dataId === "TEL") {
+          stockSymbol = "TATAMOTORS";
+        } else {
+            stockSymbol = "null"
+        }
+
+        window.location.href = `./testCandle.html?stockSymbol=${ stockSymbol }`;
+      }
