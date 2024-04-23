@@ -98,5 +98,13 @@ async function createCandlestickChart() {
     },
   });
 }
+
+function onTimeframeChange(selectedValue) {
+  console.log('Selected timeframe:', selectedValue);
+  // You can call any function here that needs the selected value
+  // For example:
+  // updateChart(selectedValue);
+}
+
 // Create the candlestick chart with volume bars
 createCandlestickChart();
