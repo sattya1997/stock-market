@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="analyze-details-tab">
+      <div class="card" data-id="notapplicable/inidicesindia/in%3BNSX">
+        <div class="card-title">
+          <span class="stock-name">Nifty 50</span>
+          <span class="current-price" style="color: red">22368.00</span>
+          <span><button onclick="goToDetails(this)">Go</button></span>
+        </div>
+        <div class="details" style="color: green">
+          <span>Chg: +31.60 (+0.14%)</span><span>O: 22447.05</span>
+        </div>
+        <div class="graph">
+          <div class="chartjs-size-monitor">
+            <div class="chartjs-size-monitor-expand"><div class=""></div></div>
+            <div class="chartjs-size-monitor-shrink"><div class=""></div></div>
+          </div>
+          <canvas
+            id="stockChart"
+            width="242"
+            height="150"
+            style="display: block; width: 242px; height: 150px"
+            class="chartjs-render-monitor"
+          ></canvas>
+        </div>
+        <div class="bar">
+          <div class="bar-container" data-name="details-days-range">
+            <div class="header">
+              <span class="price" id="low-price" style="font-weight: 500"
+                >22349.45</span
+              >
+              <span class="title">Day's Range</span>
+              <span class="price" id="high-price" style="font-weight: 500"
+                >22447.55</span
+              >
+            </div>
+            <div class="range">
+              <div class="range-bar" id="priceBar"></div>
+              <div class="arrowContainer">
+                <div class="arrow" id="arrow" style="left: 18.9093%">
+                  <img src="./icons/arrow.svg" alt="^" /><span id="arrowText"
+                    >22368.00</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="list-container">
+          <ul class="card-list bid-list">
+            <li><strong>Bid List:</strong></li>
+          </ul>
+          <ul class="card-list ask-list">
+            <li><strong>Ask List:</strong></li>
+          </ul>
+        </div>
+        <div class="volume"><span>vol: 0.00 Lakh </span></div>
+        <div class="sell-buy">B: NaN L | S: NaN L | D: NaN L</div>
+      </div>
+      <div class="card" data-id="TEL">
+        <div class="card-title">
+          <span class="stock-name">Tata Motors</span>
+          <span class="current-price" style="color: green">986.60</span>
+          <span><button onclick="goToDetails(this)">Go</button></span>
+        </div>
+        <div class="details" style="color: green">
+          <span>Chg: +13.05 (+1.34%)</span><span>O: 976.60</span>
+        </div>
+        <div class="graph">
+          <div class="chartjs-size-monitor">
+            <div class="chartjs-size-monitor-expand"><div class=""></div></div>
+            <div class="chartjs-size-monitor-shrink"><div class=""></div></div>
+          </div>
+          <canvas
+            id="stockChart"
+            width="242"
+            height="150"
+            style="display: block; width: 242px; height: 150px"
+            class="chartjs-render-monitor"
+          ></canvas>
+        </div>
+        <div class="bar">
+          <div class="bar-container" data-name="details-days-range">
+            <div class="header">
+              <span class="price" id="low-price" style="font-weight: 500"
+                >974.05</span
+              >
+              <span class="title">Day's Range</span>
+              <span class="price" id="high-price" style="font-weight: 500"
+                >994.65</span
+              >
+            </div>
+            <div class="range">
+              <div
+                class="range-bar"
+                id="priceBar"
+                style="
+                  background-color: rgb(149, 216, 153);
+                  left: 12.3786%;
+                  width: 48.5437%;
+                  border-radius: 0px;
+                "
+              ></div>
+              <div class="arrowContainer">
+                <div class="arrow" id="arrow" style="left: 60.9223%">
+                  <img src="./icons/arrow.svg" alt="^" /><span id="arrowText"
+                    >986.60</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="list-container">
+          <ul class="card-list bid-list">
+            <li><strong>Bid List:</strong></li>
+            <li>0 x 0</li>
+            <li>0 x 0</li>
+            <li>0 x 0</li>
+            <li>0 x 0</li>
+            <li>0 x 0</li>
+          </ul>
+          <ul class="card-list ask-list">
+            <li><strong>Ask List:</strong></li>
+            <li>0 x 0</li>
+            <li>0 x 0</li>
+            <li>0 x 0</li>
+            <li>0 x 0</li>
+            <li>0 x 0</li>
+          </ul>
+        </div>
+        <div class="volume">
+          <span>vol: 5.06 Lakh </span><span>, monthly avg: 7.29L</span>
+        </div>
+        <div class="sell-buy">B: 0.16 L | S: 0.71 L | D: -0.549 L</div>
+      </div>
+    </div>
+    <script>
+      function goToDetails(element) {
+        var cardElement = element.closest(".card");
+        var dataId = cardElement.getAttribute("data-id");
+        var stockSymbol;
+        if (dataId === "notapplicable/inidicesindia/in%3BNSX") {
+          stockSymbol = "INFY";
+        } else if (dataId === "TEL") {
+          stockSymbol = "TATAMOTORS";
+        } else {
+            stockSymbol = "null"
+        }
+
+        window.location.href = `./testCandle.html?stockSymbol=${ stockSymbol }`;
+      }
+    </script>
+  </body>
+</html>
