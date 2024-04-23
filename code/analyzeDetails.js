@@ -380,15 +380,11 @@ function goToDetails(element) {
         var cardElement = element.closest(".card");
         var dataId = cardElement.getAttribute("data-id");
         var stockSymbol;
-        stockTickers.find(tickers => tickers.id)
+        cont data = stockTickers.find(tickers => tickers.id === dataId)
         
-        if (dataId === "notapplicable/inidicesindia/in%3BNSX") {
-          stockSymbol = "INFY";
-        } else if (dataId === "TEL") {
-          stockSymbol = "TATAMOTORS";
-        } else {
-            stockSymbol = "null"
+        if (data) {
+          stockSymbol = data.symbol;
         }
 
-        window.location.href = `./testCandle.html?stockSymbol=${ stockSymbol }`;
+        window.location.href = `./candle/advChart.html?stockSymbol=${ stockSymbol }`;
       }
