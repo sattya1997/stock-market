@@ -587,4 +587,17 @@ document.getElementById("clear-button").addEventListener("click", function (even
   document.getElementById("search-input").value = "";
 });
 
+function goToDetails(element) {
+  var cardElement = element.closest(".card");
+  var dataId = cardElement.getAttribute("data-id");
+  var stockSymbol;
+  cont data = stockTickers.find(tickers => tickers.id === dataId)
+  
+  if (data) {
+    stockSymbol = data.symbol;
+  }
+  
+  window.location.href = `./candle/advChart.html?stockSymbol=${ stockSymbol }`;
+}
+
 analyzeToggle.dispatchEvent(new Event("change"));
