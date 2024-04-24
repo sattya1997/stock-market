@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="./style/analyzeDetails.css">
     <script src="https://bundle.run/buffer@6.0.3"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/protobufjs/7.2.6/protobuf.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 </head>
 
 <body>
@@ -75,7 +76,8 @@
     </div>
     <div class="tab-panel">
         <div id="center-buttons">
-            <label class="switch tooltip"> <input type="checkbox" id="analyzeToggle"> <span class="slider round"></span> <span id="onOffText">Off</span> <span class="icon">&#x26A1</span>
+            <label class="switch tooltip"> <input type="checkbox" id="analyzeToggle"> <span class="slider round"></span>
+                <span id="onOffText">Off</span> <span class="icon">&#x26A1</span>
             </label>
             <button id="edit-tickers" style="margin-right: 5px;">Edit List</button>
         </div>
@@ -83,13 +85,20 @@
         <div class="modal-overlay" id="modal-overlay">
             <div class="modal-box">
                 <span class="close-modal" id="close-modal"></span>
-                <h2>Edit Stock Tickers</h2>
+                <h3>Edit Stock Tickers</h3>
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="Enter Stock name..." />
+                    <button id="clear-button">✖️</button>
+                    <button id="search-button" type="submit">&#x1F50D;</button>
+                </div>
+                <div id="search-results-container">
+                </div>
                 <div id="ticker-form">
                     <!-- Dynamically populated form fields will go here -->
                 </div>
                 <div id="center-buttons">
-                    <button id="add-ticker" style="color: rgb(0, 0, 0);margin-right: 5px;">Add New Ticker</button>
-                    <button id="save-tickers" style="color: rgb(0, 0, 0);margin-right: 5px;">Save Changes</button>
+                    <button id="add-ticker" style="color: rgb(0, 0, 0);margin-right: 5px;">Add New</button>
+                    <button id="save-tickers" style="color: rgb(0, 0, 0);margin-right: 5px;">Save</button>
                 </div>
             </div>
         </div>
