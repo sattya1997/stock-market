@@ -38,8 +38,23 @@ var tickerNameList = [
   { name: "ONGC.NS", value: "ONGC" },
 ];
 
-//array of ticker names for details tab For now
-const tickerDetailsNameList = [
+//array of ticker names for live tab For now
+var tickerDetailsNameList = [
+  { name: "^NSEI", value: "Nifty 50", data: { id: "NSEI" } },
+  { name: "TATAMOTORS.NS", value: "TATA Motors", data: { id: "TATAMOTORS" } },
+  { name: "INFY.NS", value: "Infosys", data: { id: "INFY" } },
+  { name: "NCC.NS", value: "NCC LTD", data: { id: "NCC" } },
+  { name: "HAL.NS", value: "HAL", data: { id: "HAL" } },
+  { name: "ICICIB22.NS", value: "ICICIB22", data: { id: "ICICIB22" } },
+  { name: "ONGC.NS", value: "ONGC", data: { id: "ONGC" } },
+  { name: "CESC.NS", value: "CESC", data: { id: "CESC" } },
+  { name: "OIL.NS", value: "OIL", data: { id: "OIL" } },
+  { name: "GOLDBEES.NS", value: "Goldbees", data: { id: "GOLDBEES" } },
+  { name: "AAPL", value: "APPLE INC", data: { id: "AAPL" } },
+  { name: "GOOG", value: "Alphabet", data: { id: "GOOG" } },
+];
+
+var tickerDetailsNameMasterList = [
   { name: "^NSEI", value: "Nifty 50", data: { id: "NSEI" } },
   { name: "TATAMOTORS.NS", value: "TATA Motors", data: { id: "TATAMOTORS" } },
   { name: "INFY.NS", value: "Infosys", data: { id: "INFY" } },

@@ -23,10 +23,10 @@ function createCard(cardData) {
         <span class="current-price">${cardData.currentprice}</span>
       </div>
       <div class="details">
-        <span class="percent-change">Chg: ${cardData.change} (${cardData.percentchange}%)</span>
+        <span class="percent-change">Chg: ${cardData.change} (${cardData.percentchange }%)</span>
         <span class="open-price">O: ${cardData.open}</span>
-        <span><button class="center-buttons" onclick="goToDetails(this)">Adv chart</button></span>
       </div>
+      <span><button class="center-buttons" onclick="goToDetails(this)" style="font-size:10px;">Adv chart</button></span>
       <div class="graph"><canvas id="stockChart"></canvas></div>
       <div class="bar">
         <div class="bar-container" data-name="details-days-range">
@@ -592,10 +592,10 @@ function goToDetails(element) {
   var cardElement = element.closest(".card");
   var dataId = cardElement.getAttribute("data-id");
   var stockSymbol;
-  cont data = stockTickers.find(tickers => tickers.id === dataId)
+  const data = stockTickers.find(tickers => tickers.id === dataId);
   
   if (data) {
-    stockSymbol = data.symbol;
+    stockSymbol = data.name;
   }
   
   window.location.href = `./candle/advChart.html?stockSymbol=${ stockSymbol }`;

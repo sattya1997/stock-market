@@ -1,4 +1,3 @@
-
 async function createCandlestickChart() {
   const toTimestamp = Math.floor(Date.now() / 1000);
   const fromTimestamp = new Date();
@@ -7,9 +6,9 @@ async function createCandlestickChart() {
 
   var queryString = window.location.search;
   var urlParams = new URLSearchParams(queryString);
-  var stockSymbol = urlParams.get('stockSymbol');
+  var stockSymbol = urlParams.get("stockSymbol");
   // Sample stock data with volume
-  const apiUrl = `https://priceapi.moneycontrol.com/techCharts/indianMarket/stock/history?symbol=${ stockSymbol }&resolution=1&from=${fromTimestampInSeconds}&to=${toTimestamp}&countback=600&currencyCode=INR`;
+  const apiUrl = `https://priceapi.moneycontrol.com/techCharts/indianMarket/stock/history?symbol=${stockSymbol}&resolution=1&from=${fromTimestampInSeconds}&to=${toTimestamp}&countback=600&currencyCode=INR`;
   const res = await axios.get(apiUrl);
 
   var candlestickData;
@@ -30,10 +29,12 @@ async function createCandlestickChart() {
     currentDayStart.setHours(marketOpenHour, marketOpenMinutes, 0, 0);
     const currentDayStartTimestamp = Math.floor(currentDayStart / 1000);
 
-    // Filter out previous day's data
-    candlestickData = candlestickData.filter(
-      (item) => item.t >= currentDayStartTimestamp
-    );
+    if (toTimestamp > currentDayStartTimestamp) {
+      // Filter out previous day's data
+      candlestickData = candlestickData.filter(
+        (item) => item.t >= currentDayStartTimestamp
+      );
+    }
   }
 
   const ctx = document.getElementById("candlestickChart").getContext("2d");
@@ -100,10 +101,34 @@ async function createCandlestickChart() {
 }
 
 function onTimeframeChange(selectedValue) {
-  console.log('Selected timeframe:', selectedValue);
+  console.log("Selected timeframe:", selectedValue);
   // You can call any function here that needs the selected value
   // For example:
   // updateChart(selectedValue);
+}
+
+function zoomIn() {
+  const graph = document.getElementById("candle-stick");
+  // Get the current width as a number (without 'px')
+  let currentWidth = parseFloat(graph.style.width);
+
+  // Calculate 10% of the current width
+  let increase = currentWidth * 0.1;
+
+  // Set the new width by adding 10% to the current width
+  graph.style.width = `${currentWidth + increase}vw`;
+}
+
+function zoomOut() {
+  const graph = document.getElementById("candle-stick");
+  // Get the current width as a number (without 'px')
+  let currentWidth = parseFloat(graph.style.width);
+console.log(currentWidth);
+  // Calculate 10% of the current width
+  let decrease = currentWidth * 0.1;
+
+  // Set the new width by adding 10% to the current width
+  graph.style.width = `${currentWidth - decrease}vw`;
 }
 
 // Create the candlestick chart with volume bars
