@@ -183,7 +183,7 @@ function convertMessage(encodedData) {
 
 function createTickerList() {
   //clear the list items
-  tickerListElement.innerHtml = "";
+  tickerListElement.innerHTML = "";
   // Loop through the array and create li elements
   tickerDetailsNameList.forEach((ticker) => {
     const listItem = document.createElement("li");
