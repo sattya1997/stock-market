@@ -23,9 +23,10 @@ function createCard(cardData) {
         <span class="current-price">${cardData.currentprice}</span>
       </div>
       <div class="details">
-        <span class="percent-change">Chg: ${cardData.change} (${cardData.percentchange}%)</span>
+        <span class="percent-change">Chg: ${cardData.change} (${cardData.percentchange }%)</span>
         <span class="open-price">O: ${cardData.open}</span>
       </div>
+      <span><button class="center-buttons" onclick="goToDetails(this)" style="font-size:10px;">Adv chart</button></span>
       <div class="graph"><canvas id="stockChart"></canvas></div>
       <div class="bar">
         <div class="bar-container" data-name="details-days-range">
@@ -586,5 +587,18 @@ document.getElementById("clear-button").addEventListener("click", function (even
   resultsContainer.style.display = "none";
   document.getElementById("search-input").value = "";
 });
+
+function goToDetails(element) {
+  var cardElement = element.closest(".card");
+  var dataId = cardElement.getAttribute("data-id");
+  var stockSymbol;
+  const data = stockTickers.find(tickers => tickers.id === dataId);
+  
+  if (data) {
+    stockSymbol = data.name;
+  }
+  
+  window.location.href = `./candle/advChart.html?stockSymbol=${ stockSymbol }`;
+}
 
 analyzeToggle.dispatchEvent(new Event("change"));

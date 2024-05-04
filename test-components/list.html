@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticker Names</title>
+    <style>
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        ul#ticker-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px auto;
+            max-width: 600px;
+            background-color: #f8faf8;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-family: Arial, sans-serif;
+            text-align: start;
+        }
+
+        ul#ticker-list li {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            font-size: 16px;
+            color: #333;
+            transition: background-color 0.3s ease;
+            /* Add a smooth transition */
+            cursor: pointer;
+        }
+
+        ul#ticker-list li:last-child {
+            border-bottom: none;
+        }
+
+        ul#ticker-list li:hover {
+            border-radius: 5px;
+            background-color: #bfb1ff;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Ticker Names</h1>
+    <ul id="ticker-list"></ul>
+    <script>
+        //array of ticker names
+        const tickerNameList = [{ name: '^NSEI', value: 'Nifty 50' }, { name: 'TATAMOTORS.NS', value: 'Tata Motors' }, { name: 'INFY.NS', value: 'Infosys' }, { name: 'NCC.NS', value: 'NCC Limited' }, { name: 'HAL.NS', value: 'Hisdustan Aeronotics Ltd(HAL)' }, { name: 'ONGC.NS', value: 'Oil and Natural Gas Corporation(ONGC)' }]
+
+        // Get the UL element where we'll populate the list
+        const tickerListElement = document.getElementById('ticker-list');
+
+        // Function to fetch details using Axios
+        const fetchDetails = async (tickerName) => {
+            try {
+                const response = await axios.get(`https://api.example.com/details?ticker=${tickerName}`);
+                // Process the response data (e.g., display details in a modal or console.log)
+                console.log(response.data);
+            } catch (error) {
+                console.error('Error fetching details:', error);
+            }
+        };
+
+        // Loop through the array and create LI elements
+        tickerNameList.forEach((ticker) => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `${ticker.name} - ${ticker.value}`;
+            listItem.addEventListener('click', () => {
+                fetchDetails(ticker.name); // Fetch details when clicked
+            });
+            tickerListElement.appendChild(listItem);
+        });
+
+    </script>
+</body>
+
+</html>

@@ -4,10 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Experiment</title>
-    <link rel="stylesheet" type="text/css" href="./style/api.css">
-    <link rel="stylesheet" type="text/css" href="./style/tickerDetails.css">
+    <title>Bull Ticker</title>
+    <link rel="stylesheet" type="text/css" href="./style/index.css">
+    <link rel="stylesheet" type="text/css" href="./style/live.css">
     <link rel="stylesheet" type="text/css" href="./style/analyzeDetails.css">
+    <link rel="icon" type="image/svg+xml" href="./icons/favicon-2.svg">
     <script src="https://bundle.run/buffer@6.0.3"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/protobufjs/7.2.6/protobuf.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
@@ -15,16 +16,17 @@
 
 <body>
     <div class="tabs">
-        <button class="tab-button active" onclick="showTab(1)">Ticker list</button>
-        <button class="tab-button" onclick="showTab(2)">Details</button>
+        <button class="tab-button active" onclick="showTab(1)">Tickers</button>
+        <button class="tab-button" onclick="showTab(2)">Live</button>
         <button class="tab-button" onclick="showTab(3)">Analyze</button>
     </div>
     <div class="tab-panel active">
+        <div><span style="right: 10px;">Edit</span></div>
         <div id="center-buttons">
             <button onclick="start()" style="color: green;margin-right: 5px;">Start</button>
             <button onclick="stop()" style="color: red;margin-right: 5px;">Stop</button>
-            <button onclick="editTickers()" style="margin-right: 5px;">Edit Tickers</button>
-            <button onclick="editCells()" style="margin-right: 5px;">Edit Cells</button>
+            <button onclick="editTickers()" style="margin-right: 5px;">Tickers</button>
+            <button onclick="editCells()" style="margin-right: 5px;">Cells</button>
         </div>
 
         <div id="editFormTickers" style="display: none;">
@@ -71,6 +73,28 @@
                     style="margin-left: 10px;">Start connection</span></div>
             <p style="font-size: x-small; font-style: italic; text-align: center;">(Hint: First select stock name from
                 the list and then start the connection.)</p>
+                <div style="display: flex; justify-content: center;"><button class="center-buttons" id="edit-tickers-live" style="">Edit List</button></div>
+            
+            <div class="modal-overlay" id="modal-overlay-live">
+            <div class="modal-box">
+                <span class="close-modal" id="close-modal-live"></span>
+                <h3>Edit Stock Tickers</h3>
+                <div class="search-container">
+                    <input type="text" id="search-input-live" placeholder="Enter Stock name..." />
+                    <button id="clear-button-live">✖️</button>
+                    <button id="search-button-live" type="submit">&#x1F50D;</button>
+                </div>
+                <div id="search-results-container-live">
+                </div>
+                <div id="ticker-form-live">
+                    <!-- Dynamically populated form fields will go here -->
+                </div>
+                <div id="center-buttons">
+                    <button id="add-ticker-live" style="color: rgb(0, 0, 0);margin-right: 5px;">Add New</button>
+                    <button id="save-tickers-live" style="color: rgb(0, 0, 0);margin-right: 5px;">Save</button>
+                </div>
+            </div>
+        </div>
             <ul id="ticker-list"></ul>
         </div>
     </div>
@@ -107,8 +131,8 @@
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript" src="./code/variables.js"></script>
-    <script type="text/javascript" src="./code/api.js"></script>
-    <script type="text/javascript" src="./code/tickerDetails.js"></script>
+    <script type="text/javascript" src="./code/index.js"></script>
+    <script type="text/javascript" src="./code/live.js"></script>
     <script type="text/javascript" src="./code/analyzeDetails.js"></script>
 </body>
 
