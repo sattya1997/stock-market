@@ -4,6 +4,22 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  width: 100%;
+  height: auto;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  display: block;
+  box-sizing: border-box;
+}
+
 #myTable {
   width: 95%;
   margin: 30px auto;
@@ -81,17 +97,17 @@ table td {
   display: contents;
 }
 
-#center-buttons {
+.center-buttons {
   padding-top: 40px;
   display: flex;
   justify-content: center;
 }
 
-#center-buttons>label {
+.center-buttons label {
   margin-right: 5px;
 }
 
-#center-buttons button {
+.center-buttons button {
   font-size: 14px;
   font-weight: bold;
   text-align: center;
@@ -100,15 +116,18 @@ table td {
   transition: background-color 0.3s ease;
   border-radius: 5px;
   height: 30px;
-  min-width: 100px;
+  min-width: 80px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
-#center-buttons button:hover {
+.center-buttons button:hover {
+  transform: scale(1.05);
   background-color: rgb(132, 192, 246);
 }
 
-#center-buttons button::after {
-  background-color: #000000;
+.center-buttons button:active {
+  transform: scale(0.95);
 }
 
 .tabs {
@@ -177,14 +196,37 @@ table td {
   content: "✖";
 }
 
-.center-buttons {
+.center-buttons-1 {
   font-size: 14px;
   font-weight: bold;
   text-align: center;
   text-decoration: solid;
   border: none;
-  transition: background-color 0.3s ease;
+  background-color: #e4e4e4;
   border-radius: 5px;
-  height: 30px;
-  min-width: 100px;
+  height: 25px;
+  max-width: 80px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  ;
+}
+
+.center-buttons-1:hover {
+  transform: scale(1.05);
+  background-color: #bfbfbf;
+}
+
+.center-buttons-1:active {
+  transform: scale(0.95);
+}
+
+.ticker-list-table {
+  width: 97vw;
+  max-height: 75vh;
+  overflow-x: auto;
+  overflow-y: scroll;
+  background-color: rgba(195, 238, 235, 0.33);
+  border: 1px solid;
+  border-radius: 5px;
+  border-color: #b9ffff;
 }

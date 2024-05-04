@@ -21,49 +21,52 @@
         <button class="tab-button" onclick="showTab(3)">Analyze</button>
     </div>
     <div class="tab-panel active">
-        <div><span style="right: 10px;">Edit</span></div>
-        <div id="center-buttons">
-            <button onclick="start()" style="color: green;margin-right: 5px;">Start</button>
-            <button onclick="stop()" style="color: red;margin-right: 5px;">Stop</button>
-            <button onclick="editTickers()" style="margin-right: 5px;">Tickers</button>
-            <button onclick="editCells()" style="margin-right: 5px;">Cells</button>
-        </div>
-
-        <div id="editFormTickers" style="display: none;">
-            <form id="edit-tickers-form">
-                <label>
-                    <input type="radio" name="choice" value="add"> Add
-                </label>
-                <br>
-                <label>
-                    <input type="radio" name="choice" value="remove"> Remove
-                </label>
-                <br>
-                <br>
-                <label><input type="text" name="name" placeholder="Enter stock name">
-                </label>
-                <br><br>
-                <label><input type="text" name="value" placeholder="Enter value to be shown">
-                </label>
-                <br>
-                <br>
-
-                <button id="editTickersSubmitBtn">Submit</button>
-                <p id="msg-box-ticker"></p>
-            </form>
-        </div>
-        <div id="checkbox" style="display: none;">
-            <div id="checkboxContainer"></div>
-            <br>
-            <div>
-                <button id="cellSubmitBtn" style="margin-left: auto;margin-right: auto;">Submit Change</button>
+        <div class="ticker-list-table">
+            <span style="font-size: 18px;font-weight: 600;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Ticker list</span>
+            <div class="center-buttons">
+                <button onclick="start()" style="color: green;margin-right: 5px;">Start</button>
+                <button onclick="stop()" style="color: red;margin-right: 5px;">Stop</button>
+                <button onclick="editTickers()" style="margin-right: 5px;">Tickers</button>
+                <button onclick="editCells()" style="margin-right: 5px;">Cells</button>
             </div>
 
+            <div id="editFormTickers" style="display: none;">
+                <form id="edit-tickers-form">
+                    <label>
+                        <input type="radio" name="choice" value="add"> Add
+                    </label>
+                    <br>
+                    <label>
+                        <input type="radio" name="choice" value="remove"> Remove
+                    </label>
+                    <br>
+                    <br>
+                    <label><input type="text" name="name" placeholder="Enter stock name">
+                    </label>
+                    <br><br>
+                    <label><input type="text" name="value" placeholder="Enter value to be shown">
+                    </label>
+                    <br>
+                    <br>
+
+                    <button id="editTickersSubmitBtn">Submit</button>
+                    <p id="msg-box-ticker"></p>
+                </form>
+            </div>
+            <div id="checkbox" style="display: none;">
+                <div id="checkboxContainer"></div>
+                <br>
+                <div>
+                    <button id="cellSubmitBtn" style="margin-left: auto;margin-right: auto;">Submit Change</button>
+                </div>
+
+            </div>
+
+            <table id="myTable">
+                <tbody id="myTableBody"></tbody>
+            </table>
         </div>
 
-        <table id="myTable">
-            <tbody id="myTableBody"></tbody>
-        </table>
     </div>
     <div class="tab-panel">
         <div id="ticker-details">
@@ -73,33 +76,34 @@
                     style="margin-left: 10px;">Start connection</span></div>
             <p style="font-size: x-small; font-style: italic; text-align: center;">(Hint: First select stock name from
                 the list and then start the connection.)</p>
-                <div style="display: flex; justify-content: center;"><button class="center-buttons" id="edit-tickers-live" style="">Edit List</button></div>
-            
+            <div style="display: flex; justify-content: center;"><button class="center-buttons-1" id="edit-tickers-live"
+                    >Edit List</button></div>
+
             <div class="modal-overlay" id="modal-overlay-live">
-            <div class="modal-box">
-                <span class="close-modal" id="close-modal-live"></span>
-                <h3>Edit Stock Tickers</h3>
-                <div class="search-container">
-                    <input type="text" id="search-input-live" placeholder="Enter Stock name..." />
-                    <button id="clear-button-live">✖️</button>
-                    <button id="search-button-live" type="submit">&#x1F50D;</button>
-                </div>
-                <div id="search-results-container-live">
-                </div>
-                <div id="ticker-form-live">
-                    <!-- Dynamically populated form fields will go here -->
-                </div>
-                <div id="center-buttons">
-                    <button id="add-ticker-live" style="color: rgb(0, 0, 0);margin-right: 5px;">Add New</button>
-                    <button id="save-tickers-live" style="color: rgb(0, 0, 0);margin-right: 5px;">Save</button>
+                <div class="modal-box">
+                    <span class="close-modal" id="close-modal-live"></span>
+                    <h3>Edit Stock Tickers</h3>
+                    <div class="search-container">
+                        <input type="text" id="search-input-live" placeholder="Enter Stock name..." />
+                        <button id="clear-button-live">✖️</button>
+                        <button id="search-button-live" type="submit">&#x1F50D;</button>
+                    </div>
+                    <div id="search-results-container-live">
+                    </div>
+                    <div id="ticker-form-live">
+                        <!-- Dynamically populated form fields will go here -->
+                    </div>
+                    <div class="center-buttons">
+                        <button id="add-ticker-live" style="color: rgb(0, 0, 0);margin-right: 5px;">Add New</button>
+                        <button id="save-tickers-live" style="color: rgb(0, 0, 0);margin-right: 5px;">Save</button>
+                    </div>
                 </div>
             </div>
-        </div>
             <ul id="ticker-list"></ul>
         </div>
     </div>
     <div class="tab-panel">
-        <div id="center-buttons">
+        <div class="center-buttons">
             <label class="switch tooltip"> <input type="checkbox" id="analyzeToggle"> <span class="slider round"></span>
                 <span id="onOffText">Off</span> <span class="icon">&#x26A1</span>
             </label>
@@ -120,7 +124,7 @@
                 <div id="ticker-form">
                     <!-- Dynamically populated form fields will go here -->
                 </div>
-                <div id="center-buttons">
+                <div class="center-buttons">
                     <button id="add-ticker" style="color: rgb(0, 0, 0);margin-right: 5px;">Add New</button>
                     <button id="save-tickers" style="color: rgb(0, 0, 0);margin-right: 5px;">Save</button>
                 </div>

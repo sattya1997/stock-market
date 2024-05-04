@@ -26,7 +26,7 @@ function createCard(cardData) {
         <span class="percent-change">Chg: ${cardData.change} (${cardData.percentchange }%)</span>
         <span class="open-price">O: ${cardData.open}</span>
       </div>
-      <span><button class="center-buttons" onclick="goToDetails(this)" style="font-size:10px;">Adv chart</button></span>
+      <span><button class="center-buttons-1" onclick="goToDetails(this)" style="font-size:10px;">Adv chart</button></span>
       <div class="graph"><canvas id="stockChart"></canvas></div>
       <div class="bar">
         <div class="bar-container" data-name="details-days-range">
