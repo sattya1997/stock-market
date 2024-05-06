@@ -107,15 +107,7 @@ var chart = new Chart(ctx, {
 
 try {
   setInterval(async () => {
-    chart.options = {
-      responsive: true,
-      plugins: {
-        zoom: zoomOptions,
-        tooltip: {
-          enabled: tooltipValue,
-        },
-      },
-    };
+    chart.update();
     getCandlestickChartData();
   }, 2000);
 } catch (error) {
@@ -179,16 +171,7 @@ async function getCandlestickChartData() {
     const sliderValue = sessionStorage.getItem("sliderValue");
 
     chart.data.datasets[0].data = candlestickData.slice(-this.value);;
-    chart.data.datasets[1].data = volumeData.slice(-this.value);;
-    chart.options = {
-      responsive: true,
-      plugins: {
-        zoom: zoomOptions,
-        tooltip: {
-          enabled: tooltipValue,
-        },
-      },
-    };
+    chart.data.datasets[1].data = volumeData.slice(-this.value);
     chart.update();
   }
 }
