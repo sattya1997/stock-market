@@ -36,9 +36,6 @@ body {
         width:100%;
         height:75vh;
     }
-    .slidecontainer {
-        margin-top:-10px;
-    }
 }
 
 #control-bar {
@@ -96,7 +93,7 @@ body {
 .slidecontainer {
     display: grid;
     width: 95%;
-    margin-top: 20px;
+    margin-top: -10px;
     justify-content: center;
 }
 
