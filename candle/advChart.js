@@ -170,8 +170,8 @@ async function getCandlestickChartData() {
 
     const sliderValue = sessionStorage.getItem("sliderValue");
 
-    chart.data.datasets[0].data = candlestickData.slice(-this.value);;
-    chart.data.datasets[1].data = volumeData.slice(-this.value);
+    chart.data.datasets[0].data = candlestickData.slice(-sliderValue);
+    chart.data.datasets[1].data = volumeData.slice(-sliderValue);
     chart.update();
   }
 }
