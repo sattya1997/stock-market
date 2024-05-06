@@ -232,9 +232,9 @@ async function getCandlestickChartData() {
 }
 
 chart.config.data.datasets[0].backgroundColors = {
-  up: "#ff5d5d",
-  down: "#83c67e",
-  unchanged: "#999",
+  up: "#83c67e",
+  down: "#ff5d5d",
+  unchanged: "#7f5dff",
 };
 chart.config.data.datasets[0].borderColors = "rgba(55, 55, 55, .3)";
 chart.options = {
