@@ -602,3 +602,24 @@ function goToDetails(element) {
 }
 
 analyzeToggle.dispatchEvent(new Event("change"));
+
+//sub tabs handling
+const cardsTabBtn = document.getElementById("cardsTab");
+const indexTabBtn = document.getElementById("indexListTab");
+const cardsTab = document.getElementById("cards-tab-container");;
+const indexTab = document.getElementById("indexList");
+
+// Add event listeners for sub tab switching
+cardsTabBtn.addEventListener("click", () => {
+  indexTabBtn.classList.remove("active");
+  cardsTabBtn.classList.add("active");
+  indexTab.style.display = "none";
+  cardsTab.style.display = "block";
+});
+indexTabBtn.addEventListener("click", () => {
+  cardsTabBtn.classList.remove("active");
+  indexTabBtn.classList.add("active");
+  cardsTab.style.display = "none";
+  indexTab.style.display = "block";
+  // Display data in the list/table format
+});

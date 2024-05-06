@@ -22,9 +22,14 @@ app.get("/get", async (req, res) => {
 
     for (let index = 0; index < tickers.length; index++) {
       const result = await axios.get(url + tickers[index]);
-      data.push({ticker:tickers[index],price: result.data.optionChain.result[0].quote.regularMarketPrice, ask: result.data.optionChain.result[0].quote.ask, bid: result.data.optionChain.result[0].quote.bid});
+      data.push({
+        ticker: tickers[index],
+        price: result.data.optionChain.result[0].quote.regularMarketPrice,
+        ask: result.data.optionChain.result[0].quote.ask,
+        bid: result.data.optionChain.result[0].quote.bid,
+      });
     }
-    
+
     res.send(data);
   } catch (error) {
     if (error.response) {
@@ -42,8 +47,8 @@ app.get("/get", async (req, res) => {
 app.get("/getAll", async (req, res) => {
   var tickers = [];
   var data = [];
-  url='https://query1.finance.yahoo.com/v6/finance/quote/?symbols='
-  var tick= '';
+  url = "https://query1.finance.yahoo.com/v6/finance/quote/?symbols=";
+  var tick = "";
   try {
     tickers.push(req.query.ticker1);
     tickers.push(req.query.ticker2);
@@ -51,11 +56,11 @@ app.get("/getAll", async (req, res) => {
     tickers.push(req.query.ticker4);
     tickers.push(req.query.ticker5);
 
-    for (let i = 0;i<tickers.length;i++) {
+    for (let i = 0; i < tickers.length; i++) {
       if (i === 0) {
         tick = tick + tickers[i];
       } else {
-        tick = tick+ ","+ tickers[i];
+        tick = tick + "," + tickers[i];
       }
     }
     console.log(tick);
@@ -64,7 +69,13 @@ app.get("/getAll", async (req, res) => {
     const result = response.data.quoteResponse.result;
 
     for (let index = 0; index < result.length; index++) {
-      data.push({ticker:tickers[index],price: result[index].regularMarketPrice, ask: result[index].ask, bid: result[index].bid, c:result[index].regularMarketChange});
+      data.push({
+        ticker: tickers[index],
+        price: result[index].regularMarketPrice,
+        ask: result[index].ask,
+        bid: result[index].bid,
+        c: result[index].regularMarketChange,
+      });
     }
     res.send(data);
   } catch (error) {
@@ -82,16 +93,16 @@ app.get("/getAll", async (req, res) => {
 
 app.post("/getAll", async (req, res) => {
   var data = [];
-  url='https://query1.finance.yahoo.com/v6/finance/quote/?symbols='
-  var tick= '';
+  url = "https://query1.finance.yahoo.com/v6/finance/quote/?symbols=";
+  var tick = "";
 
   try {
     var tickers = req.body;
-    for (let i = 0;i<tickers.length;i++) {
+    for (let i = 0; i < tickers.length; i++) {
       if (i === 0) {
         tick = tick + tickers[i];
       } else {
-        tick = tick+ ","+ tickers[i];
+        tick = tick + "," + tickers[i];
       }
     }
 
@@ -99,7 +110,13 @@ app.post("/getAll", async (req, res) => {
     const result = response.data.quoteResponse.result;
 
     for (let index = 0; index < result.length; index++) {
-      data.push({ticker:tickers[index],price: result[index].regularMarketPrice, ask: result[index].ask, bid: result[index].bid, c:result[index].regularMarketChange});
+      data.push({
+        ticker: tickers[index],
+        price: result[index].regularMarketPrice,
+        ask: result[index].ask,
+        bid: result[index].bid,
+        c: result[index].regularMarketChange,
+      });
     }
 
     res.send(data);
@@ -116,7 +133,27 @@ app.post("/getAll", async (req, res) => {
   }
 });
 
+app.get("/mc", async (req, res) => {
+  var data = [];
+  try {
+    const id = req.query.id;
+    const result = await axios.get(
+      `https://appfeeds.moneycontrol.com/jsonapi/market/marketmap&format=&type=0&ind_id=${id}`
+    );
 
+    res.send(result.data.item);
+  } catch (error) {
+    if (error.response) {
+      console.log(error.response.status);
+      console.log(error.response.headers);
+    } else if (error.request) {
+      console.log(error.request);
+    } else {
+      console.log("Error", error.message);
+    }
+    console.log(error.config);
+  }
+});
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);

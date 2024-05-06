@@ -1,0 +1,72 @@
+#sub-tab-container {
+    width: 100%;
+    display: grid;
+    justify-content: center;
+    padding: 30px 0px 0px 0px;
+    font-size: 12px;
+}
+
+.sub-tabs {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+}
+
+.sub-tabs button {
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: double;
+    border: none;
+    transition: background-color 0.3s ease;
+    border-radius: 2px;
+    height: 30px;
+    min-width: 70px;
+}
+
+#sub-tab {
+    display: none;
+}
+
+.sub-tab-button {
+    padding: 0px 20px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.sub-tab-button:hover {
+    background-color: #e0dcdc;
+}
+
+/* Styling for active tab */
+.sub-tab-button.active {
+    background-color: #0074d9;
+    color: #fff;
+}
+/* Styling for the dropdown */
+#marketDropdown {
+    margin-top: 10px;
+}
+
+/* Styling for the data list/table */
+#dataList {
+    margin-top: 20px;
+}
+
+#dataList table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#dataList th,
+#dataList td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#dataList th {
+    background-color: #f0f0f0;
+}

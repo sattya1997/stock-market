@@ -274,6 +274,12 @@ function showTab(tabNumber) {
   });
 
   sessionStorage.removeItem("tabValue");
+
+  if(tabNumber === 3) {
+    document.getElementById("sub-tab").style.display = "block";
+  } else {
+    document.getElementById("sub-tab").style.display = "none";
+  }
 }
 
 function initialize() {

@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="./style/index.css">
     <link rel="stylesheet" type="text/css" href="./style/live.css">
     <link rel="stylesheet" type="text/css" href="./style/analyzeDetails.css">
+    <link rel="stylesheet" href="./style/indexListTab.css">
     <link rel="icon" type="image/svg+xml" href="./icons/favicon-2.svg">
     <script src="https://bundle.run/buffer@6.0.3"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/protobufjs/7.2.6/protobuf.js"></script>
@@ -20,6 +21,15 @@
         <button class="tab-button" onclick="showTab(2)">Live</button>
         <button class="tab-button" onclick="showTab(3)">Analyze</button>
     </div>
+
+    <div id="sub-tab-container">
+        <div class="sub-tabs" id="sub-tab">
+            <button class="sub-tab-button active" id="cardsTab">Cards</button>
+            <button class="sub-tab-button" id="indexListTab">Index</button>
+        </div>
+    </div>
+
+    
     <div class="tab-panel active">
         <div class="ticker-list-table">
             <span style="font-size: 18px;font-weight: 600;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Ticker list</span>
@@ -103,34 +113,50 @@
         </div>
     </div>
     <div class="tab-panel">
-        <div class="center-buttons">
-            <label class="switch tooltip"> <input type="checkbox" id="analyzeToggle"> <span class="slider round"></span>
-                <span id="onOffText">Off</span> <span class="icon">&#x26A1</span>
-            </label>
-            <button id="edit-tickers" style="margin-right: 5px;">Edit List</button>
-        </div>
-        <div id="time-stamp"></div>
-        <div class="modal-overlay" id="modal-overlay">
-            <div class="modal-box">
-                <span class="close-modal" id="close-modal"></span>
-                <h3>Edit Stock Tickers</h3>
-                <div class="search-container">
-                    <input type="text" id="search-input" placeholder="Enter Stock name..." />
-                    <button id="clear-button">✖️</button>
-                    <button id="search-button" type="submit">&#x1F50D;</button>
-                </div>
-                <div id="search-results-container">
-                </div>
-                <div id="ticker-form">
-                    <!-- Dynamically populated form fields will go here -->
-                </div>
-                <div class="center-buttons">
-                    <button id="add-ticker" style="color: rgb(0, 0, 0);margin-right: 5px;">Add New</button>
-                    <button id="save-tickers" style="color: rgb(0, 0, 0);margin-right: 5px;">Save</button>
+        <div id="cards-tab-container">
+            <div class="center-buttons">
+                <label class="switch tooltip"> <input type="checkbox" id="analyzeToggle"> <span class="slider round"></span>
+                    <span id="onOffText">Off</span> <span class="icon">&#x26A1</span>
+                </label>
+                <button id="edit-tickers" style="margin-right: 5px;">Edit List</button>
+            </div>
+            <div id="time-stamp"></div>
+            <div class="modal-overlay" id="modal-overlay">
+                <div class="modal-box">
+                    <span class="close-modal" id="close-modal"></span>
+                    <h3>Edit Stock Tickers</h3>
+                    <div class="search-container">
+                        <input type="text" id="search-input" placeholder="Enter Stock name..." />
+                        <button id="clear-button">✖️</button>
+                        <button id="search-button" type="submit">&#x1F50D;</button>
+                    </div>
+                    <div id="search-results-container">
+                    </div>
+                    <div id="ticker-form">
+                        <!-- Dynamically populated form fields will go here -->
+                    </div>
+                    <div class="center-buttons">
+                        <button id="add-ticker" style="color: rgb(0, 0, 0);margin-right: 5px;">Add New</button>
+                        <button id="save-tickers" style="color: rgb(0, 0, 0);margin-right: 5px;">Save</button>
+                    </div>
                 </div>
             </div>
+            <div id="analyze-details-tab"></div>
         </div>
-        <div id="analyze-details-tab"></div>
+        <div id="indexList">
+            <div id="marketDropdown">
+                <label for="marketSelect">Select a value:</label>
+                <select id="marketSelect">
+                    <option value="9" selected>9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                </select>
+            </div>
+            <div id="table-list">
+                
+            </div>
+        </div>
     </div>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -138,6 +164,7 @@
     <script type="text/javascript" src="./code/index.js"></script>
     <script type="text/javascript" src="./code/live.js"></script>
     <script type="text/javascript" src="./code/analyzeDetails.js"></script>
+    <script type="text/javascript" src="./code/indexListTab.js"></script>
 </body>
 
 </html>
