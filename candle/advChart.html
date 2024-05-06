@@ -27,8 +27,6 @@
           <option value="1y">1y</option>
         </select>
       </span>
-      <span><button onclick="zoomIn()">&#43;</button></span>
-      <span><button onclick="zoomOut()">&minus;</button></span>
       <label class="checkbox-container">
         <span>Tooltip</span>
         <input type="checkbox" id="tooltip-toggle">
@@ -39,6 +37,22 @@
               <input type="checkbox" id="gap-toggle">
               <span class="checkmark"></span>
             </label>
+            <label class="checkbox-container">
+              <span>Live</span>
+              <input type="checkbox" id="live-toggle">
+              <span class="checkmark"></span>
+            </label>
+    </div>
+    <div class="view-bar">
+
+      <label>
+        <span>Current price: </span>
+        <span id="current-price"></span>
+      </label>
+      <label>
+        <span>Current vol: </span>
+        <span id="current-vol"></span>
+      </label>
     </div>
     <div id="candle-stick">
       <canvas id="candlestickChart"></canvas>

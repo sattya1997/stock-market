@@ -1,14 +1,14 @@
-const toTimestamp = Math.floor(Date.now() / 1000);
-const fromTimestamp = new Date();
+var toTimestamp = Math.floor(Date.now() / 1000);
+var fromTimestamp = new Date();
 fromTimestamp.setDate(fromTimestamp.getDate() - 1);
 fromTimestamp.setHours(5, 0, 0, 0); // Set time to 5:00 AM
 
-const fromTimestampInSeconds = Math.floor(fromTimestamp / 1000);
+var fromTimestampInSeconds = Math.floor(fromTimestamp / 1000);
 
 var queryString = window.location.search;
 var urlParams = new URLSearchParams(queryString);
 var stockSymbol = urlParams.get("stockSymbol");
-const apiUrl = `https://priceapi.moneycontrol.com/techCharts/indianMarket/stock/history?symbol=${stockSymbol}&resolution=1&from=${fromTimestampInSeconds}&to=${toTimestamp}&countback=3000&currencyCode=INR`;
+var apiUrl = `https://priceapi.moneycontrol.com/techCharts/indianMarket/stock/history?symbol=${stockSymbol}&resolution=1&from=${fromTimestampInSeconds}&to=${toTimestamp}&countback=3000&currencyCode=INR`;
 
 var candlestickData = [];
 var volumeData = [];
@@ -32,6 +32,8 @@ gapbox.checked = gapValue;
 const date = new Date();
 date.setDate(date.getDate() - 6);
 date.setHours(9, 15, 0, 0);
+
+var startFetch = false;
 
 const zoomOptions = {
   zoom: {
@@ -104,14 +106,62 @@ var chart = new Chart(ctx, {
     },
   },
 });
+getCandlestickChartData();
 
-try {
-  setInterval(async () => {
-    chart.update();
-    getCandlestickChartData();
-  }, 2000);
-} catch (error) {
-  console.error("Error fetching chart data:", error);
+async function updateChart() {
+  while (startFetch) {
+    try {
+      toTimestamp = Math.floor(Date.now() / 1000);
+      fromTimestamp = new Date();
+      fromTimestamp.setDate(fromTimestamp.getDate() - 1);
+      fromTimestamp.setHours(5, 0, 0, 0); // Set time to 5:00 AM
+
+      fromTimestampInSeconds = Math.floor(fromTimestamp / 1000);
+      const sliderValue = sessionStorage.getItem("sliderValue");
+      var newChartUrl = `https://priceapi.moneycontrol.com/techCharts/indianMarket/stock/history?symbol=${stockSymbol}&resolution=1&from=${fromTimestampInSeconds}&to=${toTimestamp}&countback=${sliderValue}&currencyCode=INR`;
+      const res = await axios.get(newChartUrl);
+      if (res && res.data && res.data.t) {
+        const stockData = res.data;
+        candlestickData = stockData.t.map((time, index) => ({
+          t: time,
+          o: stockData.o[index],
+          h: stockData.h[index],
+          l: stockData.l[index],
+          c: stockData.c[index],
+          v: stockData.v[index], // Include volume data for each entry
+        }));
+
+        var newCandlestickData = candlestickData;
+
+        candlestickData = newCandlestickData.map((item) => ({
+          x: item.t * 1000, // Convert Unix timestamp to JavaScript timestamp
+          o: item.o,
+          h: item.h,
+          l: item.l,
+          c: item.c,
+        }));
+
+        volumeData = newCandlestickData.map((item) => ({
+          x: item.t * 1000,
+          y: item.v,
+        }));
+
+        const sliderValue = sessionStorage.getItem("sliderValue");
+
+        chart.data.datasets[0].data = candlestickData.slice(-sliderValue);
+        chart.data.datasets[1].data = volumeData.slice(-sliderValue);
+
+        document.getElementById("current-price").innerText =
+          candlestickData[candlestickData.length - 1].c;
+        document.getElementById("current-vol").innerText =
+          volumeData[volumeData.length - 1].y;
+      }
+      await new Promise((r) => setTimeout(r, 500));
+      chart.update();
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 async function getCandlestickChartData() {
@@ -174,6 +224,11 @@ async function getCandlestickChartData() {
     chart.data.datasets[1].data = volumeData.slice(-sliderValue);
     chart.update();
   }
+
+  document.getElementById("current-price").innerText =
+    candlestickData[candlestickData.length - 1].c;
+  document.getElementById("current-vol").innerText =
+    volumeData[volumeData.length - 1].y;
 }
 
 chart.config.data.datasets[0].backgroundColors = {
@@ -272,4 +327,10 @@ document.getElementById("gap-toggle").addEventListener("change", function () {
   chart.update();
   gapValue = this.checked;
   sessionStorage.setItem("gapValue", this.checked.toString());
+});
+
+document.getElementById("live-toggle").addEventListener("change", function () {
+  startFetch = !startFetch;
+  updateChart();
+  chart.update();
 });
