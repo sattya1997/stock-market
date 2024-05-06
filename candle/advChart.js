@@ -168,8 +168,25 @@ async function getCandlestickChartData() {
     }));
 
     const sliderValue = sessionStorage.getItem("sliderValue");
-    chart.data.datasets[0].data = candlestickData.slice(-sliderValue);
-    chart.data.datasets[1].data = volumeData.slice(-sliderValue);
+    newCandlestickData = [];
+    newVolumeData = [];
+
+  if (candlestickData.length > sliderValue) {
+    newCandlestickData = candlestickData.slice(-this.value);
+    newVolumeData = volumeData.slice(-this.value);
+  }
+
+  chart.data.datasets[0].data = newCandlestickData;
+  chart.data.datasets[1].data = newVolumeData;
+    chart.options = {
+  responsive: true,
+  plugins: {
+    zoom: zoomOptions,
+    tooltip: {
+      enabled: tooltipValue,
+    },
+  },
+};
     chart.update();
   }
 }
@@ -189,7 +206,6 @@ chart.options = {
     },
   },
 };
-chart.update();
 chart.update();
 
 function onTimeframeChange(selectedValue) {
