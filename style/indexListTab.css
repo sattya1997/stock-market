@@ -97,10 +97,25 @@
 #table-list th,
 #table-list td {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 10px;
     text-align: left;
 }
 
 #table-list th {
     background-color: #f0f0f0;
+    font-weight: bold;
+}
+
+/* Alternating row colors */
+#table-list tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Responsive styles for laptop and mobile */
+@media (max-width: 768px) {
+    #table-list th,
+    #table-list td {
+        padding: 5px;
+        font-size:10px
+    }
 }
