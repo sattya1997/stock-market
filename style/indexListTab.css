@@ -85,22 +85,22 @@
 }
 
 /* Styling for the data list/table */
-#dataList {
+#table-list {
     margin-top: 20px;
 }
 
-#dataList table {
+#table-list table {
     width: 100%;
     border-collapse: collapse;
 }
 
-#dataList th,
-#dataList td {
+#table-list th,
+#table-list td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
 }
 
-#dataList th {
+#table-list th {
     background-color: #f0f0f0;
 }
