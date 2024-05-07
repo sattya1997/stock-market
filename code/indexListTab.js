@@ -716,15 +716,18 @@ async function loadAndCreate() {
   try {
     const data = await axios.get(url);
     dataArray = data.data;
+    sortDataArray();
     createList();
-    document.getElementById('sortSelect').value = 11;;
   } catch (error) {
     console.error("Error fetching data:", error);
   }
 }
 
 const sortSelect = document.getElementById('sortSelect');
-sortSelect.addEventListener('change', sortDataArray());
+sortSelect.addEventListener('change', () => {
+  sortDataArray();
+  createList();
+});
 
 function sortDataArray() {
     const selectedValue = sortSelect.value;
@@ -759,6 +762,5 @@ function sortDataArray() {
         default:
             break;
     }
-    createList();
 }
 
