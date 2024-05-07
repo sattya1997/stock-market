@@ -717,6 +717,7 @@ async function loadAndCreate() {
     const data = await axios.get(url);
     dataArray = data.data;
     createList();
+    document.getElementById('sortSelect').value = 11;;
   } catch (error) {
     console.error("Error fetching data:", error);
   }
