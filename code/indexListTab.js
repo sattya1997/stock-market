@@ -721,3 +721,41 @@ async function loadAndCreate() {
     console.error("Error fetching data:", error);
   }
 }
+
+const sortSelect = document.getElementById('sortSelect');
+sortSelect.addEventListener('change', () => {
+    const selectedValue = sortSelect.value;
+
+    switch (selectedValue) {
+        case '9':
+            // Sort by change % up
+            dataArray.sort((a, b) => parseFloat(a.percentchange) - parseFloat(b.percentchange));
+            break;
+        case '10':
+            // Sort by change % down
+            dataArray.sort((a, b) => parseFloat(b.percentchange) - parseFloat(a.percentchange));
+            break;
+        case '11':
+            // Sort by stock name
+            dataArray.sort((a, b) => a.shortname.localeCompare(b.shortname));
+            break;
+        case '12':
+            // Sort by market cap
+            dataArray.sort((a, b) => parseFloat(a.mktcap.replace(/,/g, '')) - parseFloat(b.mktcap.replace(/,/g, '')));
+            break;
+        case '13':
+            // Sort by volume * price
+            dataArray.sort((a, b) => {
+                const volumeA = parseFloat(a.volume.replace(/[^\d.]/g, ''));
+                const priceA = parseFloat(a.lastvalue.replace(/,/g, ''));
+                const volumeB = parseFloat(b.volume.replace(/[^\d.]/g, ''));
+                const priceB = parseFloat(b.lastvalue.replace(/,/g, ''));
+                return volumeA * priceA - volumeB * priceB;
+            });
+            break;
+        default:
+            break;
+    }
+    createList();
+});
+
