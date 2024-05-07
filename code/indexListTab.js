@@ -724,7 +724,10 @@ async function loadAndCreate() {
 }
 
 const sortSelect = document.getElementById('sortSelect');
-sortSelect.addEventListener('change', () => {
+sortSelect.addEventListener('change', sortDataArray());
+
+function sortDataArray() {
+   () => {
     const selectedValue = sortSelect.value;
 
     switch (selectedValue) {
@@ -758,5 +761,5 @@ sortSelect.addEventListener('change', () => {
             break;
     }
     createList();
-});
+}
 
