@@ -65,6 +65,11 @@
     color: #333;
 }
 
+.sub-dropdown {
+    diplay: grid;
+    justify-content: center;
+}
+
 #marketDropdown select {
     width 130px;
     padding: 8px 10px;
