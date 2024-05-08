@@ -56,6 +56,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: space-around;
+    text-align: center;
 }
 
 #marketDropdown label {
@@ -71,7 +72,6 @@
 }
 
 #marketDropdown select {
-    width 130px;
     padding: 8px 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
