@@ -221,7 +221,7 @@ table td {
 }
 
 .ticker-list-table {
-  width: 99%;
+  width: 100%;
   max-height: 75%;
   overflow-x: auto;
   overflow-y: scroll;
