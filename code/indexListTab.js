@@ -671,7 +671,8 @@ function createList() {
     "Volume",
     "Price",
     "Capital",
-    "Change(%)",
+    "Chg",
+    "Chg %",
   ];
   headers.forEach((headerText) => {
     const header = document.createElement("th");
@@ -689,9 +690,8 @@ function createList() {
                 <td>${item.shortname}</td>
                 <td>${item.volume}</td>
                 <td>${item.lastvalue}</td>
-                <td>${item.mktcap}</td>
-                <td>${item.change} (${item.percentchange} %)</td>
-            `;
+                <td>${item.mktcap}</td>` + 
+                item.change > 0? `<td style="color:green;">${item.change}</td><td style="color:green;">${item.percentchange}</td>` : `<td style="color:red;">${item.change}</td><td style="color:red;">${item.percentchange}</td>`
     tbody.appendChild(row);
   });
 
