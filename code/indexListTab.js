@@ -686,12 +686,14 @@ function createList() {
   // Add rows to the table
   dataArray.forEach((item) => {
     const row = document.createElement("tr");
-    row.innerHTML = `
+    var rowValue = `
                 <td>${item.shortname}</td>
                 <td>${item.volume}</td>
                 <td>${item.lastvalue}</td>
-                <td>${item.mktcap}</td>` + 
-                item.change > 0? `<td style="color:green;">${item.change}</td><td style="color:green;">${item.percentchange}</td>` : `<td style="color:red;">${item.change}</td><td style="color:red;">${item.percentchange}</td>`
+                <td>${item.mktcap}</td>
+                `;
+      rowValue += (item.change > 0) ?  `<td style="color:green;">${item.change}</td><td style="color:green;">${item.percentchange}</td>` : `<td style="color:red;">${item.change}</td><td style="color:red;">${item.percentchange}</td>`
+    row.innerHTML = rowValue;
     tbody.appendChild(row);
   });
 
