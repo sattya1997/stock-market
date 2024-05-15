@@ -752,9 +752,9 @@ function sortDataArray() {
         case '13':
             // Sort by volume * price
             dataArray.sort((a, b) => {
-                const volumeA = parseFloat(a.volume.replace(/[^\d.]/g, ''));
+                const volumeA = convertToNumber(a.volume);
                 const priceA = parseFloat(a.lastvalue.replace(/,/g, ''));
-                const volumeB = parseFloat(b.volume.replace(/[^\d.]/g, ''));
+                const volumeB = convertToNumber(b.volume);
                 const priceB = parseFloat(b.lastvalue.replace(/,/g, ''));
                 return volumeA * priceA - volumeB * priceB;
             });
@@ -763,4 +763,19 @@ function sortDataArray() {
             break;
     }
 }
+
+function convertToNumber(str) {
+  let number = parseFloat(str.slice(0, -1));
+  let unit = str.slice(-1).toLowerCase();
+
+  switch (unit) {
+    case 'k':
+      return number * 1000;
+    case 'm':
+      return number * 1000000;
+    default:
+      return number; // No unit means it's just a number
+  }
+}
+
 
