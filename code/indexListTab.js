@@ -667,12 +667,12 @@ function createList() {
 
   // Define the headers
   const headers = [
-    "Short Name",
+    "Stock",
     "Volume",
-    "Last Price",
-    "Market Cap",
+    "Price",
+    "Capital",
     "Change",
-    "Change (%)",
+    "Chg (%)",
   ];
   headers.forEach((headerText) => {
     const header = document.createElement("th");
