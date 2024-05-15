@@ -690,7 +690,7 @@ function createList() {
                 <td>${item.shortname}</td>
                 <td>${item.volume}</td>
                 <td>${item.lastvalue}</td>
-                <td>${parseInt(item.mktcap)}</td>
+                <td>${parseInt(item.mktcap.replace(/,/g, ''))}</td>
                 `;
       rowValue += (item.change > 0) ?  `<td style="color:green;">${item.change}</td><td style="color:green;">${item.percentchange}</td>` : `<td style="color:red;">${item.change}</td><td style="color:red;">${item.percentchange}</td>`
     row.innerHTML = rowValue;
