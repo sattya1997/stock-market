@@ -684,18 +684,28 @@ function createList() {
   table.appendChild(thead);
 
   // Add rows to the table
+  //dataArray.forEach((item) => {
+    //const row = document.createElement("tr");
+    //var rowValue = `
+                //<td>${item.shortname}</td>
+                //<td>${item.volume}</td>
+                //<td>${item.lastvalue}</td>
+                //<td>${parseInt(item.mktcap.replace(/,/g, ''))}</td>
+                //`;
+      //rowValue += (item.change > 0) ?  `<td style="color:green;">${item.change}</td><td style="color:green;">${item.percentchange}</td>` : `<td style="color:red;">${item.change}</td><td style="color:red;">${item.percentchange}</td>`
+    //row.innerHTML = rowValue;
+    //tbody.appendChild(row);
+  //});
+  
   dataArray.forEach((item) => {
-    const row = document.createElement("tr");
-    var rowValue = `
-                <td>${item.shortname}</td>
-                <td>${item.volume}</td>
-                <td>${item.lastvalue}</td>
-                <td>${parseInt(item.mktcap.replace(/,/g, ''))}</td>
-                `;
-      rowValue += (item.change > 0) ?  `<td style="color:green;">${item.change}</td><td style="color:green;">${item.percentchange}</td>` : `<td style="color:red;">${item.change}</td><td style="color:red;">${item.percentchange}</td>`
-    row.innerHTML = rowValue;
-    tbody.appendChild(row);
-  });
+    const row = document.createElement("tr");
+    var rowValue = `<td>${item.shortname}</td><td>${item.volume}</td>`;
+    rowValue += (item.change > 0) ? `<td style="color: #009630"><span>${item.lastvalue}</span><span>&nbsp;&#x2191;</span></td>` : `<td style="color: #e40000; font-weight: 500;"><span>${item.lastvalue}</span><span>&nbsp;&#x2193;</span></td>`;
+    rowValue += `<td>${parseInt(item.mktcap.replace(/,/g, ''))}</td>`;
+    rowValue += (item.change > 0) ?  `<td style="color: #009630;">${item.change}</td><td style="color: #009630;">${item.percentchange}</td>` : `<td style="color: #e40000;">${item.change}</td><td style="color: #e40000;">${item.percentchange}</td>`
+    row.innerHTML = rowValue;
+    tbody.appendChild(row);
+  });
 
   table.appendChild(tbody);
   const tableList = document.getElementById("table-list");
