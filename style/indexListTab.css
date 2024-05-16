@@ -109,7 +109,7 @@
 
 #table-list th,
 #table-list td {
-    border: 1px solid #ddd;
+    border: 0.3px solid #ebf0ff;
     padding: 10px;
     text-align: left;
 }
@@ -128,7 +128,7 @@
 @media (max-width: 768px) {
     #table-list th,
     #table-list td {
-        padding: 5px;
-        font-size:11px;
+        padding: 1px;
+        font-size: 12px;
     }
 }
