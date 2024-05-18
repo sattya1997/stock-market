@@ -8,7 +8,7 @@ document.getElementById("meterConsole").innerHTML = `<div class="wrapper">
         <div class="label speedometerLabel"></div>
       </div>
     </div>
-    <div class="speedometer-hint"><span style="background-color: red; border-radius:2px">Fear</span><span style="background-color: #ceffc0; padding-right: 10px; padding-left: 10px">MMI Speedometer</span><span style="background-color: #36b736; border-radius:2px">Greed</span></div>
+    <div class="speedometer-hint"><span style="color: red; border-radius:2px">&#8598;&nbsp;Fear</span><span style="color: #black; padding-right: 10px; padding-left: 10px">MMI Speedometer</span><span style="color: #36b736; border-radius:2px">Greed&nbsp;&#8599;</span></div>
 </div>
     <div id="comparisonDropdown">
       <label for="comparisonSelect">Compare</label>
