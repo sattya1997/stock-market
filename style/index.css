@@ -150,7 +150,7 @@ table td {
   transition: background-color 0.3s ease;
   border-radius: 2px;
   height: 30px;
-  min-width: 100px;
+  min-width: 60px;
 }
 
 .tab-button {
