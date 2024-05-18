@@ -34,9 +34,6 @@
         position: relative;
         overflow: hidden;
         background: linear-gradient(to bottom, #e7e7e7 0%, #cfcfcf 100%);
-        -webkit-transform-style: flat;
-        -webkit-transform: translateZ(0px);
-
     }
 
     .gauge.min-scaled {
@@ -113,7 +110,7 @@
     }
 
     .speedometer-hint {
-        font-size: 14px;
+        font-size: 12px;
         display: flex;
         justify-content: center;
         text-align: center;
