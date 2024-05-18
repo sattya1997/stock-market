@@ -26,7 +26,7 @@ function createCard(cardData) {
         <span class="percent-change">Chg: ${cardData.change} (${cardData.percentchange }%)</span>
         <span class="open-price">O: ${cardData.open}</span>
       </div>
-      <span><button class="center-buttons" onclick="goToDetails(this)" style="font-size:10px;">Adv chart</button></span>
+      <span><button class="center-buttons-1" onclick="goToDetails(this)" style="font-size:10px;">Adv chart</button></span>
       <div class="graph"><canvas id="stockChart"></canvas></div>
       <div class="bar">
         <div class="bar-container" data-name="details-days-range">
@@ -602,3 +602,24 @@ function goToDetails(element) {
 }
 
 analyzeToggle.dispatchEvent(new Event("change"));
+
+//sub tabs handling
+const cardsTabBtn = document.getElementById("cardsTab");
+const indexTabBtn = document.getElementById("indexListTab");
+const cardsTab = document.getElementById("cards-tab-container");;
+const indexTab = document.getElementById("indexList");
+
+// Add event listeners for sub tab switching
+cardsTabBtn.addEventListener("click", () => {
+  indexTabBtn.classList.remove("active");
+  cardsTabBtn.classList.add("active");
+  indexTab.style.display = "none";
+  cardsTab.style.display = "block";
+});
+indexTabBtn.addEventListener("click", () => {
+  cardsTabBtn.classList.remove("active");
+  indexTabBtn.classList.add("active");
+  cardsTab.style.display = "none";
+  indexTab.style.display = "block";
+  // Display data in the list/table format
+});

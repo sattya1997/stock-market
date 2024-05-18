@@ -1,3 +1,4 @@
+initialize();
 generateHeader();
 
 function generateHeader() {
@@ -67,7 +68,7 @@ async function stop() {
 }
 
 async function getStockData(postData) {
-  const response = await axios.post(url, postData , {
+  const response = await axios.post(url, postData, {
     headers: {
       "Content-Type": "application/json",
     },
@@ -271,4 +272,20 @@ function showTab(tabNumber) {
   tabPanels.forEach((panel, index) => {
     panel.classList.toggle("active", index + 1 === tabNumber);
   });
+
+  sessionStorage.removeItem("tabValue");
+
+  if(tabNumber === 3) {
+    document.getElementById("sub-tab").style.display = "block";
+  } else {
+    document.getElementById("sub-tab").style.display = "none";
+  }
+}
+
+function initialize() {
+  let tabValue = parseInt(sessionStorage.getItem("tabValue"));
+  console.log(tabValue);
+  if (tabValue) {
+    showTab(tabValue);
+  }
 }
