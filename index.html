@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bull Ticker</title>
     <link rel="stylesheet" type="text/css" href="./style/index.css">
+    <link rel="stylesheet" type="text/css" href="./style/speedometer.css">
     <link rel="stylesheet" type="text/css" href="./style/live.css">
     <link rel="stylesheet" type="text/css" href="./style/analyzeDetails.css">
     <link rel="stylesheet" href="./style/indexListTab.css">
@@ -20,8 +21,8 @@
         <button class="tab-button active" onclick="showTab(1)">Tickers</button>
         <button class="tab-button" onclick="showTab(2)">Live</button>
         <button class="tab-button" onclick="showTab(3)">Analyze</button>
+        <button class="tab-button" onclick="showTab(4)">Extra</button>
     </div>
-
     <div id="sub-tab-container">
         <div class="sub-tabs" id="sub-tab">
             <button class="sub-tab-button active" id="cardsTab">Cards</button>
@@ -29,17 +30,17 @@
         </div>
     </div>
 
-    
     <div class="tab-panel active">
         <div class="ticker-list-table">
-            <span style="font-size: 18px;font-weight: 600;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Ticker list</span>
+            <span
+                style="font-size: 18px;font-weight: 600;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Ticker
+                list</span>
             <div class="center-buttons">
                 <button onclick="start()" style="color: green;margin-right: 5px;">Start</button>
                 <button onclick="stop()" style="color: red;margin-right: 5px;">Stop</button>
                 <button onclick="editTickers()" style="margin-right: 5px;">Tickers</button>
                 <button onclick="editCells()" style="margin-right: 5px;">Cells</button>
             </div>
-
             <div id="editFormTickers" style="display: none;">
                 <form id="edit-tickers-form">
                     <label>
@@ -69,14 +70,13 @@
                 <div>
                     <button id="cellSubmitBtn" style="margin-left: auto;margin-right: auto;">Submit Change</button>
                 </div>
-
             </div>
 
             <table id="myTable">
                 <tbody id="myTableBody"></tbody>
             </table>
         </div>
-
+        <div id="meterConsole"></div>
     </div>
     <div class="tab-panel">
         <div id="ticker-details">
@@ -86,8 +86,8 @@
                     style="margin-left: 10px;">Start connection</span></div>
             <p style="font-size: x-small; font-style: italic; text-align: center;">(Hint: First select stock name from
                 the list and then start the connection.)</p>
-            <div style="display: flex; justify-content: center;"><button class="center-buttons-1" id="edit-tickers-live"
-                    >Edit List</button></div>
+            <div style="display: flex; justify-content: center;"><button class="center-buttons-1"
+                    id="edit-tickers-live">Edit List</button></div>
 
             <div class="modal-overlay" id="modal-overlay-live">
                 <div class="modal-box">
@@ -115,7 +115,8 @@
     <div class="tab-panel">
         <div id="cards-tab-container">
             <div class="center-buttons">
-                <label class="switch tooltip"> <input type="checkbox" id="analyzeToggle"> <span class="slider round"></span>
+                <label class="switch tooltip"> <input type="checkbox" id="analyzeToggle"> <span
+                        class="slider round"></span>
                     <span id="onOffText">Off</span> <span class="icon">&#x26A1</span>
                 </label>
                 <button id="edit-tickers" style="margin-right: 5px;">Edit List</button>
@@ -146,55 +147,60 @@
         <div id="indexList">
             <div id="marketDropdown">
                 <div class="sub-dropdown">
-                <label for="marketSelect">Index</label>
-                <select id="marketSelect">
-                    <option value="9" selected>Nifty 50</option>
-                    <option value="4">Sensex</option>
-                    <option value="28">Nifty 100</option>
-                    <option value="49">Nifty 200</option>
-                    <option value="7">Nifty 500</option>
-                    <option value="136">Nifty Total Market</option>
-                    <option value="120">Nifty Momentum 30</option>
-                    <option value="119">Nifty low volatility</option>
-                    <option value="112">Nifty Midcap 150</option>
-                    <option value="114">Nifty Smallcap 150</option>
-                    <option value="135">Nifty Microcap 250</option>
-                    <option value="126">Nifty OilGas</option>
-                    <option value="23">Nifty Bank</option>
-                    <option value="19">Nifty IT</option>
-                    <option value="52">Nifty Auto</option>
-                    <option value="123">Nifty Health</option>
-                    <option value="61">Nifty CPSE</option>
-                    <option value="50">Nifty Media</option>
-                    <option value="38">Nifty Energy</option>
-                    <option value="39">Nifty FMCG</option>
-                    <option value="42">Nifty PSE</option>
-                    <option value="41">Nifty Pharma</option>
-                    <option value="35">Nifty Infra</option>
-                    <option value="34">Nifty Realty</option>
-                    <option value="112">Nifty Quality 30</option>
-                </select>
+                    <label for="marketSelect">Index</label>
+                    <select id="marketSelect">
+                        <option value="9" selected>Nifty 50</option>
+                        <option value="4">Sensex</option>
+                        <option value="28">Nifty 100</option>
+                        <option value="49">Nifty 200</option>
+                        <option value="7">Nifty 500</option>
+                        <option value="136">Nifty Total Market</option>
+                        <option value="120">Nifty Momentum 30</option>
+                        <option value="119">Nifty low volatility</option>
+                        <option value="112">Nifty Midcap 150</option>
+                        <option value="114">Nifty Smallcap 150</option>
+                        <option value="135">Nifty Microcap 250</option>
+                        <option value="126">Nifty OilGas</option>
+                        <option value="23">Nifty Bank</option>
+                        <option value="19">Nifty IT</option>
+                        <option value="52">Nifty Auto</option>
+                        <option value="123">Nifty Health</option>
+                        <option value="61">Nifty CPSE</option>
+                        <option value="50">Nifty Media</option>
+                        <option value="38">Nifty Energy</option>
+                        <option value="39">Nifty FMCG</option>
+                        <option value="42">Nifty PSE</option>
+                        <option value="41">Nifty Pharma</option>
+                        <option value="35">Nifty Infra</option>
+                        <option value="34">Nifty Realty</option>
+                        <option value="112">Nifty Quality 30</option>
+                    </select>
                 </div>
                 <div class="sub-dropdown">
-                <label for="sortSelect">Sort</label>
-                <select id="sortSelect">
-                    <option value="9">Losers &#x25BC;</option>
-                    <option value="10">Gainers &#x25B2;</option>
-                    <option value="11" selected>Stock name</option>
-                    <option value="12">Market cap</option>
-                    <option value="12">Vol * Price</option>
-                </select>
+                    <label for="sortSelect">Sort</label>
+                    <select id="sortSelect">
+                        <option value="9">Losers &#x25BC;</option>
+                        <option value="10">Gainers &#x25B2;</option>
+                        <option value="11" selected>Stock name</option>
+                        <option value="12">Market cap</option>
+                        <option value="12">Vol * Price</option>
+                    </select>
                 </div>
             </div>
             <div id="table-list">
-                
+
             </div>
         </div>
     </div>
 
+        <div class="tab-panel">
+Extra
+        </div>
+
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript" src="./code/variables.js"></script>
     <script type="text/javascript" src="./code/index.js"></script>
+    <script type="text/javascript" src="./code/speedometer.js"></script>
     <script type="text/javascript" src="./code/live.js"></script>
     <script type="text/javascript" src="./code/analyzeDetails.js"></script>
     <script type="text/javascript" src="./code/indexListTab.js"></script>

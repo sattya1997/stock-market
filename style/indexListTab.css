@@ -72,9 +72,9 @@
 }
 
 .sub-dropdown {
-    diplay: grid;
+    display: grid;
     justify-content: center;
-    text-align-center;
+    text-align: center;
     margin-right: 10px;
 }
 

@@ -284,7 +284,6 @@ function showTab(tabNumber) {
 
 function initialize() {
   let tabValue = parseInt(sessionStorage.getItem("tabValue"));
-  console.log(tabValue);
   if (tabValue) {
     showTab(tabValue);
   }

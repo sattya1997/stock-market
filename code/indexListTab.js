@@ -666,14 +666,7 @@ function createList() {
   const headerRow = document.createElement("tr");
 
   // Define the headers
-  const headers = [
-    "Stock",
-    "Volume",
-    "Price",
-    "Capital",
-    "Chg",
-    "Chg %",
-  ];
+  const headers = ["Stock", "Volume", "Price", "Capital", "Chg", "Chg %"];
   headers.forEach((headerText) => {
     const header = document.createElement("th");
     header.textContent = headerText;
@@ -685,27 +678,33 @@ function createList() {
 
   // Add rows to the table
   //dataArray.forEach((item) => {
-    //const row = document.createElement("tr");
-    //var rowValue = `
-                //<td>${item.shortname}</td>
-                //<td>${item.volume}</td>
-                //<td>${item.lastvalue}</td>
-                //<td>${parseInt(item.mktcap.replace(/,/g, ''))}</td>
-                //`;
-      //rowValue += (item.change > 0) ?  `<td style="color:green;">${item.change}</td><td style="color:green;">${item.percentchange}</td>` : `<td style="color:red;">${item.change}</td><td style="color:red;">${item.percentchange}</td>`
-    //row.innerHTML = rowValue;
-    //tbody.appendChild(row);
+  //const row = document.createElement("tr");
+  //var rowValue = `
+  //<td>${item.shortname}</td>
+  //<td>${item.volume}</td>
+  //<td>${item.lastvalue}</td>
+  //<td>${parseInt(item.mktcap.replace(/,/g, ''))}</td>
+  //`;
+  //rowValue += (item.change > 0) ?  `<td style="color:green;">${item.change}</td><td style="color:green;">${item.percentchange}</td>` : `<td style="color:red;">${item.change}</td><td style="color:red;">${item.percentchange}</td>`
+  //row.innerHTML = rowValue;
+  //tbody.appendChild(row);
   //});
-  
+
   dataArray.forEach((item) => {
-    const row = document.createElement("tr");
-    var rowValue = `<td>${item.shortname}</td><td>${item.volume}</td>`;
-    rowValue += (item.change > 0) ? `<td style="color: #009630"><span>${item.lastvalue}</span><span>&nbsp;&#x2191;</span></td>` : `<td style="color: #e40000; font-weight: 500;"><span>${item.lastvalue}</span><span>&nbsp;&#x2193;</span></td>`;
-    rowValue += `<td>${parseInt(item.mktcap.replace(/,/g, ''))}</td>`;
-    rowValue += (item.change > 0) ?  `<td style="color: #009630;">${item.change}</td><td style="color: #009630;">${item.percentchange}</td>` : `<td style="color: #e40000;">${item.change}</td><td style="color: #e40000;">${item.percentchange}</td>`
-    row.innerHTML = rowValue;
-    tbody.appendChild(row);
-  });
+    const row = document.createElement("tr");
+    var rowValue = `<td>${item.shortname}</td><td>${item.volume}</td>`;
+    rowValue +=
+      item.change > 0
+        ? `<td style="color: #009630"><span>${item.lastvalue}</span><span>&nbsp;&#x2191;</span></td>`
+        : `<td style="color: #e40000; font-weight: 500;"><span>${item.lastvalue}</span><span>&nbsp;&#x2193;</span></td>`;
+    rowValue += `<td>${parseInt(item.mktcap.replace(/,/g, ""))}</td>`;
+    rowValue +=
+      item.change > 0
+        ? `<td style="color: #009630;">${item.change}</td><td style="color: #009630;">${item.percentchange}</td>`
+        : `<td style="color: #e40000;">${item.change}</td><td style="color: #e40000;">${item.percentchange}</td>`;
+    row.innerHTML = rowValue;
+    tbody.appendChild(row);
+  });
 
   table.appendChild(tbody);
   const tableList = document.getElementById("table-list");
@@ -715,7 +714,7 @@ function createList() {
 
 // Make Axios GET request when user selects a value from the dropdown
 marketSelect.addEventListener("change", async () => {
-    loadAndCreate();
+  loadAndCreate();
 });
 
 loadAndCreate();
@@ -733,45 +732,53 @@ async function loadAndCreate() {
   }
 }
 
-const sortSelect = document.getElementById('sortSelect');
-sortSelect.addEventListener('change', () => {
+const sortSelect = document.getElementById("sortSelect");
+sortSelect.addEventListener("change", () => {
   sortDataArray();
   createList();
 });
 
 function sortDataArray() {
-    const selectedValue = sortSelect.value;
+  const selectedValue = sortSelect.value;
 
-    switch (selectedValue) {
-        case '9':
-            // Sort by change % up
-            dataArray.sort((a, b) => parseFloat(a.percentchange) - parseFloat(b.percentchange));
-            break;
-        case '10':
-            // Sort by change % down
-            dataArray.sort((a, b) => parseFloat(b.percentchange) - parseFloat(a.percentchange));
-            break;
-        case '11':
-            // Sort by stock name
-            dataArray.sort((a, b) => a.shortname.localeCompare(b.shortname));
-            break;
-        case '12':
-            // Sort by market cap
-            dataArray.sort((a, b) => parseFloat(a.mktcap.replace(/,/g, '')) - parseFloat(b.mktcap.replace(/,/g, '')));
-            break;
-        case '13':
-            // Sort by volume * price
-            dataArray.sort((a, b) => {
-                const volumeA = convertToNumber(a.volume);
-                const priceA = parseFloat(a.lastvalue.replace(/,/g, ''));
-                const volumeB = convertToNumber(b.volume);
-                const priceB = parseFloat(b.lastvalue.replace(/,/g, ''));
-                return volumeA * priceA - volumeB * priceB;
-            });
-            break;
-        default:
-            break;
-    }
+  switch (selectedValue) {
+    case "9":
+      // Sort by change % up
+      dataArray.sort(
+        (a, b) => parseFloat(a.percentchange) - parseFloat(b.percentchange)
+      );
+      break;
+    case "10":
+      // Sort by change % down
+      dataArray.sort(
+        (a, b) => parseFloat(b.percentchange) - parseFloat(a.percentchange)
+      );
+      break;
+    case "11":
+      // Sort by stock name
+      dataArray.sort((a, b) => a.shortname.localeCompare(b.shortname));
+      break;
+    case "12":
+      // Sort by market cap
+      dataArray.sort(
+        (a, b) =>
+          parseFloat(a.mktcap.replace(/,/g, "")) -
+          parseFloat(b.mktcap.replace(/,/g, ""))
+      );
+      break;
+    case "13":
+      // Sort by volume * price
+      dataArray.sort((a, b) => {
+        const volumeA = convertToNumber(a.volume);
+        const priceA = parseFloat(a.lastvalue.replace(/,/g, ""));
+        const volumeB = convertToNumber(b.volume);
+        const priceB = parseFloat(b.lastvalue.replace(/,/g, ""));
+        return volumeA * priceA - volumeB * priceB;
+      });
+      break;
+    default:
+      break;
+  }
 }
 
 function convertToNumber(str) {
@@ -779,13 +786,11 @@ function convertToNumber(str) {
   let unit = str.slice(-1).toLowerCase();
 
   switch (unit) {
-    case 'k':
+    case "k":
       return number * 1000;
-    case 'm':
+    case "m":
       return number * 1000000;
     default:
       return number; // No unit means it's just a number
   }
 }
-
-
