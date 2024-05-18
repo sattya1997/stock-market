@@ -6,7 +6,7 @@
     .wrapper {
         display: grid;
         margin: 0 auto;
-        padding: 35px 40px 40px;
+        padding: 35px 40px 12px;
         border-radius: 3px;
         justify-content: center;
     }

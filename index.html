@@ -145,6 +145,44 @@
             <div id="analyze-details-tab"></div>
         </div>
         <div id="indexList">
+            <div class="custom-select-wrapper">
+                <div class="custom-select">
+                    <div class="custom-select__trigger"><span>Select Indexes</span>
+                        <div class="arrow-2"></div>
+                    </div>
+                    <div class="custom-options">
+                        <span class="custom-option" data-value="9">Nifty 50</span>
+                        <span class="custom-option" data-value="4">Sensex</span>
+                        <span class="custom-option" data-value="28">Nifty 100</span>
+                        <span class="custom-option" data-value="49">Nifty 200</span>
+                        <span class="custom-option" data-value="7">Nifty 500</span>
+                        <span class="custom-option" data-value="136">Nifty Total Market</span>
+                        <span class="custom-option" data-value="120">Nifty Momentum 30</span>
+                        <span class="custom-option" data-value="119">Nifty low volatility</span>
+                        <span class="custom-option" data-value="112">Nifty Midcap 150</span>
+                        <span class="custom-option" data-value="114">Nifty Smallcap 150</span>
+                        <span class="custom-option" data-value="135">Nifty Microcap 250</span>
+                        <span class="custom-option" data-value="126">Nifty OilGas</span>
+                        <span class="custom-option" data-value="23">Nifty Bank</span>
+                        <span class="custom-option" data-value="19">Nifty IT</span>
+                        <span class="custom-option" data-value="52">Nifty Auto</span>
+                        <span class="custom-option" data-value="123">Nifty Health</span>
+                        <span class="custom-option" data-value="61">Nifty CPSE</span>
+                        <span class="custom-option" data-value="50">Nifty Media</span>
+                        <span class="custom-option" data-value="38">Nifty Energy</span>
+                        <span class="custom-option" data-value="39">Nifty FMCG</span>
+                        <span class="custom-option" data-value="42">Nifty PSE</span>
+                        <span class="custom-option" data-value="41">Nifty Pharma</span>
+                        <span class="custom-option" data-value="35">Nifty Infra</span>
+                        <span class="custom-option" data-value="34">Nifty Realty</span>
+                        <span class="custom-option" data-value="112">Nifty Quality</span>
+                    </div>
+                </div>
+                <button class="custom-select__button">Get Selected indexs graph</button>
+                <br>
+                <div class="graphList"></div>
+                <br>
+            </div>
             <div id="marketDropdown">
                 <div class="sub-dropdown">
                     <label for="marketSelect">Index</label>
@@ -187,15 +225,16 @@
                     </select>
                 </div>
             </div>
+            <br>
             <div id="table-list">
 
             </div>
         </div>
     </div>
 
-        <div class="tab-panel">
-            <a href="https://sattya1997.github.io/LockNCode/">Go to LockNCode</a>
-        </div>
+    <div class="tab-panel">
+        <a href="https://sattya1997.github.io/LockNCode/">Go to LockNCode</a>
+    </div>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript" src="./code/variables.js"></script>
