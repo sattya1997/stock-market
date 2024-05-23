@@ -1,6 +1,6 @@
-const foreignCheckbox = document.getElementById('showElement');
+const foreignCheckbox = document.getElementById('showForeignStocks');
 const parentDiv = document.getElementById('foreign-stocks');
-const calendarCheckbox = document.getElementById('showElement');
+const calendarCheckbox = document.getElementById('showEconomicCalendar');
 
 // Create the child element initially hidden
 const childElement = document.createElement('div');
