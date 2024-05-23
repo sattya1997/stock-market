@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="./style/live.css">
     <link rel="stylesheet" type="text/css" href="./style/analyzeDetails.css">
     <link rel="stylesheet" href="./style/indexListTab.css">
+    <link rel="stylesheet" href="./style/extraTab.css">
     <link rel="icon" type="image/svg+xml" href="./icons/favicon-2.svg">
     <script src="https://bundle.run/buffer@6.0.3"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/protobufjs/7.2.6/protobuf.js"></script>
@@ -233,7 +234,13 @@
     </div>
 
     <div class="tab-panel">
-        <a href="https://sattya1997.github.io/LockNCode/">Go to LockNCode</a>
+        <div class="sub-tab-extra">
+          <a href="https://sattya1997.github.io/LockNCode/">Go to LockNCode</a>
+          <input type="checkbox" id="showElement">
+          <label>Show Foreign stock data</label>
+        </div>
+        <br>
+        <div id="foreign-stocks"></div>
     </div>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -243,6 +250,7 @@
     <script type="text/javascript" src="./code/live.js"></script>
     <script type="text/javascript" src="./code/analyzeDetails.js"></script>
     <script type="text/javascript" src="./code/indexListTab.js"></script>
+    <script type="text/javascript" src="./code/extraTab.js"></script>
 </body>
 
 </html>
