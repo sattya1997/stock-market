@@ -133,6 +133,9 @@ table td {
 .tabs {
   display: flex;
   border-bottom: 1px solid #ddd;
+  position: sticky;
+  z-index: 100;
+  background-color: d8d8d8;
 }
 
 @media (max-width: 500px) {
