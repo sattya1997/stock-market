@@ -4,4 +4,32 @@
   height: auto;
   border: 1px solid black;
   border-radius: 5px;
+  padding: 15px;
+  background-color: azure
+}
+
+.sub-tab-extra a {
+  padding: 5px 5px 5px 5px;
+  height: 10px;
+  width: 10px;
+  color: black;
+  font-size: larger;
+  font-weight: 600;
+  text-decoration: none;
+  background-color: #8cc4fb;
+  border-radius: 5px;
+}
+
+.sub-tab-extra a:active {
+  background-color: #8091f1;
+  transform: scale(0.96);
+}
+.sub-tab-extra label {
+  padding: 5px 5px 5px 5px;
+  height: 10px;
+  width: 10px;
+  color: black;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 5px;
 }
