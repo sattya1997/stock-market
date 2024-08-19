@@ -2,27 +2,27 @@ initialize();
 generateHeader();
 
 function generateHeader() {
-  const tbl = document.getElementById("myTable");
+  const tbl = document.getElementById('myTable');
   tbl.deleteTHead();
 
-  const tblBody = document.getElementById("myTableBody");
-  tblBody.innerHTML = "";
-  const tblHead = document.createElement("thead");
+  const tblBody = document.getElementById('myTableBody');
+  tblBody.innerHTML = '';
+  const tblHead = document.createElement('thead');
   tblHead;
-  var tblRow = document.createElement("tr");
-  var tblh = document.createElement("th");
-  tblh.style.width = "60px";
+  var tblRow = document.createElement('tr');
+  var tblh = document.createElement('th');
+  tblh.style.width = '60px';
 
-  const text = document.createTextNode("Time");
+  const text = document.createTextNode('Time');
   tblh.appendChild(text);
   tblRow.appendChild(tblh);
 
   for (let j = 0; j < tickers.length; j++) {
-    tblh = document.createElement("th");
-    tblh.appendChild(document.createTextNode("Ticker " + (j + 1)));
+    tblh = document.createElement('th');
+    tblh.appendChild(document.createTextNode('Ticker ' + (j + 1)));
 
     //generate secondary Table header
-    const secondaryTable = document.createElement("table");
+    const secondaryTable = document.createElement('table');
     const secondaryRow = secondaryTable.insertRow();
 
     for (let i = 0; i < availableCell.length; i++) {
@@ -35,9 +35,9 @@ function generateHeader() {
   tblRow.appendChild(tblh);
   tblHead.appendChild(tblRow);
 
-  tblRow = document.createElement("tr");
-  tblh = document.createElement("th");
-  tblh.appendChild(document.createTextNode(" "));
+  tblRow = document.createElement('tr');
+  tblh = document.createElement('th');
+  tblh.appendChild(document.createTextNode(' '));
 
   tblHead.appendChild(tblRow);
 
@@ -70,44 +70,44 @@ async function stop() {
 async function getStockData(postData) {
   const response = await axios.post(url, postData, {
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   });
   return response.data;
 }
 function addTableRow(tickerNumber, data) {
-  const tblBody = document.getElementById("myTableBody");
-  const row = document.createElement("tr");
-  var cell = document.createElement("td");
-  cell.style.width = "60px";
+  const tblBody = document.getElementById('myTableBody');
+  const row = document.createElement('tr');
+  var cell = document.createElement('td');
+  cell.style.width = '60px';
   const date = new Date();
   var cellText = document.createTextNode(
-    date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds()
+    date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds()
   );
   cell.appendChild(cellText);
   row.appendChild(cell);
 
   for (let j = 0; j < data.length; j++) {
-    cell = document.createElement("td");
+    cell = document.createElement('td');
 
     //generate secondary Table
-    const secondaryTable = document.createElement("table");
+    const secondaryTable = document.createElement('table');
     const secondaryRow = secondaryTable.insertRow();
 
     for (let i = 0; i < availableCell.length; i++) {
       const secondaryCell = secondaryRow.insertCell();
 
-      if (availableCell[i].name === "name") {
+      if (availableCell[i].name === 'name') {
         secondaryCell.textContent = tickers.find(
           (ticker) => ticker.name === data[j].ticker
         ).value;
-      } else if (availableCell[i].name === "price") {
+      } else if (availableCell[i].name === 'price') {
         secondaryCell.textContent = data[j].price;
-      } else if (availableCell[i].name === "bid" && data[j].ticker != "^NSEI") {
+      } else if (availableCell[i].name === 'bid' && data[j].ticker != '^NSEI') {
         secondaryCell.textContent = data[j].bid;
-      } else if (availableCell[i].name === "ask" && data[j].ticker != "^NSEI") {
+      } else if (availableCell[i].name === 'ask' && data[j].ticker != '^NSEI') {
         secondaryCell.textContent = data[j].ask;
-      } else if (availableCell[i].name === "change") {
+      } else if (availableCell[i].name === 'change') {
         secondaryCell.textContent = data[j].c.toFixed(2);
       }
     }
@@ -116,8 +116,8 @@ function addTableRow(tickerNumber, data) {
     row.appendChild(cell);
   }
 
-  const closeBtnCell = document.createElement("td");
-  closeBtnCell.style.maxWidth = "20px";
+  const closeBtnCell = document.createElement('td');
+  closeBtnCell.style.maxWidth = '20px';
   //closeBtnCell.style.padding = '0px 5px 0px 5px'
   closeBtnCell.innerHTML =
     '<button onclick="deleteCell(this)" class="delete-btn"></button>';
@@ -134,49 +134,49 @@ function deleteCell(btn) {
 }
 
 function editCells() {
-  const container = document.getElementById("checkboxContainer");
-  container.innerHTML = "";
-  const checkbox = document.getElementById("checkbox");
+  const container = document.getElementById('checkboxContainer');
+  container.innerHTML = '';
+  const checkbox = document.getElementById('checkbox');
   var newCells = totalCell;
 
   newCells.forEach(function (option, index) {
     // Create the checkbox input element
-    var checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
+    var checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
     checkbox.id = option.name;
     checkbox.name = option.name;
     checkbox.value = option.value;
 
     // Create the label element
-    var label = document.createElement("label");
+    var label = document.createElement('label');
     label.htmlFor = option.name;
     label.appendChild(document.createTextNode(option.name));
 
     // Append the checkbox and label to the container
     container.appendChild(checkbox);
     container.appendChild(label);
-    container.appendChild(document.createElement("br"));
+    container.appendChild(document.createElement('br'));
   });
 
-  if (checkbox.style.display === "none") {
-    checkbox.style.display = "block";
+  if (checkbox.style.display === 'none') {
+    checkbox.style.display = 'block';
   } else {
-    checkbox.style.display = "none";
+    checkbox.style.display = 'none';
   }
 }
 
 function editTickers() {
-  var container = document.getElementById("editFormTickers");
-  if (container.style.display === "none") {
-    container.style.display = "block";
+  var container = document.getElementById('editFormTickers');
+  if (container.style.display === 'none') {
+    container.style.display = 'block';
   } else {
-    container.style.display = "none";
+    container.style.display = 'none';
   }
 }
 
 document
-  .getElementById("cellSubmitBtn")
-  .addEventListener("click", function (event) {
+  .getElementById('cellSubmitBtn')
+  .addEventListener('click', function (event) {
     event.preventDefault();
     var checkedBoxes = document.querySelectorAll(
       '#checkboxContainer input[type="checkbox"]:checked'
@@ -188,44 +188,44 @@ document
     availableCell = newCell;
 
     generateHeader();
-    var container = document.getElementById("checkbox");
-    container.style.display = "none";
+    var container = document.getElementById('checkbox');
+    container.style.display = 'none';
   });
 
 document
-  .getElementById("editTickersSubmitBtn")
-  .addEventListener("click", function (event) {
+  .getElementById('editTickersSubmitBtn')
+  .addEventListener('click', function (event) {
     event.preventDefault();
 
-    const msgBox = document.getElementById("msg-box-ticker");
-    const container = document.getElementById("editFormTickers");
+    const msgBox = document.getElementById('msg-box-ticker');
+    const container = document.getElementById('editFormTickers');
 
     var checkedRadioBox = document.querySelector(
       '#edit-tickers-form input[type="radio"]:checked'
     );
 
     if (checkedRadioBox && checkedRadioBox.value) {
-      if (checkedRadioBox.value === "add") {
+      if (checkedRadioBox.value === 'add') {
         var textInputs = document.querySelectorAll(
           '#edit-tickers-form input[type="text"]'
         );
         if (textInputs.length < 2) {
-          msgBox.style.color = "red";
-          msgBox.innerHTML = "Enter both name and value";
+          msgBox.style.color = 'red';
+          msgBox.innerHTML = 'Enter both name and value';
         } else {
           tickers.push({
             name: textInputs[0].value,
             value: textInputs[1].value,
           });
-          msgBox.style.color = "green";
-          msgBox.innerHTML = "Succesfully added";
+          msgBox.style.color = 'green';
+          msgBox.innerHTML = 'Succesfully added';
           generateHeader();
           setTimeout(function () {
-            container.style.display = "none";
-            msgBox.innerHTML = "";
+            container.style.display = 'none';
+            msgBox.innerHTML = '';
           }, 2000);
         }
-      } else if (checkedRadioBox.value === "remove") {
+      } else if (checkedRadioBox.value === 'remove') {
         var textInputs = document.querySelectorAll(
           '#edit-tickers-form input[type="text"]'
         );
@@ -239,53 +239,61 @@ document
 
           if (newTickerNumber < previousTickerNumber) {
             generateHeader();
-            msgBox.style.color = "green";
-            msgBox.innerHTML = "Succesfully removed";
+            msgBox.style.color = 'green';
+            msgBox.innerHTML = 'Succesfully removed';
             setTimeout(function () {
-              container.style.display = "none";
-              msgBox.innerHTML = "";
+              container.style.display = 'none';
+              msgBox.innerHTML = '';
             }, 2000);
           } else {
-            msgBox.style.color = "red";
-            msgBox.innerHTML = "Ticker name not found";
+            msgBox.style.color = 'red';
+            msgBox.innerHTML = 'Ticker name not found';
           }
         } else {
-          msgBox.style.color = "red";
-          msgBox.innerHTML = "Type input correctly";
+          msgBox.style.color = 'red';
+          msgBox.innerHTML = 'Type input correctly';
         }
       }
     } else {
-      msgBox.style.color = "red";
-      msgBox.innerHTML = "Click any(Add or Remove)";
+      msgBox.style.color = 'red';
+      msgBox.innerHTML = 'Click any(Add or Remove)';
     }
     //container.style.display = 'none';
   });
 
 function showTab(tabNumber) {
-  const tabButtons = document.querySelectorAll(".tab-button");
-  const tabPanels = document.querySelectorAll(".tab-panel");
+  const tabButtons = document.querySelectorAll('.tab-button');
+  const tabPanels = document.querySelectorAll('.tab-panel');
 
   tabButtons.forEach((button, index) => {
-    button.classList.toggle("active", index + 1 === tabNumber);
+    button.classList.toggle('active', index + 1 === tabNumber);
   });
 
   tabPanels.forEach((panel, index) => {
-    panel.classList.toggle("active", index + 1 === tabNumber);
+    panel.classList.toggle('active', index + 1 === tabNumber);
   });
 
-  sessionStorage.removeItem("tabValue");
+  sessionStorage.removeItem('tabValue');
 
-  if(tabNumber === 3) {
-    document.getElementById("sub-tab").style.display = "block";
+  if (tabNumber === 3) {
+    document.getElementById('sub-tab').style.display = 'block';
   } else {
-    document.getElementById("sub-tab").style.display = "none";
+    document.getElementById('sub-tab').style.display = 'none';
   }
 }
 
 function initialize() {
-  let tabValue = parseInt(sessionStorage.getItem("tabValue"));
+  let tabValue = parseInt(sessionStorage.getItem('tabValue'));
   console.log(tabValue);
   if (tabValue) {
     showTab(tabValue);
   }
 }
+
+// Light/Dark Mode Toggle
+const themeToggle = document.getElementById('theme-toggle');
+
+themeToggle.addEventListener('change', () => {
+  document.body.classList.toggle('dark-mode');
+  document.body.classList.toggle('light-mode');
+});
