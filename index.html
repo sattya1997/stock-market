@@ -18,12 +18,19 @@
 </head>
 
 <body>
+  <div class="header">
     <div class="tabs">
-        <button class="tab-button active" onclick="showTab(1)">Tickers</button>
-        <button class="tab-button" onclick="showTab(2)">Live</button>
-        <button class="tab-button" onclick="showTab(3)">Analyze</button>
-        <button class="tab-button" onclick="showTab(4)">Extra</button>
+      <button class="tab-button active" onclick="showTab(1)">Tickers</button>
+      <button class="tab-button" onclick="showTab(2)">Live</button>
+      <button class="tab-button" onclick="showTab(3)">Analyze</button>
     </div>
+    <div class="toggle-container">
+      <label class="switch">
+        <input  type="checkbox" id="theme-toggle">
+        <span class="slider round"></span>
+      </label>
+    </div>
+  </div>
     <div id="sub-tab-container">
         <div class="sub-tabs" id="sub-tab">
             <button class="sub-tab-button active" id="cardsTab">Cards</button>
