@@ -288,3 +288,11 @@ function initialize() {
     showTab(tabValue);
   }
 }
+
+// Light/Dark Mode Toggle
+const themeToggle = document.getElementById('theme-toggle');
+
+themeToggle.addEventListener('change', () => {
+  document.body.classList.toggle('dark-mode');
+  document.body.classList.toggle('light-mode');
+});
