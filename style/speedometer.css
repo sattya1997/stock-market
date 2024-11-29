@@ -1,0 +1,177 @@
+    #meterConsole {
+        display: grid;
+        justify-content: center;
+    }
+
+    .wrapper {
+        display: grid;
+        margin: 0 auto;
+        padding: 35px 40px 12px;
+        border-radius: 3px;
+        justify-content: center;
+    }
+
+    .wrapper-header {
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.74);
+        margin: 30px 0 15px;
+        font-weight: normal;
+    }
+
+    .heart {
+        margin: 0 8px;
+        display: inline-block;
+        animation: simplePulse ease-in-out 1.1s infinite;
+    }
+
+    .gauge {
+        display: grid;
+        justify-content: center;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #e7e7e7;
+        box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.09), 0 0 35px 5px rgba(255, 255, 255, 0.29);
+        width: 200px;
+        height: 100px;
+        border-radius: 100px 100px 0 0;
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(to bottom, #e7e7e7 0%, #cfcfcf 100%);
+    }
+
+    .gauge.min-scaled {
+        transform: scale(0.5);
+    }
+
+    .gauge-center {
+        content: '';
+        color: #fff;
+        width: 40%;
+        height: 40%;
+        background: #362b2b;
+        border-radius: 100px 100px 0 0;
+        position: absolute;
+        box-shadow: 0 -13px 15px -10px rgba(0, 0, 0, 0.28);
+        right: 21%;
+        bottom: 0;
+        color: #fff;
+        text-align: center;
+        top: 60px;
+        left: 60px;
+
+    }
+
+    .gauge-center .label,
+    .gauge-center .number {
+        font-weight: 600;
+        display: block;
+        width: 100%;
+        text-align: center;
+        border: 0 !important;
+    }
+
+    .gauge-center .label {
+        font-size: 0.55em;
+        opacity: 1;
+        margin-top: 0px;
+    }
+
+    .gauge-center .number {
+        margin-top: 5px;
+        font-size: .7em;
+    }
+
+    .needle {
+        width: 78px;
+        height: 7px;
+        background: #ff2626;
+        border-bottom-left-radius: 100%;
+        border-bottom-right-radius: 5px;
+        border-top-left-radius: 100%;
+        border-top-right-radius: 5px;
+        position: absolute;
+        bottom: 4px;
+        left: 23px;
+        transform-origin: 100% 4px;
+        animation: speed 5s infinite;
+        box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.38);
+        transition: transform 0.3s ease-in-out;
+        transform: rotate(70deg);
+        border: 1px solid black;
+        top: 90px;
+    }
+
+    .slice-colors {
+        border: 20px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #f4ff8d;
+        border-right: 16px solid #36b736;
+        border-bottom: 16px solid red;
+        border-left: 16px solid #ff002d;
+        width: 170px;
+        height: 170px;
+    }
+
+    .speedometer-hint {
+        display: flex;
+        font-size: 10px;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .chartCard {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .chartBox {
+        width: 100%;
+        padding: 20px;
+        border-radius: 20px;
+        border: solid 3px rgba(54, 162, 235, 1);
+        background: white;
+    }
+
+    #comparisonDropdown {
+        padding: 5px;
+        border: 1px solid #8cc4fb;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    #comparisonDropdown label {
+        display: block;
+        font-size: 16px;
+        color: #333;
+        font-weight: 600;
+        text-align: center;
+        margin-right: 10px;
+    }
+
+    #comparisonDropdown select {
+        width: 80px;
+        padding: 8px 5px;
+        border: 1px solid #8cc4fb;
+        border-radius: 4px;
+        background-color: #fff;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        font-size: 12px;
+        color: #333;
+        cursor: pointer;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    #comparisonDropdown:focus {
+        outline: none;
+        border-color: #007bff;
+        text-align: center;
+    }

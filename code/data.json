@@ -1,56 +1,55 @@
-[
-    {
-        "id": 1,
-        "name": "Tata motors",
-        "currentprice": 113,
-        "percentchange": 1.5,
-        "change": 5,
-        "dayhigh": 118,
-        "daylow": 108,
-        "open": 112,
-        "volume": 123432,
-        "bidlist": [
+{
+    "refresh_details": {
+        "flag": "true",
+        "rate": "60"
+    },
+    "graph": {
+        "name": "NIFTY 50",
+        "date_time": "May 18, 13:10",
+        "current_close": "22502.00",
+        "prev_close": "22466.10",
+        "direction": "1",
+        "values": [
             {
-                "price": 123.34,
-                "quantity": 100
+                "_time": "12:59",
+                "_value": "22502.00",
+                "_volume": "0",
+                "_chg": "35.90",
+                "_pchg": "0.16",
+                "_dir": "1"
             },
             {
-                "price": 123.76,
-                "quantity": 20
+                "_time": "13:00",
+                "_value": "22502.00",
+                "_volume": "0",
+                "_chg": "35.90",
+                "_pchg": "0.16",
+                "_dir": "1"
             },
             {
-                "price": 124,
-                "quantity": 29
+                "_time": "13:01",
+                "_value": "22502.00",
+                "_volume": "0",
+                "_chg": "35.90",
+                "_pchg": "0.16",
+                "_dir": "1"
             },
             {
-                "price": 1124.25,
-                "quantity": 55
+                "_time": "13:02",
+                "_value": "22502.00",
+                "_volume": "0",
+                "_chg": "35.90",
+                "_pchg": "0.16",
+                "_dir": "1"
             },
             {
-                "price": 124.50,
-                "quantity": 68
-            }
-        ],
-        "asklist": [
-            {
-                "price": 123.34,
-                "quantity": 100
-            },
-            {
-                "price": 123.76,
-                "quantity": 20
-            },
-            {
-                "price": 124
-            },
-            {
-                "price": 1124.25,
-                "quantity": 55
-            },
-            {
-                "price": 124.50,
-                "quantity": 68
+                "_time": "13:03",
+                "_value": "22502.00",
+                "_volume": "0",
+                "_chg": "35.90",
+                "_pchg": "0.16",
+                "_dir": "1"
             }
         ]
     }
-]
+}

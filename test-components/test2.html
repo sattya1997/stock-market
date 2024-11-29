@@ -1,0 +1,29 @@
+<div class="wrapper">
+  <div class="gauge">
+    <div class="slice-colors"></div>
+    <div class="needle"></div>
+    <div class="gauge-center">
+      <div class="number speedometerNumber"></div>
+      <div class="label speedometerLabel"></div>
+    </div>
+  </div>
+  <div class="speedometer-hint">
+    <span style="color: red; border-radius: 2px">&#8598;&nbsp;Fear</span
+    ><span style="color: black; padding-right: 10px; padding-left: 10px"
+      >MMI Speedometer</span
+    ><span style="color: #36b736; border-radius: 2px">Greed&nbsp;&#8599;</span>
+  </div>
+</div>
+<div id="comparisonDropdown">
+  <label for="comparisonSelect">Compare</label>
+  <select id="comparisonSelect">
+    <option value="1" selected>FII</option>
+    <option value="2">Nifty</option>
+    <option value="3">Gold</option>
+  </select>
+</div>
+<div class="chartCard">
+  <div class="chartBox">
+    <canvas id="comparisonChart"></canvas>
+  </div>
+</div>

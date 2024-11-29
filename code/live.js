@@ -51,6 +51,7 @@ async function startConnection(tickerNames) {
   socket.onmessage = (event) => {
     var msg = event.data;
     msg = convertMessage(msg);
+    console.log(msg);
     const spans = document.querySelectorAll("#ticker-list li span.checkmark");
     var requiredList;
     var tickerValue = msg.id;

@@ -1,15 +1,19 @@
 var cards = [];
 var stockTickers = [
-  { id: "notapplicable/inidicesindia/in%3BNSX", displayName: "Nifty 50", name:  "in%3BNSX"},
-  { id: "TEL", displayName: "Tata Motors", name:  "TATAMOTORS" },
-  { id: "IT", displayName: "Infosys", name:  "INFY" },
-  { id: "NCC01", displayName: "NCC Ltd", name:  "NCC" },
-  { id: "HAL", displayName: "HAL", name:  "HAL" },
-  { id: "ICI15", displayName: "ICICIB22", name:  "ICICIB22" },
-  { id: "ONG", displayName: "ONGC", name:  "ONGC" },
-  { id: "CES", displayName: "CESC", name:  "CESC" },
-  { id: "OI13", displayName: "Oil India", name:  "OIL" },
-  { id: "GBE", displayName: "Goldbees", name:  "GOLDBEES" },
+  {
+    id: "notapplicable/inidicesindia/in%3BNSX",
+    displayName: "Nifty 50",
+    name: "in%3BNSX",
+  },
+  { id: "TEL", displayName: "Tata Motors", name: "TATAMOTORS" },
+  { id: "IT", displayName: "Infosys", name: "INFY" },
+  { id: "NCC01", displayName: "NCC Ltd", name: "NCC" },
+  { id: "HAL", displayName: "HAL", name: "HAL" },
+  { id: "ICI15", displayName: "ICICIB22", name: "ICICIB22" },
+  { id: "ONG", displayName: "ONGC", name: "ONGC" },
+  { id: "CES", displayName: "CESC", name: "CESC" },
+  { id: "OI13", displayName: "Oil India", name: "OIL" },
+  { id: "GBE", displayName: "Goldbees", name: "GOLDBEES" },
 ];
 var analyzeStart = false;
 
@@ -23,7 +27,9 @@ function createCard(cardData) {
         <span class="current-price">${cardData.currentprice}</span>
       </div>
       <div class="details">
-        <span class="percent-change">Chg: ${cardData.change} (${cardData.percentchange }%)</span>
+        <span class="percent-change">Chg: ${cardData.change} (${
+    cardData.percentchange
+  }%)</span>
         <span class="open-price">O: ${cardData.open}</span>
       </div>
       <span><button class="center-buttons-1" onclick="goToDetails(this)" style="font-size:10px;">Adv chart</button></span>
@@ -82,20 +88,36 @@ function updateCard(cardElement, cardData) {
   const askbid = convertAskBid(cardData.best_5_set);
 
   // Update the card element with the new data
-  cardElement.querySelector(".current-price").textContent = parseFloat(cardData.pricecurrent).toFixed(2);
-  cardElement.querySelector(".current-price").style.color = (cardData.pricecurrent < cardData.OPEN | cardData.pricecurrent < cardData.OPN)? "red": "green" 
+  cardElement.querySelector(".current-price").textContent = parseFloat(
+    cardData.pricecurrent
+  ).toFixed(2);
+  cardElement.querySelector(".current-price").style.color =
+    (cardData.pricecurrent < cardData.OPEN) |
+    (cardData.pricecurrent < cardData.OPN)
+      ? "red"
+      : "green";
 
   const details = cardElement.querySelector(".details");
-  
-  if(cardData.pricechange > 0) {
-    details.innerHTML = `<span>Chg: +${parseFloat(cardData.pricechange).toFixed(2)} (+${parseFloat(cardData.pricepercentchange).toFixed(2)}%)</span><span>O: ${cardData.OPN ? cardData.OPN : cardData.OPEN}</span>`;
+
+  if (cardData.pricechange > 0) {
+    details.innerHTML = `<span>Chg: +${parseFloat(cardData.pricechange).toFixed(
+      2
+    )} (+${parseFloat(cardData.pricepercentchange).toFixed(
+      2
+    )}%)</span><span>O: ${cardData.OPN ? cardData.OPN : cardData.OPEN}</span>`;
     details.style.color = "green";
   } else {
-    details.innerHTML = `<span>Chg: ${parseFloat(cardData.pricechange).toFixed(2)} (${parseFloat(cardData.pricepercentchange).toFixed(2)}%)</span><span>O: ${cardData.OPN ? cardData.OPN : cardData.OPEN}</span>`;
+    details.innerHTML = `<span>Chg: ${parseFloat(cardData.pricechange).toFixed(
+      2
+    )} (${parseFloat(cardData.pricepercentchange).toFixed(
+      2
+    )}%)</span><span>O: ${cardData.OPN ? cardData.OPN : cardData.OPEN}</span>`;
     details.style.color = "red";
   }
-  
-  cardElement.querySelector(".bid-list").innerHTML = `<li><strong>Bid List:</strong></li>
+
+  cardElement.querySelector(
+    ".bid-list"
+  ).innerHTML = `<li><strong>Bid List:</strong></li>
     ${askbid.bidlist
       .map((bid) => `<li>${bid.price} x ${bid.quantity}</li>`)
       .join("")}`;
@@ -424,8 +446,6 @@ analyzeToggle.addEventListener("change", function () {
 });
 
 async function loadGraphData() {
-
-
   var graphData;
 
   // for (let index = 0; index < stockTickers.length; index++) {
@@ -454,66 +474,72 @@ async function loadGraphData() {
   const fromTimestampInSeconds = Math.floor(fromTimestamp / 1000);
 
   for (let index = 0; index < stockTickers.length; index++) {
-    const apiUrl = `https://priceapi.moneycontrol.com/techCharts/indianMarket/stock/history?symbol=${ stockTickers[index].name }&resolution=1&from=${fromTimestampInSeconds}&to=${toTimestamp}&countback=500&currencyCode=INR`;
+    const apiUrl = `https://priceapi.moneycontrol.com/techCharts/indianMarket/stock/history?symbol=${stockTickers[index].name}&resolution=1&from=${fromTimestampInSeconds}&to=${toTimestamp}&countback=500&currencyCode=INR`;
     res = await axios.get(apiUrl);
-    if(res && res.data && res.data.t) {
+    if (res && res.data && res.data.t) {
       graphData = res.data;
     } else {
       continue;
     }
 
-    const cardElement = document.querySelector(`.card[data-id="${stockTickers[index].id}"]`);
+    const cardElement = document.querySelector(
+      `.card[data-id="${stockTickers[index].id}"]`
+    );
     createGraph(graphData, cardElement);
     graphData = null;
-
   }
-
 }
 
 function createGraph(graphData, cardElement) {
-  const labels = graphData.t.map(timestamp => new Date(timestamp * 1000).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }).slice(0, -3))
-  const prices = graphData.c
+  const labels = graphData.t.map((timestamp) =>
+    new Date(timestamp * 1000)
+      .toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" })
+      .slice(0, -3)
+  );
+  const prices = graphData.c;
 
   const ctx = cardElement.querySelector("#stockChart").getContext("2d");
   new Chart(ctx, {
-        type: "line",
-        data: {
-            labels: labels,
-            datasets: [{
-                label: "Stock Price",
-                data: prices,
-                borderColor: "black",
-                borderWidth: 0.5,
-                fill: true,
-                pointRadius: 0,
-            }],
+    type: "line",
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: "Stock Price",
+          data: prices,
+          borderColor: "black",
+          borderWidth: 0.5,
+          fill: true,
+          pointRadius: 0,
         },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                x: {
-                  type: "time",
-                  unit: "minute",
-                  displayFormats: {
-                  minute: 'HH:mm' // Display time in HH:MM format
-                  },
-                },
-                y: {
-                  title: {
-                    display: false,
-                  },
-                  ticks: {
-                    fontSize: 10, // Set the desired font size
-                  },
-              },
-              plugins: {
-                legend: {
-                display: false // Hide legend
-              } 
-    }
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          type: "time",
+          unit: "minute",
+          displayFormats: {
+            minute: "HH:mm", // Display time in HH:MM format
           },
+        },
+        y: {
+          title: {
+            display: false,
+          },
+          ticks: {
+            fontSize: 10, // Set the desired font size
+          },
+        },
+        plugins: {
+          legend: {
+            display: false, // Hide legend
+          },
+        },
       },
+    },
   });
 }
 
@@ -534,37 +560,39 @@ function stopAnalyze() {
 }
 
 // Event listener for the search button
-document.getElementById("search-button").addEventListener("click", function (event) {
-  event.preventDefault();
-  var searchQuery = document.getElementById("search-input").value;
-  axios
-    .post(
-      `https://www.moneycontrol.com/mccode/common/autosuggestion_solr.php?classic=true&query=${searchQuery}&type=1&format=json`
-    )
-    .then(function (response) {
-      var results = response.data;
-      var resultsContainer = document.getElementById(
-        "search-results-container"
-      );
-      resultsContainer.style.display = "block";
-      resultsContainer.innerHTML = "";
-      results.forEach(function (item) {
-        var resultItem = document.createElement("span");
-        resultItem.textContent = `${item.stock_name}(id: ${item.sc_id})`;
-        resultItem.addEventListener("click", function () {
-          addTickerToForm(item.sc_id, item.stock_name);
-          saveChanges();
-          document.getElementById("search-input").value = "";
-          resultsContainer.innerHTML = "";
-          resultsContainer.style.display = "none";
+document
+  .getElementById("search-button")
+  .addEventListener("click", function (event) {
+    event.preventDefault();
+    var searchQuery = document.getElementById("search-input").value;
+    axios
+      .post(
+        `https://www.moneycontrol.com/mccode/common/autosuggestion_solr.php?classic=true&query=${searchQuery}&type=1&format=json`
+      )
+      .then(function (response) {
+        var results = response.data;
+        var resultsContainer = document.getElementById(
+          "search-results-container"
+        );
+        resultsContainer.style.display = "block";
+        resultsContainer.innerHTML = "";
+        results.forEach(function (item) {
+          var resultItem = document.createElement("span");
+          resultItem.textContent = `${item.stock_name}(id: ${item.sc_id})`;
+          resultItem.addEventListener("click", function () {
+            addTickerToForm(item.sc_id, item.stock_name);
+            saveChanges();
+            document.getElementById("search-input").value = "";
+            resultsContainer.innerHTML = "";
+            resultsContainer.style.display = "none";
+          });
+          resultsContainer.appendChild(resultItem);
         });
-        resultsContainer.appendChild(resultItem);
+      })
+      .catch(function (error) {
+        console.error(error);
       });
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
-}); // Function to add the selected ticker to the form
+  }); // Function to add the selected ticker to the form
 
 function addTickerToForm(id, displayName) {
   var form = document.getElementById("ticker-form");
@@ -579,26 +607,28 @@ function addTickerToForm(id, displayName) {
   form.appendChild(inputGroup);
 }
 
-document.getElementById("clear-button").addEventListener("click", function (event) {
-  event.preventDefault();
-  var resultsContainer = document.getElementById("search-results-container");
+document
+  .getElementById("clear-button")
+  .addEventListener("click", function (event) {
+    event.preventDefault();
+    var resultsContainer = document.getElementById("search-results-container");
 
-  resultsContainer.innerHTML = "";
-  resultsContainer.style.display = "none";
-  document.getElementById("search-input").value = "";
-});
+    resultsContainer.innerHTML = "";
+    resultsContainer.style.display = "none";
+    document.getElementById("search-input").value = "";
+  });
 
 function goToDetails(element) {
   var cardElement = element.closest(".card");
   var dataId = cardElement.getAttribute("data-id");
   var stockSymbol;
-  const data = stockTickers.find(tickers => tickers.id === dataId);
-  
+  const data = stockTickers.find((tickers) => tickers.id === dataId);
+
   if (data) {
     stockSymbol = data.name;
   }
-  
-  window.location.href = `./candle/advChart.html?stockSymbol=${ stockSymbol }`;
+
+  window.location.href = `./candle/advChart.html?stockSymbol=${stockSymbol}`;
 }
 
 analyzeToggle.dispatchEvent(new Event("change"));
@@ -606,7 +636,7 @@ analyzeToggle.dispatchEvent(new Event("change"));
 //sub tabs handling
 const cardsTabBtn = document.getElementById("cardsTab");
 const indexTabBtn = document.getElementById("indexListTab");
-const cardsTab = document.getElementById("cards-tab-container");;
+const cardsTab = document.getElementById("cards-tab-container");
 const indexTab = document.getElementById("indexList");
 
 // Add event listeners for sub tab switching
@@ -620,6 +650,7 @@ indexTabBtn.addEventListener("click", () => {
   cardsTabBtn.classList.remove("active");
   indexTabBtn.classList.add("active");
   cardsTab.style.display = "none";
-  indexTab.style.display = "block";
+  indexTab.style.display = "grid";
+  indexTab.style.justifyContent = "center"
   // Display data in the list/table format
 });
