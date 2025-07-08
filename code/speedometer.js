@@ -152,7 +152,7 @@ async function initialize() {
   while (true) {
     try {
       const response = await axios.get(
-        "https://stock-server-qag4.onrender.com/mmi"
+        "https://kite-server.onrender.com/api/mmi"
       );
       const mmiCurrentValue = response.data.data.currentValue;
       updateNeedle(mmiCurrentValue);
