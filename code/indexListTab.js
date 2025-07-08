@@ -52,7 +52,7 @@ loadAndCreate();
 
 async function loadAndCreate() {
   const selectedValue = marketSelect.value;
-  const url = `https://stock-server-qag4.onrender.com/mc?id=${selectedValue}`;
+  const url = `https://kite-server.onrender.com/api/mc?id=${selectedValue}`;
   try {
     const data = await axios.get(url);
     dataArray = data.data;
